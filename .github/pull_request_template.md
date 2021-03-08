@@ -18,3 +18,4 @@
 - [ ] I have added comments on my pull request, particularly in hard-to-understand areas
 - [ ] looked at PR preview to check spelling, syntax, formatting, and completion
 - [ ] Rubocop Violations:
+- [ ] SimpleCov Coverage:
