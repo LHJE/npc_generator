@@ -42,15 +42,6 @@ RSpec.describe 'Site Navigation' do
     end
 
     describe 'I see a nav bar where I can link to' do
-      it 'the welcome page' do
-        visit '/images'
-
-        within 'nav' do
-          click_link 'Home'
-        end
-
-        expect(current_path).to eq(root_path)
-      end
 
       it 'the logout page' do
         visit root_path
