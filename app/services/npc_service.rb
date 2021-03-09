@@ -13,6 +13,13 @@ class NPCService
     JSON.parse(results.body, symbolize_names: true)[:results].sample
   end
 
+  def self.get_npc_class
+    url = ENV['ANCESTRY_URL']
+    uri = "/classes/"
+    results = Faraday.get url + uri
+    JSON.parse(results.body, symbolize_names: true)[:results].sample
+  end
+
   def self.get_results(url, key, uri)
     conn = Faraday.new(url: url) do |faraday|
       faraday.headers['X-API-Key'] = key
