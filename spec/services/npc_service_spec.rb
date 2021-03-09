@@ -21,4 +21,10 @@ RSpec.describe "NPC Service" do
 
   end
 
+  it "It returns class data" do
+    class_data = NPCService.get_npc_class
+
+    expect(class_data).to be_a(Hash)
+    expect(class_data[:name]).to be_a(String)
+  end
 end
