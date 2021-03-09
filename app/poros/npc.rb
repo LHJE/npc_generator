@@ -4,7 +4,7 @@ class NPC
               :class
 
   def initialize(name, ancestry, class_data)
-    @name = name[:firstname]+ " " + name[:lastname]
+    @name = name[:firstname][:name] + " " + name[:lastname][:name]
     @ancestry = ancestry
     @class = class_data
   end
