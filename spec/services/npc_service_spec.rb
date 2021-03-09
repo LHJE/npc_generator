@@ -13,4 +13,12 @@ RSpec.describe "NPC Service" do
     expect(name[:name][:lastname][:name]).to be_a(String)
   end
 
+  it "It returns ancestry data" do
+    ancestry = NPCService.get_npc_ancestry
+
+    expect(ancestry).to be_a(Hash)
+    expect(ancestry[:name]).to be_a(String)
+
+  end
+
 end
