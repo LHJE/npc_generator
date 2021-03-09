@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe NPC do
   before :each do
-    @data = [{:firstname => "Flig", :lastname => "Brittlebeak"}, "Dwarf", "Warlock"]
+    @data = [{:firstname => {:name => "Flig"}, :lastname => {:name => "Brittlebeak"}}, "Dwarf", "Warlock"]
   end
 
   it "exists" do
