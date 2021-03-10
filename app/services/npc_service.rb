@@ -6,6 +6,13 @@ class NPCService
     JSON.parse(results.body, symbolize_names: true)[:results].sample
   end
 
+  def self.create_npc_background
+    url = ENV['DND_URL']
+    uri = '/backgrounds/'
+    results = Faraday.get url + uri
+    JSON.parse(results.body, symbolize_names: true)[:results].sample
+  end
+
   def self.create_npc_class
     url = ENV['DND_URL']
     uri = '/classes/'
