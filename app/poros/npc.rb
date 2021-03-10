@@ -13,6 +13,7 @@ class NPC
     @ancestry = ancestry[:name]
     @background = create_npc_background
     @class = class_data[:name]
+    @stats = Stats.new(ancestry, @background, class_data)
   end
 
   def create_npc_background
@@ -22,4 +23,5 @@ class NPC
     end
     backgrounds.sample
   end
+
 end
