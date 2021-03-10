@@ -1,3 +1,5 @@
 class WelcomeController < ApplicationController
-  def index; end
+  def index
+    @npc = NPCFacade.get_npc
+  end
 end

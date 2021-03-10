@@ -7,8 +7,12 @@ RSpec.describe 'Welcome Page' do
       visit root_path
     end
 
-    xit "can see welcome message" do
-      expect(page).to have_content()
+    it "can see welcome page text" do
+      expect(page).to have_content("NPC Generator")
+      expect(page).to have_content("Here is a brand new NPC for you")
+      expect(page).to have_content("Name:")
+      expect(page).to have_content("Ancestry:")
+      expect(page).to have_content("Class:")
     end
   end
 end

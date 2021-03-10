@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if @user.save
       session[:user_id] = @user.id
       flash[:notice] = "Welcome, #{@user.name}!"
-      redirect_to '/images'
+      redirect_to root_path
     else
       generate_flash(@user)
       render :new
