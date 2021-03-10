@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "NPC Service" do
   it "It returns ancestry data" do
-    ancestry = NPCService.get_npc_ancestry
+    ancestry = NPCService.create_npc_ancestry
 
     expect(ancestry).to be_a(Hash)
     expect(ancestry[:index]).to be_a(String)
@@ -11,7 +11,7 @@ RSpec.describe "NPC Service" do
   end
 
   it "It returns class data" do
-    class_data = NPCService.get_npc_class
+    class_data = NPCService.create_npc_class
 
     expect(class_data).to be_a(Hash)
     expect(class_data[:index]).to be_a(String)
