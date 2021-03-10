@@ -28,12 +28,18 @@ RSpec.describe "NPC Service" do
     expect(ancestry[:traits]).to be_a(String)
     expect(ancestry[:subraces]).to be_a(Array)
     if !ancestry[:subraces][0].nil?
-      require "pry"; binding.pry
       expect(ancestry[:subraces][0]).to be_a(Hash)
       expect(ancestry[:subraces][0][:name]).to be_a(String)
       expect(ancestry[:subraces][0][:slug]).to be_a(String)
       expect(ancestry[:subraces][0][:desc]).to be_a(String)
-      expect(ancestry[:subraces][0][:asi]).to be_a(String)
+      expect(ancestry[:subraces][0][:asi]).to be_a(Array)
+      expect(ancestry[:subraces][0][:asi][0]).to be_a(Hash)
+      expect(ancestry[:subraces][0][:asi][0][:attributes]).to be_a(Array)
+      expect(ancestry[:subraces][0][:asi][0][:attributes][0]).to be_a(String)
+      expect(ancestry[:subraces][0][:asi][0][:value]).to be_a(Integer)
+      expect(ancestry[:subraces][0][:asi_desc]).to be_a(String)
+      expect(ancestry[:subraces][0][:document__slug]).to be_a(String)
+      expect(ancestry[:subraces][0][:document__title]).to be_a(String)
     end
     expect(ancestry[:document__slug]).to be_a(String)
     expect(ancestry[:document__title]).to be_a(String)
@@ -42,7 +48,6 @@ RSpec.describe "NPC Service" do
 
   it "It returns class data" do
     class_data = NPCService.create_npc_class
-    # require "pry"; binding.pry
 
     expect(class_data).to be_a(Hash)
     expect(class_data[:name]).to be_a(String)
