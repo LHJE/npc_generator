@@ -9,8 +9,9 @@ RSpec.describe 'Welcome Page' do
 
     it "can see welcome page text" do
       expect(page).to have_content("NPC Generator")
-      expect(page).to have_content("Here is a brand new NPC for you")
+      expect(page).to have_content("Here is a brand new NPC just for you")
       expect(page).to have_content("Name:")
+      expect(page).to have_content("Gender:")
       expect(page).to have_content("Ancestry:")
       expect(page).to have_content("Class:")
     end
