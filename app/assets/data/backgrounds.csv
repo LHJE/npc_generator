@@ -1,0 +1,14 @@
+BACKGROUND,SKILL PROFICIENCY ONE,SKILL PROFICIENCY TWO,TOOL PROFICIENCY ONE,TOOL PROFICIENCY TWO,EXTRA LANGUAGES
+Acolyte,Insight (WIS),Religion (INT),-,-,Any 2
+Charlatan,Deception (CHA),Sleight of Hand (DEX),Disguise Kit,Forgery Kit,-
+Criminal,Deception (CHA),Stealth (DEX),Gaming set x1,Thieves' tools,-
+Entertainer,Acrobatics (DEX),Performance (CHA),Disguise kit,Musical instrument x1,-
+Folk Hero,Animal handling (WIS),Survival (WIS),Artisan's tools x1,Vehicles (land),-
+Guild Artisan,Insight (WIS),Persuasion (CHA),Artisan's tools x1,-,Any 1
+Hermit,Medicine (WIS),Religion (INT),Herbalism kit,-,Any 1
+Noble,History (INT),Persuasion (CHA),Gaming set x1,-,Any 1
+Outlander,Athletics (STR),Survival (WIS),Musical instrument x1,-,Any 1
+Sage,Arcana (INT),History (INT),-,-,Any 2
+Sailor,Athletics (STR),Perception (WIS),Navigator's tools,Vehicles (water),-
+Soldier,Athletics (STR),Intimidation (CHA),Gaming set x1,Vehicles (land),-
+Urchin,Sleight of Hand (DEX),Stealth (DEX),Disguise kit,Thieves' tools,-
