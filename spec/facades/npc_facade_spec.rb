@@ -5,5 +5,8 @@ RSpec.describe 'NPC Facade' do
     npc = NPCFacade.get_npc
 
     expect(npc).to be_a(NPC)
+    expect(npc.name).to be_a(String)
+    expect(npc.class).to be_a(String)
+    expect(npc.ancestry).to be_a(String)
   end
 end
