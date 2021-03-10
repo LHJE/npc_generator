@@ -13,6 +13,7 @@ RSpec.describe 'Welcome Page' do
       expect(page).to have_content("Name:")
       expect(page).to have_content("Gender:")
       expect(page).to have_content("Ancestry:")
+      expect(page).to have_content("Background:")
       expect(page).to have_content("Class:")
     end
   end
