@@ -1,4 +1,4 @@
-require 'CSV'
+require 'csv'
 
 class NPC
   attr_reader :name,
