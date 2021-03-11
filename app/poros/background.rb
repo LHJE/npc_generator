@@ -1,5 +1,4 @@
 class Background
-
   attr_reader :name,
               :skill_proficiency_one,
               :skill_proficiency_two,
@@ -15,6 +14,4 @@ class Background
     @tool_proficiency_two  = data[:tool_proficiency_two]
     @extra_languages       = data[:extra_languages]
   end
-
-
 end
