@@ -7,25 +7,33 @@ class Skills
     @skills = {}
     @proficiencies = []
     @proficiencies << background_profs
-    background_profs.each do |background_prof|
-      class_profs.sub!(background_prof, '')
-    end
-    (@proficiencies << find_proficiencies(class_profs)).flatten!
+    remove_background_profs(background_profs, class_profs)
+    (@proficiencies << find_proficiencies(background_profs, class_profs)).flatten!
     set_base_skill_scores(core_stats)
     adjust_for_profs(@proficiencies)
   end
 
-  def find_proficiencies(class_profs)
+  def find_proficiencies(background_profs, class_profs)
     if class_profs[0..16] == "choose two skills"
       class_profs.sub('choose two skills from ', "").sub(' and', '').split(', ').reject(&:empty?).sample(2)
     elsif class_profs[0..14] == "choose two from"
       class_profs.sub('choose two from ', "").sub(' and', '').split(', ').reject(&:empty?).sample(2)
     elsif class_profs[0..11] == "choose three"
       class_profs.sub('choose three from ', "").sub(' and', '').split(', ').reject(&:empty?).sample(3)
+    elsif class_profs[0..16] == "choose any three"
+      all_profs = "acrobatics, animal_handling, arcana, athletics, deception, history, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleight_of_hand, stealth, survival"
+      remove_background_profs(background_profs, all_profs)
+      all_profs.split(', ').reject(&:empty?).sample(3)
     elsif class_profs[0..17] == "choose four skills"
       class_profs.sub('choose four skills from ', "").sub(' and', '').split(', ').reject(&:empty?).sample(4)
     elsif class_profs[0..15] == "choose four from"
       class_profs.sub('choose four from ', "").sub(' and', '').split(', ').reject(&:empty?).sample(4)
+    end
+  end
+
+  def remove_background_profs(background_profs, other_profs)
+    background_profs.each do |background_prof|
+      other_profs.sub!(background_prof, '')
     end
   end
 
