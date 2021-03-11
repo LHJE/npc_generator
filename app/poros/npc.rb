@@ -5,7 +5,9 @@ class NPC
               :gender,
               :ancestry,
               :background,
-              :class
+              :speed,
+              :class,
+              :stats
 
   def initialize(ancestry, class_data)
     @name = "#{Faker::Games::WarhammerFantasy.hero.split(' ')[0]} #{Faker::Science.scientist.split(' ')[0]} #{Faker::FunnyName.two_word_name.split(' ')[1]}"
