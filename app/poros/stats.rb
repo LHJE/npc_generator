@@ -2,7 +2,8 @@ class Stats
 
   attr_reader :core_stats,
               :saving_throws,
-              :skills
+              :skills,
+              :passive_perception
 
   def initialize(ancestry, background, class_data)
     if ancestry[:subraces] != [] && !ancestry[:subraces].nil?
@@ -11,6 +12,7 @@ class Stats
     @core_stats = CoreStats.new(ancestry[:asi])
     @saving_throws = SavingThrows.new(modifier(@core_stats), class_data[:prof_saving_throws].split(", "))
     @skills = Skills.new(modifier(@core_stats), [background.skill_proficiency_one[0..-7].downcase, background.skill_proficiency_two[0..-7].downcase], class_data[:prof_skills].downcase)
+    @passive_perception = @skills.skills[:perception] + 10
   end
 
   def modifier(old_stats)
