@@ -1,6 +1,5 @@
 class CoreStats
-
-attr_reader :stats
+  attr_reader :stats
 
   def initialize(ancestry_buffs)
     @stats = {}
@@ -9,7 +8,7 @@ attr_reader :stats
   end
 
   def distribute_scores
-    scores = [15,14,13,12,10,8].shuffle
+    scores = [15, 14, 13, 12, 10, 8].shuffle
     @stats[:str] = scores[0]
     @stats[:dex] = scores[1]
     @stats[:con] = scores[2]
@@ -20,20 +19,20 @@ attr_reader :stats
 
   def distribute_buffs(ancestry_buffs)
     ancestry_buffs.each do |buff|
-      if buff[:attributes][0] == "Strength"
+      case buff[:attributes][0]
+      when 'Strength'
         @stats[:str] += buff[:value]
-      elsif buff[:attributes][0] == "Dexterity"
+      when 'Dexterity'
         @stats[:dex] += buff[:value]
-      elsif buff[:attributes][0] == "Constitution"
+      when 'Constitution'
         @stats[:con] += buff[:value]
-      elsif buff[:attributes][0] == "Intelligence"
+      when 'Intelligence'
         @stats[:int] += buff[:value]
-      elsif buff[:attributes][0] == "Wisdom"
+      when 'Wisdom'
         @stats[:wis] += buff[:value]
-      elsif buff[:attributes][0] == "Charisma"
+      when 'Charisma'
         @stats[:cha] += buff[:value]
       end
     end
   end
-
 end
