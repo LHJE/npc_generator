@@ -1,17 +1,18 @@
 class Skills
 
-  attr_reader :skills
+  attr_reader :skills,
+              :proficiencies
 
   def initialize(core_stats, background_profs, class_profs)
     @skills = {}
-    profs = []
-    profs << background_profs
+    @proficiencies = []
+    @proficiencies << background_profs
     background_profs.each do |background_prof|
       class_profs.sub!(background_prof, '')
     end
-    (profs << find_proficiencies(class_profs)).flatten!
+    (@proficiencies << find_proficiencies(class_profs)).flatten!
     set_base_skill_scores(core_stats)
-    adjust_for_profs(profs)
+    adjust_for_profs(@proficiencies)
   end
 
   def find_proficiencies(class_profs)
