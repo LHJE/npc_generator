@@ -15,7 +15,7 @@ class NPC
     @ancestry = ancestry[:name]
     @background = create_npc_background
     @class = class_data[:name]
-    # @speed = ancestry[:speed][:walk]
+    @speed = ancestry[:speed][:walk]
     @stats = Stats.new(ancestry, @background, class_data)
   end
 
