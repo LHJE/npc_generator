@@ -1,5 +1,4 @@
 class Skills
-
   attr_reader :skills,
               :proficiencies
 
@@ -14,20 +13,20 @@ class Skills
   end
 
   def find_proficiencies(background_profs, class_profs)
-    if class_profs[0..16] == "choose two skills"
-      class_profs.sub('choose two skills from ', "").sub(' and', '').split(', ').reject(&:empty?).sample(2)
-    elsif class_profs[0..14] == "choose two from"
-      class_profs.sub('choose two from ', "").sub(' and', '').split(', ').reject(&:empty?).sample(2)
-    elsif class_profs[0..11] == "choose three"
-      class_profs.sub('choose three from ', "").sub(' and', '').split(', ').reject(&:empty?).sample(3)
-    elsif class_profs[0..16] == "choose any three"
-      all_profs = "acrobatics, animal_handling, arcana, athletics, deception, history, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleight_of_hand, stealth, survival"
+    if class_profs[0..16] == 'choose two skills'
+      class_profs.sub('choose two skills from ', '').sub(' and', '').split(', ').reject(&:empty?).sample(2)
+    elsif class_profs[0..14] == 'choose two from'
+      class_profs.sub('choose two from ', '').sub(' and', '').split(', ').reject(&:empty?).sample(2)
+    elsif class_profs[0..11] == 'choose three'
+      class_profs.sub('choose three from ', '').sub(' and', '').split(', ').reject(&:empty?).sample(3)
+    elsif class_profs[0..16] == 'choose any three'
+      all_profs = 'acrobatics, animal_handling, arcana, athletics, deception, history, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleight_of_hand, stealth, survival'
       remove_background_profs(background_profs, all_profs)
       all_profs.split(', ').reject(&:empty?).sample(3)
-    elsif class_profs[0..17] == "choose four skills"
-      class_profs.sub('choose four skills from ', "").sub(' and', '').split(', ').reject(&:empty?).sample(4)
-    elsif class_profs[0..15] == "choose four from"
-      class_profs.sub('choose four from ', "").sub(' and', '').split(', ').reject(&:empty?).sample(4)
+    elsif class_profs[0..17] == 'choose four skills'
+      class_profs.sub('choose four skills from ', '').sub(' and', '').split(', ').reject(&:empty?).sample(4)
+    elsif class_profs[0..15] == 'choose four from'
+      class_profs.sub('choose four from ', '').sub(' and', '').split(', ').reject(&:empty?).sample(4)
     end
   end
 
@@ -60,45 +59,44 @@ class Skills
 
   def adjust_for_profs(profs)
     profs.each do |prof|
-      if prof == "acrobatics"
+      case prof
+      when 'acrobatics'
         @skills[:acrobatics] += 2
-      elsif prof == "animal handling"
+      when 'animal handling'
         @skills[:animal_handling] += 2
-      elsif prof == "arcana"
+      when 'arcana'
         @skills[:arcana] += 2
-      elsif prof == "athletics"
+      when 'athletics'
         @skills[:athletics] += 2
-      elsif prof == "deception"
+      when 'deception'
         @skills[:deception] += 2
-      elsif prof == "history"
+      when 'history'
         @skills[:history] += 2
-      elsif prof == "insight"
+      when 'insight'
         @skills[:insight] += 2
-      elsif prof == "intimidation"
+      when 'intimidation'
         @skills[:intimidation] += 2
-      elsif prof == "investigation"
+      when 'investigation'
         @skills[:investigation] += 2
-      elsif prof == "medicine"
+      when 'medicine'
         @skills[:medicine] += 2
-      elsif prof == "nature"
+      when 'nature'
         @skills[:nature] += 2
-      elsif prof == "perception"
+      when 'perception'
         @skills[:perception] += 2
-      elsif prof == "performance"
+      when 'performance'
         @skills[:performance] += 2
-      elsif prof == "persuasion"
+      when 'persuasion'
         @skills[:persuasion] += 2
-      elsif prof == "religion"
+      when 'religion'
         @skills[:religion] += 2
-      elsif prof == "sleight of hand"
+      when 'sleight of hand'
         @skills[:sleight_of_hand] += 2
-      elsif prof == "stealth"
+      when 'stealth'
         @skills[:stealth] += 2
-      elsif prof == "survival"
+      when 'survival'
         @skills[:survival] += 2
       end
     end
   end
-
-
 end
