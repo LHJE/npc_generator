@@ -20,10 +20,7 @@ RSpec.describe "NPC Service" do
     expect(ancestry[:speed]).to be_a(Hash)
     expect(ancestry[:speed][:walk]).to be_a(Integer)
     expect(ancestry[:speed_desc]).to be_a(String)
-    if !ancestry[:language].nil?
-      require "pry"; binding.pry
-      expect(ancestry[:language]).to be_a(String)
-    end
+    expect(ancestry[:languages]).to be_a(String)
     expect(ancestry[:vision]).to be_a(String)
     expect(ancestry[:traits]).to be_a(String)
     expect(ancestry[:subraces]).to be_a(Array)
