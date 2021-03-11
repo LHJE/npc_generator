@@ -5,13 +5,12 @@ class Stats
               :skills
 
   def initialize(ancestry, background, class_data)
-    if ancestry[:subraces] != []
+    if ancestry[:subraces] != [] && !ancestry[:subraces].nil?
       ancestry[:asi] << ancestry[:subraces][0][:asi][0]
     end
     @core_stats = CoreStats.new(ancestry[:asi])
     @saving_throws = SavingThrows.new(modifier(@core_stats), class_data[:prof_saving_throws].split(", "))
-    require "pry"; binding.pry
-    @skills = Skills.new(modifier(@core_stats), ancestry, background, class_data[:prof_skills])
+    @skills = Skills.new(modifier(@core_stats), [background.skill_proficiency_one[0..-7].downcase, background.skill_proficiency_two[0..-7].downcase], class_data[:prof_skills].downcase)
   end
 
   def modifier(old_stats)
