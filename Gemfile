@@ -38,6 +38,7 @@ gem 'json'
 gem 'figaro', '~> 1.2.0'
 gem 'jquery-rails'
 gem 'fast_jsonapi'
+gem 'faker'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -50,7 +51,6 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'orderly'
   gem 'factory_bot_rails'
-  gem 'faker'
   gem 'travis'
 end
 
