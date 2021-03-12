@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe NPC do
+describe Stats do
   before :each do
     @data = [{:name=>"Half-Elf",
  :slug=>"half-elf",
@@ -21,7 +21,7 @@ describe NPC do
  :subraces=>[],
  :document__slug=>"wotc-srd",
  :document__title=>"Systems Reference Document",
- :document__license_url=>"http://open5e.com/legal"}, {:name=>"Monk",
+ :document__license_url=>"http://open5e.com/legal"}, Background.new({background:"Acolyte", skill_proficiency_one:"Insight (WIS)", skill_proficiency_two:"Religion (INT)", tool_proficiency_one:"-", tool_proficiency_two:"-", extra_languages:"Any 2"}), {:name=>"Monk",
  :slug=>"monk",
  :desc=>
   "### Unarmored Defense \n \nBeginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier. \n \n### Ma
@@ -93,59 +93,51 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
   end
 
   it "exists" do
-    npc = NPC.new(@data[0], @data[1])
+    stats = Stats.new(@data[0], @data[1], @data[2])
 
-    expect(npc).to be_a(NPC)
-    expect(npc.ancestry).to eq("Half-Elf")
-    expect(npc.background).to be_a(Background)
-    expect(npc.background.name).to be_a(String)
-    expect(npc.background.skill_proficiency_one).to be_a(String)
-    expect(npc.background.skill_proficiency_two).to be_a(String)
-    expect(npc.background.tool_proficiency_one).to be_a(String)
-    expect(npc.background.tool_proficiency_two).to be_a(String)
-    expect(npc.background.extra_languages).to be_a(String)
-    expect(npc.class).to eq("Monk")
-    expect(npc.gender).to be_a(String)
-    expect(npc.name).to be_a(String)
-    expect(npc.stats).to be_a(Stats)
-    expect(npc.stats.core_stats).to be_a(CoreStats)
-    expect(npc.stats.core_stats.stats).to be_a(Hash)
-    expect(npc.stats.core_stats.stats[:str]).to be_a(Integer)
-    expect(npc.stats.core_stats.stats[:dex]).to be_a(Integer)
-    expect(npc.stats.core_stats.stats[:con]).to be_a(Integer)
-    expect(npc.stats.core_stats.stats[:int]).to be_a(Integer)
-    expect(npc.stats.core_stats.stats[:wis]).to be_a(Integer)
-    expect(npc.stats.core_stats.stats[:cha]).to be_a(Integer)
-    expect(npc.stats.passive_perception).to be_a(Integer)
-    expect(npc.stats.saving_throws).to be_a(SavingThrows)
-    expect(npc.stats.saving_throws.throws).to be_a(Hash)
-    expect(npc.stats.saving_throws.throws[:str]).to be_a(Integer)
-    expect(npc.stats.saving_throws.throws[:dex]).to be_a(Integer)
-    expect(npc.stats.saving_throws.throws[:con]).to be_a(Integer)
-    expect(npc.stats.saving_throws.throws[:int]).to be_a(Integer)
-    expect(npc.stats.saving_throws.throws[:wis]).to be_a(Integer)
-    expect(npc.stats.saving_throws.throws[:cha]).to be_a(Integer)
-    expect(npc.stats.skills).to be_a(Skills)
-    expect(npc.stats.skills.proficiencies).to be_a(Array)
-    expect(npc.stats.skills.proficiencies[0]).to be_a(String)
-    expect(npc.stats.skills.skills[:acrobatics]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:animal_handling]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:arcana]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:athletics]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:deception]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:history]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:insight]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:intimidation]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:investigation]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:medicine]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:nature]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:perception]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:performance]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:persuasion]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:religion]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:sleight_of_hand]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:stealth]).to be_a(Integer)
-    expect(npc.stats.skills.skills[:survival]).to be_a(Integer)
+    expect(stats).to be_a(Stats)
+    expect(stats.core_stats).to be_a(CoreStats)
+    expect(stats.core_stats.stats).to be_a(Hash)
+    expect(stats.core_stats.stats[:str]).to be_a(Integer)
+    expect(stats.core_stats.stats[:dex]).to be_a(Integer)
+    expect(stats.core_stats.stats[:con]).to be_a(Integer)
+    expect(stats.core_stats.stats[:int]).to be_a(Integer)
+    expect(stats.core_stats.stats[:wis]).to be_a(Integer)
+    expect(stats.core_stats.stats[:cha]).to be_a(Integer)
+    expect(stats.passive_perception).to be_a(Integer)
+    expect(stats.saving_throws).to be_a(SavingThrows)
+    expect(stats.saving_throws.throws).to be_a(Hash)
+    expect(stats.saving_throws.throws[:str]).to be_a(Integer)
+    expect(stats.saving_throws.throws[:dex]).to be_a(Integer)
+    expect(stats.saving_throws.throws[:con]).to be_a(Integer)
+    expect(stats.saving_throws.throws[:int]).to be_a(Integer)
+    expect(stats.saving_throws.throws[:wis]).to be_a(Integer)
+    expect(stats.saving_throws.throws[:cha]).to be_a(Integer)
+    expect(stats.skills).to be_a(Skills)
+    expect(stats.skills.proficiencies).to be_a(Array)
+    expect(stats.skills.proficiencies[0]).to eq("insight")
+    expect(stats.skills.proficiencies[1]).to eq("religion")
+    expect(stats.skills.proficiencies[2]).to be_a(String)
+    expect(stats.skills.proficiencies[3]).to be_a(String)
+    expect(stats.skills.proficiencies[4]).to be_a(NilClass)
+    expect(stats.skills.skills[:acrobatics]).to be_a(Integer)
+    expect(stats.skills.skills[:animal_handling]).to be_a(Integer)
+    expect(stats.skills.skills[:arcana]).to be_a(Integer)
+    expect(stats.skills.skills[:athletics]).to be_a(Integer)
+    expect(stats.skills.skills[:deception]).to be_a(Integer)
+    expect(stats.skills.skills[:history]).to be_a(Integer)
+    expect(stats.skills.skills[:insight]).to be_a(Integer)
+    expect(stats.skills.skills[:intimidation]).to be_a(Integer)
+    expect(stats.skills.skills[:investigation]).to be_a(Integer)
+    expect(stats.skills.skills[:medicine]).to be_a(Integer)
+    expect(stats.skills.skills[:nature]).to be_a(Integer)
+    expect(stats.skills.skills[:perception]).to be_a(Integer)
+    expect(stats.skills.skills[:performance]).to be_a(Integer)
+    expect(stats.skills.skills[:persuasion]).to be_a(Integer)
+    expect(stats.skills.skills[:religion]).to be_a(Integer)
+    expect(stats.skills.skills[:sleight_of_hand]).to be_a(Integer)
+    expect(stats.skills.skills[:stealth]).to be_a(Integer)
+    expect(stats.skills.skills[:survival]).to be_a(Integer)
   end
 
 end

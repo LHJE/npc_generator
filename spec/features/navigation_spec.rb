@@ -32,6 +32,13 @@ RSpec.describe 'Site Navigation' do
 
         expect(current_path).to eq(registration_path)
       end
+
+      it "can see footer" do
+        visit root_path
+        
+        expect(page).to have_content("Thank you to Open5e for providing the D&D data that is used in this application.")
+        expect(page).to have_content("Further citation information regarding the data used in this project can be found here.")
+      end
     end
   end
 
