@@ -25,24 +25,7 @@ class Skills
     elsif class_profs[0..17] == choice_texts[2]
       process_profs(class_profs, choice_texts[2], 3)
     elsif class_profs[0..16] == 'choose any three'
-      all_profs = 'acrobatics,
-                  animal_handling,
-                  arcana,
-                  athletics,
-                  deception,
-                  history,
-                  insight,
-                  intimidation,
-                  investigation,
-                  medicine,
-                  nature,
-                  perception,
-                  performance,
-                  persuasion,
-                  religion,
-                  sleight_of_hand,
-                  stealth,
-                  survival'
+      all_profs = 'acrobatics, animal handling, arcana, athletics, deception, history, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleight of hand, stealth, survival'
       remove_background_profs(background_profs, all_profs)
       process_profs(all_profs, '...', 3)
     elsif class_profs[0..23] == choice_texts[3]
