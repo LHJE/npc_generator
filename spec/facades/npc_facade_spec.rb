@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'NPC Facade' do
   it "It returns npc poro" do
-    npc = NPCFacade.create_npc
+    npc = NPCFacade.create_npc('standard array')
 
     expect(npc).to be_a(NPC)
     expect(npc.name).to be_a(String)
