@@ -4,10 +4,10 @@ class Stats
               :skills,
               :passive_perception
 
-  def initialize(ancestry, background, class_data)
-    #The line below will have to be updated once more subraces are created
+  def initialize(ancestry, background, class_data, score_type)
+    # The line below will have to be updated once more subraces are created
     ancestry[:asi] << ancestry[:subraces][0][:asi][0] if ancestry[:subraces] != [] && !ancestry[:subraces].nil?
-    @core_stats = CoreStats.new(ancestry[:asi])
+    @core_stats = CoreStats.new(ancestry[:asi], score_type)
     @saving_throws = SavingThrows.new(modifier(@core_stats), class_data[:prof_saving_throws].split(', '))
     @skills = Skills.new(modifier(@core_stats),
                          [background.skill_proficiency_one[0..-7].downcase,
@@ -30,9 +30,7 @@ class Stats
   end
 
   def score_below_ten(stats, attr, score)
-    if score == 1
-      stats[attr] = -5
-    elsif [2, 3].include?(score)
+    if [3].include?(score)
       stats[attr] = -4
     elsif [4, 5].include?(score)
       stats[attr] = -3

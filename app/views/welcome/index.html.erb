@@ -1,52 +1,73 @@
 <h1>NPC Generator</h1>
 
 
-<h2>Here is a brand new NPC just for you:</h2>
+<% if @npc.nil? %>
 
-<h3>Name: <%= @npc.name %></h3>
-<p>Gender: <%= @npc.gender %></p>
-<p>Ancestry: <%= @npc.ancestry %></p>
-<p>Background: <%= @npc.background.name %></p>
-<p>Class: <%= @npc.class %></p>
-<p>Speed: <%= @npc.speed %></p>
 
-<h3>Stats:</h3>
-<p>Passive Perception: <%= @npc.stats.passive_perception %></p>
-<p>Core Stats:</p>
-    <li>Strength: <%= @npc.stats.core_stats.stats[:str] %></li>
-    <li>Dexterity: <%= @npc.stats.core_stats.stats[:dex] %></li>
-    <li>Constitution: <%= @npc.stats.core_stats.stats[:con] %></li>
-    <li>Intelligence: <%= @npc.stats.core_stats.stats[:int] %></li>
-    <li>Wisdom: <%= @npc.stats.core_stats.stats[:wis] %></li>
-    <li>Charisma: <%= @npc.stats.core_stats.stats[:cha] %></li>
-<p>Saving Throws:</p>
-    <li>Strength: <%= @npc.stats.saving_throws.throws[:str] %></li>
-    <li>Dexterity: <%= @npc.stats.saving_throws.throws[:dex] %></li>
-    <li>Constitution: <%= @npc.stats.saving_throws.throws[:con] %></li>
-    <li>Intelligence: <%= @npc.stats.saving_throws.throws[:int] %></li>
-    <li>Wisdom: <%= @npc.stats.saving_throws.throws[:wis] %></li>
-    <li>Charisma: <%= @npc.stats.saving_throws.throws[:cha] %></li>
-<p>Proficiencies:</p>
-  <% @npc.stats.skills.proficiencies.each do |prof| %>
-      <li> <%= prof %></li>
+  <h2>Roll Up an NPC:</h2>
+  <%= form_tag "/", method: :get do %>
+    <%= label_tag :score_type %>:<br>
+    <%= select(:post, :score_type, ['Standard Array', 'Roll For Scores', 'Min/Maxed Point Buy', 'Wildly Unbalanced']) %><br>
+    <%= submit_tag "Generate an NPC", class: :button %>
   <% end %>
-<p>Skills:</p>
 
-    <li>Acrobatics: <%= @npc.stats.skills.skills[:acrobatics] %></li>
-    <li>Animal Handling: <%= @npc.stats.skills.skills[:animal_handling] %></li>
-    <li>Arcana: <%= @npc.stats.skills.skills[:arcana] %></li>
-    <li>Athletics: <%= @npc.stats.skills.skills[:athletics] %></li>
-    <li>Deception: <%= @npc.stats.skills.skills[:deception] %></li>
-    <li>History: <%= @npc.stats.skills.skills[:history] %></li>
-    <li>Insight: <%= @npc.stats.skills.skills[:insight] %></li>
-    <li>Intimidation: <%= @npc.stats.skills.skills[:intimidation] %></li>
-    <li>Investigation: <%= @npc.stats.skills.skills[:investigation] %></li>
-    <li>Medicine: <%= @npc.stats.skills.skills[:medicine] %></li>
-    <li>Nature: <%= @npc.stats.skills.skills[:nature] %></li>
-    <li>Perception: <%= @npc.stats.skills.skills[:perception] %></li>
-    <li>Performance: <%= @npc.stats.skills.skills[:performance] %></li>
-    <li>Persuasion: <%= @npc.stats.skills.skills[:persuasion] %></li>
-    <li>Religion: <%= @npc.stats.skills.skills[:religion] %></li>
-    <li>Sleight of Hand: <%= @npc.stats.skills.skills[:sleight_of_hand] %></li>
-    <li>Stealth: <%= @npc.stats.skills.skills[:stealth] %></li>
-    <li>Survival: <%= @npc.stats.skills.skills[:survival] %></li>
+
+<% else %>
+  <h2>Here is a brand new NPC just for you:</h2>
+
+  <h3>Name: <%= @npc.name %></h3>
+  <p>Gender: <%= @npc.gender %></p>
+  <p>Ancestry: <%= @npc.ancestry %></p>
+  <p>Background: <%= @npc.background.name %></p>
+  <p>Class: <%= @npc.class %></p>
+  <p>Speed: <%= @npc.speed %></p>
+
+  <h3>Stats:</h3>
+  <p>Passive Perception: <%= @npc.stats.passive_perception %></p>
+  <p>Core Stats:</p>
+      <li>Strength: <%= @npc.stats.core_stats.stats[:str] %></li>
+      <li>Dexterity: <%= @npc.stats.core_stats.stats[:dex] %></li>
+      <li>Constitution: <%= @npc.stats.core_stats.stats[:con] %></li>
+      <li>Intelligence: <%= @npc.stats.core_stats.stats[:int] %></li>
+      <li>Wisdom: <%= @npc.stats.core_stats.stats[:wis] %></li>
+      <li>Charisma: <%= @npc.stats.core_stats.stats[:cha] %></li>
+  <p>Saving Throws:</p>
+      <li>Strength: <%= @npc.stats.saving_throws.throws[:str] %></li>
+      <li>Dexterity: <%= @npc.stats.saving_throws.throws[:dex] %></li>
+      <li>Constitution: <%= @npc.stats.saving_throws.throws[:con] %></li>
+      <li>Intelligence: <%= @npc.stats.saving_throws.throws[:int] %></li>
+      <li>Wisdom: <%= @npc.stats.saving_throws.throws[:wis] %></li>
+      <li>Charisma: <%= @npc.stats.saving_throws.throws[:cha] %></li>
+  <p>Proficiencies:</p>
+    <% @npc.stats.skills.proficiencies.each do |prof| %>
+        <li> <%= prof %></li>
+    <% end %>
+  <p>Skills:</p>
+
+      <li>Acrobatics: <%= @npc.stats.skills.skills[:acrobatics] %></li>
+      <li>Animal Handling: <%= @npc.stats.skills.skills[:animal_handling] %></li>
+      <li>Arcana: <%= @npc.stats.skills.skills[:arcana] %></li>
+      <li>Athletics: <%= @npc.stats.skills.skills[:athletics] %></li>
+      <li>Deception: <%= @npc.stats.skills.skills[:deception] %></li>
+      <li>History: <%= @npc.stats.skills.skills[:history] %></li>
+      <li>Insight: <%= @npc.stats.skills.skills[:insight] %></li>
+      <li>Intimidation: <%= @npc.stats.skills.skills[:intimidation] %></li>
+      <li>Investigation: <%= @npc.stats.skills.skills[:investigation] %></li>
+      <li>Medicine: <%= @npc.stats.skills.skills[:medicine] %></li>
+      <li>Nature: <%= @npc.stats.skills.skills[:nature] %></li>
+      <li>Perception: <%= @npc.stats.skills.skills[:perception] %></li>
+      <li>Performance: <%= @npc.stats.skills.skills[:performance] %></li>
+      <li>Persuasion: <%= @npc.stats.skills.skills[:persuasion] %></li>
+      <li>Religion: <%= @npc.stats.skills.skills[:religion] %></li>
+      <li>Sleight of Hand: <%= @npc.stats.skills.skills[:sleight_of_hand] %></li>
+      <li>Stealth: <%= @npc.stats.skills.skills[:stealth] %></li>
+      <li>Survival: <%= @npc.stats.skills.skills[:survival] %></li>
+
+
+  <h2>Roll Up another NPC:</h2>
+  <%= form_tag "/", method: :get do %>
+    <%= label_tag :score_type %>:<br>
+    <%= select(:post, :score_type, ['Standard Array', 'Roll For Scores', 'Min/Maxed Point Buy', 'Wildly Unbalanced']) %><br>
+    <%= submit_tag "Generate an NPC", class: :button %>
+  <% end %>
+<% end %>

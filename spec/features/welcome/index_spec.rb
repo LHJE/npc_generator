@@ -7,7 +7,17 @@ RSpec.describe 'Welcome Page' do
       visit root_path
     end
 
-    it "can see welcome page text" do
+    it "can see field to generate NPC" do
+      expect(page).to have_content("NPC Generator")
+      expect(page).to have_content("Roll Up an NPC:")
+      expect(page).to have_content("Score type:")
+      expect(page).to have_button("Generate an NPC")
+    end
+
+    it "can see generated NPC" do
+      page.has_select?('score_type', selected: 'Roll For Score')
+      click_button 'Generate an NPC'
+
       expect(page).to have_content("NPC Generator")
       expect(page).to have_content("Here is a brand new NPC just for you")
       expect(page).to have_content("Name:")
@@ -46,6 +56,7 @@ RSpec.describe 'Welcome Page' do
       expect(page).to have_content("Sleight of Hand:")
       expect(page).to have_content("Stealth:")
       expect(page).to have_content("Survival:")
+      expect(page).to have_content("Roll Up another NPC:")
     end
   end
 end
