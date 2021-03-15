@@ -121,7 +121,7 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
   end
 
   it "exists" do
-    npc = NPC.new(@data[0], @data[1])
+    npc = NPC.new(@data[0], @data[1], 'standard array')
 
     expect(npc).to be_a(NPC)
     expect(npc.ancestry).to eq("Half-Elf")
@@ -177,7 +177,7 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
   end
 
   it "has correct proficiencies when Bard" do
-    bard = NPC.new(@data[0], @bard)
+    bard = NPC.new(@data[0], @bard, 'roll for scores')
 
     expect(bard.stats.skills.proficiencies.length).to eq(5)
   end
