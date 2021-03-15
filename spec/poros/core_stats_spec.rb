@@ -6,7 +6,7 @@ describe CoreStats do
   end
 
   it "exists" do
-    core_stats = CoreStats.new(@data)
+    core_stats = CoreStats.new(@data, 'standard array')
 
     expect(core_stats).to be_a(CoreStats)
     expect(core_stats.stats).to be_a(Hash)
