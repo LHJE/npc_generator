@@ -47,23 +47,23 @@ class Equipment
 
   def find_bard_equip
     equip = {}
-# require "pry"; binding.pry
+require "pry"; binding.pry
     equip
   end
 
   def find_cleric_equip(proficiencies)
-    equip = {weapons: [[Weapon.where(classification: "Simple Melee Weapon"), Weapon.where(classification: "Simple Ranged Weapon")].flatten.sample], armor: [Armor.where(name: "Shield")[0]]}
+    equip = {weapons: [Weapon.where(classification: "Simple Melee Weapon").or(Weapon.where(classification: "Simple Ranged Weapon")).sample], armor: [Armor.where(name: "Shield")[0]]}
     unless proficiencies.weapons.downcase.include?("martial")
       equip[:weapons] << Weapon.where(name: "Mace")[0]
     else
-      equip[:weapons] << [Weapon.where(name: "Mace")[0], Weapon.where(name: "Warhammer")[0]].sample
+      equip[:weapons] << Weapon.where(name: "Mace").or(Weapon.where(name: "Warhammer")).sample
     end
     unless proficiencies.armor.downcase.include?("heavy")
-      equip[:armor] << [Armor.where(name: "Scale mail")[0], Armor.where(name: "Leather")[0]].sample
+      equip[:armor] << Armor.where(name: "Scale mail").or(Armor.where(name: "Leather")).sample
     else
-      equip[:armor] << [Armor.where(name: "Scale mail")[0], Armor.where(name: "Leather")[0], Armor.where(name: "Chain mail")[0]].sample
+      equip[:armor] << Armor.where(name: "Scale mail").or(Armor.where(name: "Leather").or(Armor.where(name: "Chain mail"))).sample
     end
-    equip[:pack] = [Pack.where(name: "Explorer's Pack"), Pack.where(name: "Priest’s Pack")].sample[0]
+    equip[:pack] = Pack.where(name: "Explorer's Pack").or(Pack.where(name: "Priest’s Pack")).sample
     equip[:extras] = "A holy symbol"
     equip
   end
