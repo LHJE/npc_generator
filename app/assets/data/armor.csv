@@ -1,4 +1,4 @@
-Class,Armor,Cost,Armor Class (AC),Strength,Stealth,Weight
+Classification,Name,Cost,Armor_Class,Strength,Stealth,Weight
 Light,Padded,5 gp,11 + Dex modifier,—,Disadvantage,8 lb.
 Light,Leather,10 gp,11 + Dex modifier,—,—,10 lb.
 Light,Studded Leather,45 gp,12 + Dex modifier,—,—,13 lb.
