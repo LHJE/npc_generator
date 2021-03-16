@@ -4,9 +4,9 @@ class Stats
               :skills,
               :passive_perception
 
-  def initialize(ancestry, background, class_data, score_type)
+  def initialize(ancestry, sub_ancestry, background, class_data, score_type)
     # The line below will have to be updated once more subraces are created
-    ancestry[:asi] << ancestry[:subraces][0][:asi][0] if ancestry[:subraces] != [] && !ancestry[:subraces].nil?
+    ancestry[:asi] << sub_ancestry[:asi][0] if sub_ancestry != "No Sub Ancestry"
     @core_stats = CoreStats.new(ancestry[:asi], score_type)
     @saving_throws = SavingThrows.new(modifier(@core_stats), class_data[:prof_saving_throws].split(', '))
     @skills = Skills.new(modifier(@core_stats),
