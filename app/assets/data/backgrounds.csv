@@ -1,14 +1,14 @@
-BACKGROUND,SKILL PROFICIENCY ONE,SKILL PROFICIENCY TWO,TOOL PROFICIENCY ONE,TOOL PROFICIENCY TWO,EXTRA LANGUAGES
-Acolyte,Insight (WIS),Religion (INT),-,-,Any 2
-Charlatan,Deception (CHA),Sleight of Hand (DEX),Disguise Kit,Forgery Kit,-
-Criminal,Deception (CHA),Stealth (DEX),Gaming set x1,Thieves' tools,-
-Entertainer,Acrobatics (DEX),Performance (CHA),Disguise kit,Musical instrument x1,-
-Folk Hero,Animal handling (WIS),Survival (WIS),Artisan's tools x1,Vehicles (land),-
-Guild Artisan,Insight (WIS),Persuasion (CHA),Artisan's tools x1,-,Any 1
-Hermit,Medicine (WIS),Religion (INT),Herbalism kit,-,Any 1
-Noble,History (INT),Persuasion (CHA),Gaming set x1,-,Any 1
-Outlander,Athletics (STR),Survival (WIS),Musical instrument x1,-,Any 1
-Sage,Arcana (INT),History (INT),-,-,Any 2
-Sailor,Athletics (STR),Perception (WIS),Navigator's tools,Vehicles (water),-
-Soldier,Athletics (STR),Intimidation (CHA),Gaming set x1,Vehicles (land),-
-Urchin,Sleight of Hand (DEX),Stealth (DEX),Disguise kit,Thieves' tools,-
+BACKGROUND,SKILL PROFICIENCY ONE,SKILL PROFICIENCY TWO,TOOL PROFICIENCY ONE,TOOL PROFICIENCY TWO,EXTRA LANGUAGES,EQUIPMENT
+Acolyte,Insight (WIS),Religion (INT),-,-,Any 2,A holy symbol (a gift to you when you entered the priesthood) - a prayer book or prayer wheel - 5 sticks of incense - vestments - a set of common clothes - and a pouch containing 15 gp
+Charlatan,Deception (CHA),Sleight of Hand (DEX),Disguise Kit,Forgery Kit,-,A set of fine clothes - a disguise kit - tools of the con of your choice (ten stoppered bottles filled with colored liquid - a set of weighted dice - a deck of marked cards - or a signet ring of an imaginary duke) - and a pouch containing 15 gp
+Criminal,Deception (CHA),Stealth (DEX),Gaming set x1,Thieves' tools,-,A crowbar - a set of dark common clothes including a hood - and a pouch containing 15 gp
+Entertainer,Acrobatics (DEX),Performance (CHA),Disguise kit,Musical instrument x1,-,A musical instrument (one of your choice) - the favor of an admirer (love letter - lock of hair - or trinket) - a costume - and a pouch containing 15 gp
+Folk Hero,Animal handling (WIS),Survival (WIS),Artisan's tools x1,Vehicles (land),-,A set of artisan’s tools (one of your choice) - a shovel - an iron pot - a set of common clothes - and a pouch containing 10 gp
+Guild Artisan,Insight (WIS),Persuasion (CHA),Artisan's tools x1,-,Any 1,A set of artisan’s tools (one of your choice) - a letter of introduction from your guild - a set of traveler’s clothes - and a pouch containing 15 gp
+Hermit,Medicine (WIS),Religion (INT),Herbalism kit,-,Any 1, A scroll case stuffed full of notes from your studies or prayers - a winter blanket - a set of common clothes - an herbalism kit - and 5 gp
+Noble,History (INT),Persuasion (CHA),Gaming set x1,-,Any 1,A set of fine clothes - a signet ring - a scroll of pedigree - and a purse containing 25 gp
+Outlander,Athletics (STR),Survival (WIS),Musical instrument x1,-,Any 1,A staff - a hunting trap - a trophy from an animal you killed - a set of traveler’s clothes - and a pouch containing 10 gp
+Sage,Arcana (INT),History (INT),-,-,Any 2,A bottle of black ink - a quill - a small knife - a letter from a dead colleague posing a question you have not yet been able to answer - a set of common clothes - and a pouch containing 10 gp
+Sailor,Athletics (STR),Perception (WIS),Navigator's tools,Vehicles (water),-,A belaying pin (club) - 50 feet of silk rope - a lucky charm such as a rabbit foot or a small stone with a hole in the center (or you may roll for a random trinket on the Trinkets table in chapter 5) - a set of common clothes - and a pouch containing 10 gp
+Soldier,Athletics (STR),Intimidation (CHA),Gaming set x1,Vehicles (land),-,An insignia of rank - a trophy taken from a fallen enemy (a dagger - broken blade - or piece of a banner) - a set of bone dice or deck of cards - a set of common clothes - and a pouch containing 10 gp
+Urchin,Sleight of Hand (DEX),Stealth (DEX),Disguise kit,Thieves' tools,-,A small knife - a map of the city you grew up in - a pet mouse - a token to remember your parents by - a set of common clothes - and a pouch containing 10 gp
