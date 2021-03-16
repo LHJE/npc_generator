@@ -21,7 +21,7 @@ describe Stats do
  :subraces=>[],
  :document__slug=>"wotc-srd",
  :document__title=>"Systems Reference Document",
- :document__license_url=>"http://open5e.com/legal"}, Background.new({background:"Acolyte", skill_proficiency_one:"Insight (WIS)", skill_proficiency_two:"Religion (INT)", tool_proficiency_one:"-", tool_proficiency_two:"-", extra_languages:"Any 2"}), {:name=>"Monk",
+ :document__license_url=>"http://open5e.com/legal"}, Background.new({background:"Acolyte", skill_proficiency_one:"Insight (WIS)", skill_proficiency_two:"Religion (INT)", tool_proficiency_one:"-", tool_proficiency_two:"-", extra_languages:"Any 2", equipment:'A musical instrument (one of your choice) - the favor of an admirer (love letter - lock of hair - or trinket) - a costume - and a pouch containing 15 gp'}), {:name=>"Monk",
  :slug=>"monk",
  :desc=>
   "### Unarmored Defense \n \nBeginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier. \n \n### Ma
