@@ -1,5 +1,9 @@
 class Equipment
-  attr_reader :gold
+  attr_reader :gold,
+              :weapons,
+              :armor,
+              :pack,
+              :extras
 
   def initialize(class_name, background_data, proficiencies)
     @gold = background_data[-1][-5..-1]
@@ -48,18 +52,19 @@ class Equipment
   end
 
   def find_cleric_equip(proficiencies)
-    equip = {}
+    equip = {weapons: [[Weapon.where(classification: "Simple Melee Weapon"), Weapon.where(classification: "Simple Ranged Weapon")].flatten.sample], armor: [Armor.where(name: "Shield")[0]]}
     unless proficiencies.weapons.downcase.include?("martial")
-      equip[:weapon] = Weapon.where(name: "Mace")[0]
+      equip[:weapons] << Weapon.where(name: "Mace")[0]
     else
-      equip[:weapon] = [Weapon.where(name: "Mace")[0], Weapon.where(name: "Warhammer")[0]].sample
+      equip[:weapons] << [Weapon.where(name: "Mace")[0], Weapon.where(name: "Warhammer")[0]].sample
     end
     unless proficiencies.armor.downcase.include?("heavy")
-      equip[:armor] = [Armor.where(name: "Scale mail")[0], Armor.where(name: "Leather")[0]].sample
+      equip[:armor] << [Armor.where(name: "Scale mail")[0], Armor.where(name: "Leather")[0]].sample
     else
-      equip[:armor] = [Armor.where(name: "Scale mail")[0], Armor.where(name: "Leather")[0], Armor.where(name: "Chain mail")[0]].sample
+      equip[:armor] << [Armor.where(name: "Scale mail")[0], Armor.where(name: "Leather")[0], Armor.where(name: "Chain mail")[0]].sample
     end
-    require "pry"; binding.pry
+    equip[:pack] = [Pack.where(name: "Explorer's Pack"), Pack.where(name: "Priest’s Pack")].sample[0]
+    equip[:extras] = "A holy symbol"
     equip
   end
 
