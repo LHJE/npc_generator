@@ -146,6 +146,8 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
     expect(npc.background.tool_proficiency_one).to be_a(String)
     expect(npc.background.tool_proficiency_two).to be_a(String)
     expect(npc.background.extra_languages).to be_a(String)
+    expect(npc.background.equipment).to be_a(Array)
+    expect(npc.background.equipment[0]).to be_a(String)
     expect(npc.stats).to be_a(Stats)
     expect(npc.stats.core_stats).to be_a(CoreStats)
     expect(npc.stats.core_stats.stats).to be_a(Hash)
