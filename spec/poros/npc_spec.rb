@@ -126,6 +126,7 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
     expect(npc).to be_a(NPC)
     expect(npc.name).to be_a(String)
     expect(npc.gender).to be_a(String)
+    expect(npc.alignment).to be_a(String)
     expect(npc.ancestry).to eq("Half-Elf")
     expect(npc.sub_ancestry).to be_a(String)
     expect(npc.class).to eq("Monk")
