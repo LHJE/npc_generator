@@ -13,11 +13,13 @@ class NPC
               :vision,
               :size,
               :traits,
-              :proficiencies
+              :proficiencies,
+              :alignment
 
   def initialize(ancestry, class_data, score_type)
     @name           = "#{Faker::Games::WarhammerFantasy.hero.split(' ')[0]} #{Faker::Science.scientist.split(' ')[0]} #{Faker::FunnyName.two_word_name.split(' ')[1]}"
     @gender        = File.read('app/assets/data/genders.txt').split("\n").sample
+    @alignment = ['Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'True Neutral', 'Chaotic Neutral', 'Lawful Evil', 'Neutral Evil', 'Chaotic Evil', 'Unaligned'].sample
     @ancestry      = ancestry[:name]
     @sub_ancestry  = ancestry[:subraces] != [] ? ancestry[:subraces].sample : "No Sub Ancestry"
     @class         = class_data[:name]
