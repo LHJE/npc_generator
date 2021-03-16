@@ -33,89 +33,87 @@ class Equipment
     @armor = equip[:armor]
     @pack = equip[:pack]
     @extras = equip[:extras]
-    equip = {}
-    require "pry"; binding.pry
-        equip
   end
 
   def find_barbarian_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
   def find_bard_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
-  def find_cleric_equip(armor, weapons, proficiencies)
+  def find_cleric_equip(proficiencies)
     equip = {}
-    unless proficiencies.weapons.include?("martial")
-
+    unless proficiencies.weapons.downcase.include?("martial")
+      equip[:weapon] = Weapon.where(name: "Mace")[0]
     else
-      weapons.each do |weapon|
-        if weapon.name == "Mace"
-          equip[:weapon] = weapon
-        end
-      end
+      equip[:weapon] = [Weapon.where(name: "Mace")[0], Weapon.where(name: "Warhammer")[0]].sample
     end
-require "pry"; binding.pry
+    unless proficiencies.armor.downcase.include?("heavy")
+      equip[:armor] = [Armor.where(name: "Scale mail")[0], Armor.where(name: "Leather")[0]].sample
+    else
+      equip[:armor] = [Armor.where(name: "Scale mail")[0], Armor.where(name: "Leather")[0], Armor.where(name: "Chain mail")[0]].sample
+    end
+    require "pry"; binding.pry
     equip
   end
 
   def find_druid_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
   def find_monk_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
   def find_fighter_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
   def find_paladin_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
   def find_ranger_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
   def find_rogue_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
   def find_sorcerer_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
   def find_warlock_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
   def find_wizard_equip
     equip = {}
-require "pry"; binding.pry
+# require "pry"; binding.pry
     equip
   end
 
