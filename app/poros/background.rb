@@ -4,7 +4,8 @@ class Background
               :skill_proficiency_two,
               :tool_proficiency_one,
               :tool_proficiency_two,
-              :extra_languages
+              :extra_languages,
+              :equipment
 
   def initialize(data)
     @name                  = data[:background]
@@ -13,5 +14,6 @@ class Background
     @tool_proficiency_one  = data[:tool_proficiency_one]
     @tool_proficiency_two  = data[:tool_proficiency_two]
     @extra_languages       = data[:extra_languages]
+    @equipment             = data[:equipment].split(' - ')
   end
 end
