@@ -155,6 +155,7 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
     expect(npc.stats.core_stats.stats[:wis]).to be_a(Integer)
     expect(npc.stats.core_stats.stats[:cha]).to be_a(Integer)
     expect(npc.stats.passive_perception).to be_a(Integer)
+    expect(npc.stats.hit_points).to be_a(Integer)
     expect(npc.stats.saving_throws).to be_a(SavingThrows)
     expect(npc.stats.saving_throws.throws).to be_a(Hash)
     expect(npc.stats.saving_throws.throws[:str]).to be_a(Integer)
