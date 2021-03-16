@@ -8,6 +8,9 @@ describe Equipment do
     CSV.foreach('app/assets/data/armor.csv', headers: true, header_converters: :symbol) do |data|
       Armor.create(classification: data[:classification], name: data[:name], cost: data[:cost], armor_class: data[:armor_class], strength: data[:strength], stealth: data[:stealth], weight: data[:weight])
     end
+    CSV.foreach('app/assets/data/packs.csv', headers: true, header_converters: :symbol) do |data|
+      Pack.create(name: data[:name], things: data[:things])
+    end
     class_data = {:name=>"Cleric",
      :slug=>"cleric",
      :desc=>
@@ -43,7 +46,39 @@ describe Equipment do
     equipment = Equipment.new(@data[0], @data[1], @data[2])
 
     expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    expect(equipment.extras).to eq("A holy symbol")
+    expect(equipment.gold).to eq("15 gp")
+    expect(equipment.pack).to be_a(Pack)
+    expect(equipment.pack[:id]).to be_a(Integer)
+    expect(equipment.pack[:name]).to be_a(String)
+    expect(equipment.pack[:things]).to be_a(String)
+    expect(equipment.weapons).to be_a(Array)
+    expect(equipment.weapons[0]).to be_a(Weapon)
+    expect(equipment.weapons[0][:id]).to be_a(Integer)
+    expect(equipment.weapons[0][:name]).to be_a(String)
+    expect(equipment.weapons[0][:cost]).to be_a(String)
+    expect(equipment.weapons[0][:damage]).to be_a(String)
+    expect(equipment.weapons[0][:properties]).to be_a(String)
+    expect(equipment.weapons[0][:weight]).to be_a(String)
+    expect(equipment.weapons[0][:classification]).to be_a(String)
     # require "pry"; binding.pry
   end
+
+
+
+
+
+
+
 
 end
