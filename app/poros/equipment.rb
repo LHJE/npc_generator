@@ -40,7 +40,7 @@ class Equipment
   end
 
   def find_barbarian_equip
-    { weapons: [Weapon.where(classification: 'Martial Melee Weapon').or(Weapon.where(name: 'Greataxe')).sample, Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Handaxe'))).sample, Weapon.where(name: 'Javelin')].flatten,
+    { weapons: [Weapon.where(classification: 'Martial Melee Weapon').or(Weapon.where(name: 'Greataxe')).sample, Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Handaxe'))).sample, Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin')].flatten,
       armor: [''],
       pack: Pack.where(name: 'Explorer’s Pack')[0],
       extras: '' }
