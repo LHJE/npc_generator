@@ -40,86 +40,74 @@ class Equipment
   end
 
   def find_barbarian_equip
-    equip = {}
-# require "pry"; binding.pry
-    equip
+    require "pry"; binding.pry
+    {}
   end
 
   def find_bard_equip
-    equip = {}
-require "pry"; binding.pry
-    equip
+    {}
   end
 
   def find_cleric_equip(proficiencies)
-    equip = {weapons: [Weapon.where(classification: "Simple Melee Weapon").or(Weapon.where(classification: "Simple Ranged Weapon")).sample], armor: [Armor.where(name: "Shield")[0]]}
-    unless proficiencies.weapons.downcase.include?("martial")
-      equip[:weapons] << Weapon.where(name: "Mace")[0]
+    equip = {
+      weapons: [Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon')).sample], armor: [Armor.where(name: 'Shield')[0]]
+    }
+    equip[:weapons] << if proficiencies.weapons.downcase.include?('martial')
+                         Weapon.where(name: 'Mace').or(Weapon.where(name: 'Warhammer')).sample
+                       else
+                         Weapon.where(name: 'Mace')[0]
+                       end
+    if proficiencies.armor.downcase.include?('heavy')
+      equip[:armor] << Armor.where(name: 'Scale mail').or(Armor.where(name: 'Leather').or(Armor.where(name: 'Chain mail'))).sample
     else
-      equip[:weapons] << Weapon.where(name: "Mace").or(Weapon.where(name: "Warhammer")).sample
+      equip[:armor] << Armor.where(name: 'Scale mail').or(Armor.where(name: 'Leather')).sample
     end
-    unless proficiencies.armor.downcase.include?("heavy")
-      equip[:armor] << Armor.where(name: "Scale mail").or(Armor.where(name: "Leather")).sample
-    else
-      equip[:armor] << Armor.where(name: "Scale mail").or(Armor.where(name: "Leather").or(Armor.where(name: "Chain mail"))).sample
-    end
-    equip[:pack] = Pack.where(name: "Explorer's Pack").or(Pack.where(name: "Priest’s Pack")).sample
-    equip[:extras] = "A holy symbol"
+    equip[:pack] = Pack.where(name: "Explorer's Pack").or(Pack.where(name: 'Priest’s Pack')).sample
+    equip[:extras] = 'A holy symbol'
     equip
   end
 
   def find_druid_equip
-    equip = {}
-# require "pry"; binding.pry
-    equip
+    require "pry"; binding.pry
+    {}
   end
 
   def find_monk_equip
-    equip = {}
-# require "pry"; binding.pry
-    equip
+    require "pry"; binding.pry
+    {}
   end
 
   def find_fighter_equip
-    equip = {}
-# require "pry"; binding.pry
-    equip
+    require "pry"; binding.pry
+    {}
   end
 
   def find_paladin_equip
-    equip = {}
-# require "pry"; binding.pry
-    equip
+    require "pry"; binding.pry
+    {}
   end
 
   def find_ranger_equip
-    equip = {}
-# require "pry"; binding.pry
-    equip
+    require "pry"; binding.pry
+    {}
   end
 
   def find_rogue_equip
-    equip = {}
-# require "pry"; binding.pry
-    equip
+    require "pry"; binding.pry
+    {}
   end
 
   def find_sorcerer_equip
-    equip = {}
-# require "pry"; binding.pry
-    equip
+    require "pry"; binding.pry
+    {}
   end
 
   def find_warlock_equip
-    equip = {}
-# require "pry"; binding.pry
-    equip
+    require "pry"; binding.pry
+    {}
   end
 
   def find_wizard_equip
-    equip = {}
-# require "pry"; binding.pry
-    equip
+    {}
   end
-
 end
