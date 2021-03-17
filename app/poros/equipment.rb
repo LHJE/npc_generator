@@ -105,13 +105,14 @@ class Equipment
   end
 
   def find_sorcerer_equip
-    require "pry"; binding.pry
-    {}
+    
   end
 
   def find_warlock_equip
-    require "pry"; binding.pry
-    {}
+    { weapons: [Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Crossbow light'))).sample, Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon')).sample, Weapon.where(name: 'Dagger')].flatten,
+      armor: [Armor.where(name: 'Leather')[0]],
+      pack: Pack.where(name: 'Scholar’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
+      extras: "#{['A component pouch', 'An arcane focus'].sample}" }
   end
 
   def find_wizard_equip
