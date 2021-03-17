@@ -114,7 +114,10 @@ class Equipment
   end
 
   def find_sorcerer_equip
-    
+    { weapons: [Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Crossbow light'))).sample, Weapon.where(name: 'Dagger'), Weapon.where(name: 'Dagger')].flatten,
+      armor: [''],
+      pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
+      extras: "#{['A component pouch', 'An arcane focus'].sample}" }
   end
 
   def find_warlock_equip
