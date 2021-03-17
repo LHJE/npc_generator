@@ -345,87 +345,194 @@ describe Equipment do
     expect(equipment.armor[0][:stealth]).to be_a(String)
     expect(equipment.armor[0][:weight]).to be_a(String)
     expect(equipment.armor[0][:classification]).to be_a(String)
-    expect(equipment.extras).to eq("A holy symbol")
-    expect(equipment.gold).to eq("15 gp")
-    expect(equipment.pack).to be_a(Pack)
-    expect(equipment.pack[:id]).to be_a(Integer)
-    expect(equipment.pack[:name]).to be_a(String)
-    expect(equipment.pack[:things]).to be_a(String)
-    expect(equipment.weapons).to be_a(Array)
-    expect(equipment.weapons[0]).to be_a(Weapon)
-    expect(equipment.weapons[0][:id]).to be_a(Integer)
-    expect(equipment.weapons[0][:name]).to be_a(String)
-    expect(equipment.weapons[0][:cost]).to be_a(String)
-    expect(equipment.weapons[0][:damage]).to be_a(String)
-    expect(equipment.weapons[0][:properties]).to be_a(String)
-    expect(equipment.weapons[0][:weight]).to be_a(String)
-    expect(equipment.weapons[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for barbarian" do
     equipment = Equipment.new(@barbarian[:name], @data, Proficiencies.new(@barbarian))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for bard" do
     equipment = Equipment.new(@bard[:name], @data, Proficiencies.new(@bard))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for druid" do
     equipment = Equipment.new(@druid[:name], @data, Proficiencies.new(@druid))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for fighter" do
     equipment = Equipment.new(@fighter[:name], @data, Proficiencies.new(@fighter))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for monk" do
     equipment = Equipment.new(@monk[:name], @data, Proficiencies.new(@monk))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for paladin" do
     equipment = Equipment.new(@paladin[:name], @data, Proficiencies.new(@paladin))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for ranger" do
     equipment = Equipment.new(@ranger[:name], @data, Proficiencies.new(@ranger))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for rogue" do
     equipment = Equipment.new(@rogue[:name], @data, Proficiencies.new(@rogue))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for sorcerer" do
     equipment = Equipment.new(@sorcerer[:name], @data, Proficiencies.new(@sorcerer))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for warlock" do
     equipment = Equipment.new(@warlock[:name], @data, Proficiencies.new(@warlock))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
   it "exists, and works for wizard" do
     equipment = Equipment.new(@wizard[:name], @data, Proficiencies.new(@wizard))
 
-    require "pry"; binding.pry
+    expect(equipment).to be_a(Equipment)
+    expect(equipment.armor).to be_a(Array)
+    expect(equipment.armor[0]).to be_a(Armor)
+    expect(equipment.armor[0][:id]).to be_a(Integer)
+    expect(equipment.armor[0][:name]).to be_a(String)
+    expect(equipment.armor[0][:cost]).to be_a(String)
+    expect(equipment.armor[0][:armor_class]).to be_a(String)
+    expect(equipment.armor[0][:strength]).to be_a(String)
+    expect(equipment.armor[0][:stealth]).to be_a(String)
+    expect(equipment.armor[0][:weight]).to be_a(String)
+    expect(equipment.armor[0][:classification]).to be_a(String)
+    
   end
 
 
