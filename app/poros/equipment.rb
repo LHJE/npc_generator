@@ -78,8 +78,10 @@ class Equipment
   end
 
   def find_monk_equip
-    require "pry"; binding.pry
-    {}
+    { weapons: [Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Shortsword'))).sample, Weapon.where(name: 'Dart')].flatten,
+      armor: [''],
+      pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
+      extras: '' }
   end
 
   def find_fighter_equip
