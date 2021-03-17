@@ -1,4 +1,5 @@
 require 'simplecov'
+require 'csv'
 SimpleCov.start
 
 # This file is copied to spec/ when you run 'rails generate rspec:install'
@@ -9,6 +10,23 @@ require File.expand_path('../config/environment', __dir__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
+
+Weapon.destroy_all
+Armor.destroy_all
+Pack.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('weapons')
+ActiveRecord::Base.connection.reset_pk_sequence!('armors')
+ActiveRecord::Base.connection.reset_pk_sequence!('packs')
+
+CSV.foreach('app/assets/data/weapons.csv', headers: true, header_converters: :symbol) do |data|
+  Weapon.create(classification: data[:classification], name: data[:name], cost: data[:cost], damage: data[:damage], weight: data[:weight], properties: data[:properties])
+end
+CSV.foreach('app/assets/data/armor.csv', headers: true, header_converters: :symbol) do |data|
+  Armor.create(classification: data[:classification], name: data[:name], cost: data[:cost], armor_class: data[:armor_class], strength: data[:strength], stealth: data[:stealth], weight: data[:weight])
+end
+CSV.foreach('app/assets/data/packs.csv', headers: true, header_converters: :symbol) do |data|
+  Pack.create(name: data[:name], things: data[:things])
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
