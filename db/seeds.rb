@@ -6,6 +6,14 @@ require 'csv'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Weapon.destroy_all
+Armor.destroy_all
+Pack.destroy_all
+ActiveRecord::Base.connection.reset_pk_sequence!('weapons')
+ActiveRecord::Base.connection.reset_pk_sequence!('armors')
+ActiveRecord::Base.connection.reset_pk_sequence!('packs')
+
 CSV.foreach('app/assets/data/weapons.csv', headers: true, header_converters: :symbol) do |data|
   Weapon.create(classification: data[:classification], name: data[:name], cost: data[:cost], damage: data[:damage], weight: data[:weight], properties: data[:properties])
 end
