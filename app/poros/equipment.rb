@@ -8,29 +8,29 @@ class Equipment
   def initialize(class_name, background_data, proficiencies)
     @gold = background_data[-1][-5..-1]
     case class_name
-    when "Barbarian"
+    when 'Barbarian'
       equip = find_barbarian_equip
-    when "Bard"
+    when 'Bard'
       equip = find_bard_equip
-    when "Cleric"
+    when 'Cleric'
       equip = find_cleric_equip(proficiencies)
-    when "Druid"
+    when 'Druid'
       equip = find_druid_equip
-    when "Monk"
+    when 'Monk'
       equip = find_monk_equip
-    when "Fighter"
+    when 'Fighter'
       equip = find_fighter_equip
-    when "Paladin"
+    when 'Paladin'
       equip = find_paladin_equip
-    when "Ranger"
+    when 'Ranger'
       equip = find_ranger_equip
-    when "Rogue"
+    when 'Rogue'
       equip = find_rogue_equip
-    when "Sorcerer"
+    when 'Sorcerer'
       equip = find_sorcerer_equip
-    when "Warlock"
+    when 'Warlock'
       equip = find_warlock_equip
-    when "Wizard"
+    when 'Wizard'
       equip = find_wizard_equip
     end
     @weapons = equip[:weapons]
