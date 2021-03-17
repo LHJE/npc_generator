@@ -120,7 +120,24 @@ class Equipment
   end
 
   def find_paladin_equip
-    
+    equip = { armor: Armor.where(name: 'Chain mail')[0], pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Priest’s Pack')).sample, weapons: [],
+      extras: 'A holy symbol' }
+    if [true,false].sample
+      2.times do
+        equip[:weapons] << Weapon.where(Classification: 'Martial Melee Weapon').or(Weapon.where(Classification: 'Martial Ranged Weapon')).sample
+      end
+    else
+      equip[:armor] << Armor.where(name: 'Shield')[0]
+      equip[:weapons] << Weapon.where(Classification: 'Martial Melee Weapon').or(Weapon.where(Classification: 'Martial Ranged Weapon')).sample
+    end
+    if [true,false].sample
+      5.times do
+        equip[:weapons] << Weapon.where(name: 'Javelin')[0]
+      end
+    else
+      equip[:weapons] << Weapon.where(Classification: 'Simple Melee Weapon').sample
+    end
+    equip
   end
 
   def find_ranger_equip
