@@ -79,7 +79,6 @@ class Equipment
       extras: 'A druidic focus' }
     if [true,false].sample
       equip[:armor] << Armor.where(name: 'Shield')[0]
-      require "pry"; binding.pry
     else
       equip[:weapons] << Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon')).sample
     end
@@ -94,13 +93,34 @@ class Equipment
   end
 
   def find_fighter_equip
-    require "pry"; binding.pry
-    {}
+    equip = { armor: [], weapons: [],pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
+      extras: '' }
+    if [true,false].sample
+      equip[:armor] << Armor.where(name: 'Chain mail')[0]
+    else
+      equip[:armor] << Armor.where(name: 'Leather')[0]
+      equip[:weapons] << Weapon.where(name: 'Longbow')[0]
+    end
+    if [true,false].sample
+      2.times do
+        equip[:weapons] << Weapon.where(Classification: 'Martial Melee Weapon').or(Weapon.where(Classification: 'Martial Ranged Weapon')).sample
+      end
+    else
+      equip[:armor] << Armor.where(name: 'Shield')[0]
+      equip[:weapons] << Weapon.where(Classification: 'Martial Melee Weapon').or(Weapon.where(Classification: 'Martial Ranged Weapon')).sample
+    end
+    if [true,false].sample
+      2.times do
+        equip[:weapons] << Weapon.where(name: 'Handaxe')[0]
+      end
+    else
+      equip[:weapons] << Weapon.where(name: 'Crossbow light')[0]
+    end
+    equip
   end
 
   def find_paladin_equip
-    require "pry"; binding.pry
-    {}
+    
   end
 
   def find_ranger_equip
