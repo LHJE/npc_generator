@@ -111,6 +111,9 @@ class Equipment
   end
 
   def find_wizard_equip
-    {}
+    { weapons: [Weapon.where(name: 'Quarterstaff').or(Weapon.where(name: 'Dagger')).sample],
+      armor: [''],
+      pack: Pack.where(name: 'Scholar’s Pack').or(Pack.where(name: 'Explorer’s Pack')).sample,
+      extras: "A spellbook, #{['A component pouch', 'An arcane focus'].sample}" }
   end
 end
