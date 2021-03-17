@@ -45,7 +45,10 @@ class Equipment
   end
 
   def find_bard_equip
-    {}
+    { weapons: [Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Longsword').or(Weapon.where(name: 'Rapier')))).sample, Weapon.where(name: 'Dagger')].flatten,
+      armor: [Armor.where(name: 'Leather')[0]],
+      pack: Pack.where(name: 'Diplomat’s Pack').or(Pack.where(name: 'Entertainer’s Pack')).sample,
+      extras: 'A lute or any other musical instrument' }
   end
 
   def find_cleric_equip(proficiencies)
