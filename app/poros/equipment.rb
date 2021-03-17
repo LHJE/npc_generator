@@ -73,8 +73,17 @@ class Equipment
   end
 
   def find_druid_equip
-    require "pry"; binding.pry
-    {}
+    equip = { weapons: [Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(name: 'Scimitar')).sample].flatten,
+      armor: [Armor.where(name: 'Leather')[0]],
+      pack: Pack.where(name: 'Explorer’s Pack')[0],
+      extras: 'A druidic focus' }
+    if [true,false].sample
+      equip[:armor] << Armor.where(name: 'Shield')[0]
+      require "pry"; binding.pry
+    else
+      equip[:weapons] << Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon')).sample
+    end
+    equip
   end
 
   def find_monk_equip
