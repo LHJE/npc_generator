@@ -91,6 +91,6 @@ class NPC
     elsif sub_ancestry != 'No Sub Ancestry'
       ancestry[:traits] << sub_ancestry[:traits]
     end
-    ancestry[:traits]
+    ancestry[:traits].split("\n").reject(&:empty?)
   end
 end
