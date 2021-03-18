@@ -5,14 +5,14 @@ class Stats
               :passive_perception,
               :hit_points
 
-  def initialize(ancestry, sub_ancestry, background, class_data, score_type)
+  def initialize(ancestry, sub_ancestry, background, class_data, score_type, traits)
     # The line below will have to be updated once more subraces are created
     ancestry[:asi] << sub_ancestry[:asi][0] if sub_ancestry != 'No Sub Ancestry'
     @core_stats = CoreStats.new(ancestry[:asi], score_type)
     @saving_throws = SavingThrows.new(modifier(@core_stats), class_data[:prof_saving_throws].split(', '))
     @skills = Skills.new(modifier(@core_stats),
                          [background.skill_proficiency_one[0..-7].downcase,
-                          background.skill_proficiency_two[0..-7].downcase], class_data[:prof_skills].downcase)
+                          background.skill_proficiency_two[0..-7].downcase], class_data[:prof_skills].downcase, traits)
     @passive_perception = @skills.skills[:perception] + 10
     @hit_points = modifier(@core_stats)[:con] + class_data[:hp_at_1st_level].scan(/\d+/)[0].to_i
   end
