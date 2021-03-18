@@ -11,16 +11,15 @@ class NPC
               :languages,
               :name,
               :proficiencies,
-              :personality,
               :size,
               :speed,
               :spells,
-              :stats,
               :traits,
               :vision,
               :armor_class,
               :equipment,
-              :initiative
+              :initiative,
+              :stats
 
   def initialize(ancestry, class_data, score_type)
     @alignment     = find_alignment
@@ -33,21 +32,21 @@ class NPC
     @languages     = ['common', find_languages(ancestry[:languages][54..-1])].flatten
     @name          = find_name
     @proficiencies = Proficiencies.new(class_data)
-    # @personality   =
     @size          = find_size(ancestry[:size][12..-1].scan(/\d+/))
     @speed         = ancestry[:speed][:walk]
-    # @spells        =
-    @stats         = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type)
     @traits        = find_traits(ancestry, @sub_ancestry)
     @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'Darkvision' : 'No Darkvision'
     # The below are not in alphabetical order because they need the objects above
     # @armor_class   =
     @equipment = Equipment.new(@class, @background.equipment, @proficiencies)
     # @initiative =
+    # @spells        = (@traits)
+    @stats = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
   end
 
   def find_alignment
-    ['Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'True Neutral', 'Chaotic Neutral', 'Lawful Evil', 'Neutral Evil', 'Chaotic Evil', 'Unaligned'].sample
+    ['Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'True Neutral', 'Chaotic Neutral',
+     'Lawful Evil', 'Neutral Evil', 'Chaotic Evil', 'Unaligned'].sample
   end
 
   def find_name
