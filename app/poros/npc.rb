@@ -1,45 +1,57 @@
 require 'csv'
 
 class NPC
-  attr_reader :name,
-              :gender,
+  attr_reader :alignment,
               :ancestry,
               :sub_ancestry,
               :background,
-              :speed,
               :class,
-              :stats,
-              :languages,
-              :vision,
-              :size,
-              :traits,
-              :proficiencies,
-              :alignment,
+              :gender,
               :hit_dice,
-              :equipment,
+              :languages,
+              :name,
+              :proficiencies,
+              :personality,
+              :size,
+              :speed,
               :spells,
+              :stats,
+              :traits,
+              :vision,
               :armor_class,
-              :initiative,
-              :personality
+              :equipment,
+              :initiative
 
   def initialize(ancestry, class_data, score_type)
-    @name = "#{Faker::Games::WarhammerFantasy.hero.split(' ')[0]} #{Faker::Science.scientist.split(' ')[0]} #{Faker::FunnyName.two_word_name.split(' ')[1]}"
-    @gender = File.read('app/assets/data/genders.txt').split("\n").sample
-    @alignment = ['Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'True Neutral', 'Chaotic Neutral',
-                  'Lawful Evil', 'Neutral Evil', 'Chaotic Evil', 'Unaligned'].sample
+    @alignment     = find_alignment
     @ancestry      = ancestry[:name]
     @sub_ancestry  = ancestry[:subraces] != [] ? ancestry[:subraces].sample : 'No Sub Ancestry'
-    @class         = class_data[:name]
-    @speed         = ancestry[:speed][:walk]
-    @size          = find_size(ancestry[:size][12..-1].scan(/\d+/))
-    @languages     = ['common', find_languages(ancestry[:languages][54..-1])].flatten
-    @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'Darkvision' : 'No Darkvision'
-    @hit_dice      = class_data[:hit_dice]
-    @traits        = find_traits(ancestry, @sub_ancestry)
     @background    = create_npc_background
-    @stats         = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type)
+    @class         = class_data[:name]
+    @gender = File.read('app/assets/data/genders.txt').split("\n").sample
+    @hit_dice      = class_data[:hit_dice]
+    @languages     = ['common', find_languages(ancestry[:languages][54..-1])].flatten
+    @name          = find_name
     @proficiencies = Proficiencies.new(class_data)
+    # @personality   =
+    @size          = find_size(ancestry[:size][12..-1].scan(/\d+/))
+    @speed         = ancestry[:speed][:walk]
+    # @spells        =
+    @stats         = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type)
+    @traits        = find_traits(ancestry, @sub_ancestry)
+    @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'Darkvision' : 'No Darkvision'
+    # The below are not in alphabetical order because they need the objects above
+    # @armor_class   =
     @equipment = Equipment.new(@class, @background.equipment, @proficiencies)
+    # @initiative =
+  end
+
+  def find_alignment
+    ['Lawful Good', 'Neutral Good', 'Chaotic Good', 'Lawful Neutral', 'True Neutral', 'Chaotic Neutral', 'Lawful Evil', 'Neutral Evil', 'Chaotic Evil', 'Unaligned'].sample
+  end
+
+  def find_name
+    "#{Faker::Games::WarhammerFantasy.hero.split(' ')[0]} #{Faker::Science.scientist.split(' ')[0]} #{Faker::FunnyName.two_word_name.split(' ')[1]}"
   end
 
   def create_npc_background
