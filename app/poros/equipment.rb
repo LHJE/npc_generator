@@ -41,10 +41,10 @@ class Equipment
 
   def find_barbarian_equip
     equip = { weapons: [Weapon.where(classification: 'Martial Melee Weapon').or(Weapon.where(name: 'Greataxe')).sample, Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin')].flatten,
-      armor: [''],
-      pack: Pack.where(name: 'Explorer’s Pack')[0],
-      extras: '' }
-    if [true,false].sample
+              armor: [''],
+              pack: Pack.where(name: 'Explorer’s Pack')[0],
+              extras: '' }
+    if [true, false].sample
       equip[:weapons] << Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon')).sample
     else
       2.times do
@@ -80,10 +80,10 @@ class Equipment
 
   def find_druid_equip
     equip = { weapons: [Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(name: 'Scimitar')).sample].flatten,
-      armor: [Armor.where(name: 'Leather')[0]],
-      pack: Pack.where(name: 'Explorer’s Pack')[0],
-      extras: 'A druidic focus' }
-    if [true,false].sample
+              armor: [Armor.where(name: 'Leather')[0]],
+              pack: Pack.where(name: 'Explorer’s Pack')[0],
+              extras: 'A druidic focus' }
+    if [true, false].sample
       equip[:armor] << Armor.where(name: 'Shield')[0]
     else
       equip[:weapons] << Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon')).sample
@@ -93,14 +93,14 @@ class Equipment
 
   def find_fighter_equip
     equip = { armor: [], weapons: [], pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
-      extras: '' }
-    if [true,false].sample
+              extras: '' }
+    if [true, false].sample
       equip[:armor] << Armor.where(name: 'Chain mail')[0]
     else
       equip[:armor] << Armor.where(name: 'Leather')[0]
       equip[:weapons] << Weapon.where(name: 'Longbow')[0]
     end
-    if [true,false].sample
+    if [true, false].sample
       2.times do
         equip[:weapons] << Weapon.where(classification: 'Martial Melee Weapon').or(Weapon.where(classification: 'Martial Ranged Weapon')).sample
       end
@@ -108,7 +108,7 @@ class Equipment
       equip[:armor] << Armor.where(name: 'Shield')[0]
       equip[:weapons] << Weapon.where(classification: 'Martial Melee Weapon').or(Weapon.where(classification: 'Martial Ranged Weapon')).sample
     end
-    if [true,false].sample
+    if [true, false].sample
       2.times do
         equip[:weapons] << Weapon.where(name: 'Handaxe')[0]
       end
@@ -119,7 +119,7 @@ class Equipment
   end
 
   def find_monk_equip
-    { weapons: [ Weapon.where(name: 'Dart')[0], Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Shortsword'))).sample].flatten,
+    { weapons: [Weapon.where(name: 'Dart')[0], Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Shortsword'))).sample].flatten,
       armor: [''],
       pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
       extras: '' }
@@ -127,8 +127,8 @@ class Equipment
 
   def find_paladin_equip
     equip = { armor: [Armor.where(name: 'Chain mail')[0]], pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Priest’s Pack')).sample, weapons: [],
-      extras: 'A holy symbol' }
-    if [true,false].sample
+              extras: 'A holy symbol' }
+    if [true, false].sample
       2.times do
         equip[:weapons] << Weapon.where(classification: 'Martial Melee Weapon').or(Weapon.where(classification: 'Martial Ranged Weapon')).sample
       end
@@ -136,7 +136,7 @@ class Equipment
       equip[:armor] << Armor.where(name: 'Shield')[0]
       equip[:weapons] << Weapon.where(classification: 'Martial Melee Weapon').or(Weapon.where(classification: 'Martial Ranged Weapon')).sample
     end
-    if [true,false].sample
+    if [true, false].sample
       5.times do
         equip[:weapons] << Weapon.where(name: 'Javelin')[0]
       end
@@ -148,10 +148,10 @@ class Equipment
 
   def find_ranger_equip
     equip = { weapons: [Weapon.where(name: 'Longbow')[0]],
-      armor: [Armor.where(name: 'Leather').or(Armor.where(name: 'Scale mail')).sample],
-      pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
-      extras: ''}
-    if [true,false].sample
+              armor: [Armor.where(name: 'Leather').or(Armor.where(name: 'Scale mail')).sample],
+              pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
+              extras: '' }
+    if [true, false].sample
       2.times do
         equip[:weapons] << Weapon.where(name: 'Shortsword')[0]
       end
@@ -174,14 +174,14 @@ class Equipment
     { weapons: [Weapon.where(name: 'Dagger')[0], Weapon.where(name: 'Dagger')[0], Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Crossbow light'))).sample].flatten,
       armor: [''],
       pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
-      extras: "#{['A component pouch', 'An arcane focus'].sample}" }
+      extras: ['A component pouch', 'An arcane focus'].sample.to_s }
   end
 
   def find_warlock_equip
     { weapons: [Weapon.where(name: 'Dagger')[0], Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Crossbow light'))).sample, Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon')).sample].flatten,
       armor: [Armor.where(name: 'Leather')[0]],
       pack: Pack.where(name: 'Scholar’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
-      extras: "#{['A component pouch', 'An arcane focus'].sample}" }
+      extras: ['A component pouch', 'An arcane focus'].sample.to_s }
   end
 
   def find_wizard_equip

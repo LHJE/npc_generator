@@ -76,7 +76,7 @@ class NPC
       ancestry[:traits] << 'No extra traits'
     elsif ancestry[:name] == 'Dragonborn'
       ancestry[:traits] = ancestry[:traits][842..893] + ancestry[:traits][1055..-1]
-      ancestry[:traits] << ' Draconic Ancestry: ' + File.read('app/assets/data/dragonborn_traits.txt').split("\n").sample
+      ancestry[:traits] << " Draconic Ancestry: #{File.read('app/assets/data/dragonborn_traits.txt').split("\n").sample}"
     elsif sub_ancestry != 'No Sub Ancestry'
       ancestry[:traits] << sub_ancestry[:traits]
     end
