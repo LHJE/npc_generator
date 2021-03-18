@@ -138,7 +138,8 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
     expect(npc.languages).to be_a(Array)
     expect(npc.languages[0]).to be_a(String)
     expect(npc.vision).to be_a(String)
-    expect(npc.traits).to be_a(String)
+    expect(npc.traits).to be_a(Array)
+    expect(npc.traits[0]).to be_a(String)
     expect(npc.background).to be_a(Background)
     expect(npc.background.name).to be_a(String)
     expect(npc.background.skill_proficiency_one).to be_a(String)
@@ -194,10 +195,10 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
     expect(npc.proficiencies.tools).to be_a(String)
   end
 
-  it "has correct proficiencies when Bard" do
+  it "has correct proficiencies when Half-Elf Bard" do
     bard = NPC.new(@data[0], @bard, 'roll for scores')
 
-    expect(bard.stats.skills.proficiencies.length).to eq(5)
+    expect(bard.stats.skills.proficiencies.length).to eq(7)
   end
 
 end
