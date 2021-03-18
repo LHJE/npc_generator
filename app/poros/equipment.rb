@@ -40,10 +40,18 @@ class Equipment
   end
 
   def find_barbarian_equip
-    { weapons: [Weapon.where(classification: 'Martial Melee Weapon').or(Weapon.where(name: 'Greataxe')).sample, Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Handaxe'))).sample, Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin')].flatten,
+    equip = { weapons: [Weapon.where(classification: 'Martial Melee Weapon').or(Weapon.where(name: 'Greataxe')).sample, Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin')].flatten,
       armor: [''],
       pack: Pack.where(name: 'Explorer’s Pack')[0],
       extras: '' }
+    if [true,false].sample
+      equip[:weapons] << Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon')).sample
+    else
+      2.times do
+        equip[:weapons] << Weapon.where(name: 'Handaxe')[0]
+      end
+    end
+    equip
   end
 
   def find_bard_equip
