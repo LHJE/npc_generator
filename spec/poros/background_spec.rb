@@ -16,6 +16,11 @@ describe Background do
     expect(background.tool_proficiency_two).to eq("-")
     expect(background.extra_languages).to eq("Any 2")
     expect(background.equipment).to eq(["A musical instrument (one of your choice)", "the favor of an admirer (love letter", "lock of hair", "or trinket)", "a costume", "and a pouch containing 15 gp"])
+    expect(background.personality).to be_a(Hash)
+    expect(background.personality[:personality]).to be_a(String)
+    expect(background.personality[:ideal]).to be_a(String)
+    expect(background.personality[:bond]).to be_a(String)
+    expect(background.personality[:flaw]).to be_a(String)
   end
 
 end
