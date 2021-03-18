@@ -85,13 +85,6 @@ class Equipment
     equip
   end
 
-  def find_monk_equip
-    { weapons: [Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Shortsword'))).sample, Weapon.where(name: 'Dart')].flatten,
-      armor: [''],
-      pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
-      extras: '' }
-  end
-
   def find_fighter_equip
     equip = { armor: [], weapons: [],pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
       extras: '' }
@@ -117,6 +110,13 @@ class Equipment
       equip[:weapons] << Weapon.where(name: 'Crossbow light')[0]
     end
     equip
+  end
+
+  def find_monk_equip
+    { weapons: [Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Shortsword'))).sample, Weapon.where(name: 'Dart')].flatten,
+      armor: [''],
+      pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
+      extras: '' }
   end
 
   def find_paladin_equip
