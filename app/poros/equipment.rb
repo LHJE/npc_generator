@@ -141,13 +141,24 @@ class Equipment
   end
 
   def find_ranger_equip
-    require "pry"; binding.pry
-    {}
+    equip = { weapons: Weapon.where(name: 'Longbow'),
+      armor: [Armor.where(name: 'Leather').or(Armor.where(name: 'Scale mail'))],
+      pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
+      extras: ''}
+    if [true,false].sample
+      2.times do
+        equip[:weapons] << Weapon.where(name: 'Shortsword')[0]
+      end
+    else
+      2.times do
+        equip[:weapons] << Weapon.where(Classification: 'Simple Melee Weapon').sample
+      end
+    end
+    equip
   end
 
   def find_rogue_equip
-    require "pry"; binding.pry
-    {}
+    
   end
 
   def find_sorcerer_equip
