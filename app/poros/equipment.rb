@@ -158,7 +158,10 @@ class Equipment
   end
 
   def find_rogue_equip
-    
+    { weapons: [Weapon.where(name: 'Dagger'), Weapon.where(name: 'Dagger'), Weapon.where(name: 'Rapier').or(Weapon.where(name: 'Shortsword')).sample, Weapon.where(name: 'Shortbow').or(Weapon.where(name: 'Shortsword')).sample],
+      armor: [Armor.where(name: 'Leather')[0]],
+      pack: Pack.where(name: 'Burglar’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack').or(Pack.where(name: 'Explorer’s Pack'))).sample,
+      extras: 'Thieves’ tools' }
   end
 
   def find_sorcerer_equip
