@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Background do
   before :each do
-    @data = {background:"Acolyte", skill_proficiency_one:"Insight (WIS)", skill_proficiency_two:"Religion (INT)", tool_proficiency_one:"-", tool_proficiency_two:"-", extra_languages:"Any 2", equipment:'A musical instrument (one of your choice) - the favor of an admirer (love letter - lock of hair - or trinket) - a costume - and a pouch containing 15 gp'}
+    @data = {background:"Acolyte", skill_proficiency_one:"Insight (WIS)", skill_proficiency_two:"Religion (INT)", tool_proficiency_one:"-", tool_proficiency_two:"-", extra_languages:"Any 2", equipment:'A musical instrument (one of your choice) - the favor of an admirer (love letter - lock of hair - or trinket) - a costume - and a pouch containing 15 gp', personality: "I feel tremendous empathy for all who suffer.", ideal: "Greater Good. My gifts are meant to be shared with all, not used for my own benefit. (Good)", bond: "I entered seclusion because I loved someone I could not have.", flaw: "I like keeping secrets and won’t share them with anyone."}
   end
 
   it "exists" do
