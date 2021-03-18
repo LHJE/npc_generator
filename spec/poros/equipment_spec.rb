@@ -489,7 +489,6 @@ describe Equipment do
     expect(equipment.weapons[0][:weight]).to be_a(String)
     expect(equipment.weapons[0][:classification]).to be_a(String)
     expect(equipment.weapons[1]).to be_a(Weapon)
-    expect(equipment.weapons[2]).to be_a(Weapon)
   end
 
   it "exists, and works for monk" do
