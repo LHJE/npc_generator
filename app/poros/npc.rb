@@ -40,8 +40,8 @@ class NPC
     @equipment = Equipment.new(@class, @background.equipment, @proficiencies)
     # @spells        = (@traits)
     @stats = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
-    @armor_class = find_armor_class(@stats.core_stats.stats[:dex_mod], @equipment.armor)
-    @initiative = @stats.core_stats.stats[:dex_mod]
+    @armor_class = find_armor_class(@stats.core_stats.stats[:modifiers][:dex_mod], @equipment.armor)
+    @initiative = @stats.core_stats.stats[:modifiers][:dex_mod]
   end
 
   def find_alignment
