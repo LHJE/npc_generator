@@ -114,11 +114,11 @@ class NPC
         dex + piece.armor_class.scan(/\d+/)[0].to_i
       end
     elsif piece.armor_class == '16' && armor.index(piece) != 1
-      dex = 16
+      16
     elsif piece.armor_class == '16' && armor.index(piece) == 1
-      dex = 18
+      18
     else
-      dex += piece.armor_class.scan(/\d+/)[0].to_i
+      dex + piece.armor_class.scan(/\d+/)[0].to_i
     end
   end
 end
