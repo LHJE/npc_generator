@@ -6,7 +6,7 @@ describe SavingThrows do
   end
 
   it "exists" do
-    saving_throws = SavingThrows.new(@data[0], @data[1])
+    saving_throws = SavingThrows.new(@data[0].stats[:modifiers], @data[1])
 
     expect(saving_throws).to be_a(SavingThrows)
     expect(saving_throws.throws).to be_a(Hash)
