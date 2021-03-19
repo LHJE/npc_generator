@@ -21,7 +21,7 @@ describe Stats do
  :subraces=>[],
  :document__slug=>"wotc-srd",
  :document__title=>"Systems Reference Document",
- :document__license_url=>"http://open5e.com/legal"}, Background.new({background:"Acolyte", skill_proficiency_one:"Insight (WIS)", skill_proficiency_two:"Religion (INT)", tool_proficiency_one:"-", tool_proficiency_two:"-", extra_languages:"Any 2"}), {:name=>"Monk",
+ :document__license_url=>"http://open5e.com/legal"}, Background.new({background:"Acolyte", skill_proficiency_one:"Insight (WIS)", skill_proficiency_two:"Religion (INT)", tool_proficiency_one:"-", tool_proficiency_two:"-", extra_languages:"Any 2", equipment:'A musical instrument (one of your choice) - the favor of an admirer (love letter - lock of hair - or trinket) - a costume - and a pouch containing 15 gp', personality: "I feel tremendous empathy for all who suffer.", ideal: "Greater Good. My gifts are meant to be shared with all, not used for my own benefit. (Good)", bond: "I entered seclusion because I loved someone I could not have.", flaw: "I like keeping secrets and won’t share them with anyone."}), {:name=>"Monk",
  :slug=>"monk",
  :desc=>
   "### Unarmored Defense \n \nBeginning at 1st level, while you are wearing no armor and not wielding a shield, your AC equals 10 + your Dexterity modifier + your Wisdom modifier. \n \n### Ma
@@ -93,18 +93,27 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
   end
 
   it "exists" do
-    stats = Stats.new(@data[0], @data[1], @data[2], 'wildly unbalanced')
+    stats = Stats.new(@data[0], "No Sub Ancestry", @data[1], @data[2], 'wildly unbalanced', "**_Skill Versatility._** You gain proficiency in two skills of your choice.")
 
     expect(stats).to be_a(Stats)
     expect(stats.core_stats).to be_a(CoreStats)
     expect(stats.core_stats.stats).to be_a(Hash)
-    expect(stats.core_stats.stats[:str]).to be_a(Integer)
-    expect(stats.core_stats.stats[:dex]).to be_a(Integer)
-    expect(stats.core_stats.stats[:con]).to be_a(Integer)
-    expect(stats.core_stats.stats[:int]).to be_a(Integer)
-    expect(stats.core_stats.stats[:wis]).to be_a(Integer)
-    expect(stats.core_stats.stats[:cha]).to be_a(Integer)
+    expect(stats.core_stats.stats[:modifiers]).to be_a(Hash)
+    expect(stats.core_stats.stats[:modifiers][:str_mod]).to be_a(Integer)
+    expect(stats.core_stats.stats[:modifiers][:dex_mod]).to be_a(Integer)
+    expect(stats.core_stats.stats[:modifiers][:con_mod]).to be_a(Integer)
+    expect(stats.core_stats.stats[:modifiers][:int_mod]).to be_a(Integer)
+    expect(stats.core_stats.stats[:modifiers][:wis_mod]).to be_a(Integer)
+    expect(stats.core_stats.stats[:modifiers][:cha_mod]).to be_a(Integer)
+    expect(stats.core_stats.stats[:scores]).to be_a(Hash)
+    expect(stats.core_stats.stats[:scores][:str]).to be_a(Integer)
+    expect(stats.core_stats.stats[:scores][:dex]).to be_a(Integer)
+    expect(stats.core_stats.stats[:scores][:con]).to be_a(Integer)
+    expect(stats.core_stats.stats[:scores][:int]).to be_a(Integer)
+    expect(stats.core_stats.stats[:scores][:wis]).to be_a(Integer)
+    expect(stats.core_stats.stats[:scores][:cha]).to be_a(Integer)
     expect(stats.passive_perception).to be_a(Integer)
+    expect(stats.hit_points).to be_a(Integer)
     expect(stats.saving_throws).to be_a(SavingThrows)
     expect(stats.saving_throws.throws).to be_a(Hash)
     expect(stats.saving_throws.throws[:str]).to be_a(Integer)
@@ -119,7 +128,9 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
     expect(stats.skills.proficiencies[1]).to eq("religion")
     expect(stats.skills.proficiencies[2]).to be_a(String)
     expect(stats.skills.proficiencies[3]).to be_a(String)
-    expect(stats.skills.proficiencies[4]).to be_a(NilClass)
+    expect(stats.skills.proficiencies[4]).to be_a(String)
+    expect(stats.skills.proficiencies[5]).to be_a(String)
+    expect(stats.skills.proficiencies[6]).to be_a(NilClass)
     expect(stats.skills.skills[:acrobatics]).to be_a(Integer)
     expect(stats.skills.skills[:animal_handling]).to be_a(Integer)
     expect(stats.skills.skills[:arcana]).to be_a(Integer)

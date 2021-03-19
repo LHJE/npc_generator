@@ -2,13 +2,12 @@ class Skills
   attr_reader :skills,
               :proficiencies
 
-  def initialize(core_stats, background_profs, class_profs)
-    @skills = {}
-    @proficiencies = []
-    @proficiencies << background_profs
+  def initialize(core_stats, background_profs, class_profs, traits)
+    @skills = set_base_skill_scores(core_stats)
+    @proficiencies = [background_profs]
     remove_background_profs(background_profs, class_profs)
     (@proficiencies << find_proficiencies(background_profs, class_profs)).flatten!
-    set_base_skill_scores(core_stats)
+    (@proficiencies << find_trait_proficiencies).flatten! unless traits.nil?
     adjust_for_profs(@proficiencies)
   end
 
@@ -40,31 +39,23 @@ class Skills
     profs.sub(text, '').sub(' and', '').split(', ').reject(&:empty?).sample(sample_number)
   end
 
-  def remove_background_profs(background_profs, other_profs)
+  def remove_background_profs(background_profs, class_profs)
     background_profs.each do |background_prof|
-      other_profs.sub!(background_prof, '')
+      class_profs.sub!(background_prof, '')
     end
   end
 
+  def find_trait_proficiencies
+    all_profs = 'acrobatics, animal handling, arcana, athletics, deception, history, insight, intimidation, investigation, medicine, nature, perception, performance, persuasion, religion, sleight of hand, stealth, survival'
+    @proficiencies.map do |prof|
+      all_profs.sub!(prof, '')
+    end
+    all_profs.split(', ').reject(&:empty?).sample(2)
+  end
+
   def set_base_skill_scores(core_stats)
-    @skills[:acrobatics] = core_stats[:dex]
-    @skills[:animal_handling] = core_stats[:wis]
-    @skills[:arcana] = core_stats[:int]
-    @skills[:athletics] = core_stats[:str]
-    @skills[:deception] = core_stats[:cha]
-    @skills[:history] = core_stats[:int]
-    @skills[:insight] = core_stats[:wis]
-    @skills[:intimidation] = core_stats[:cha]
-    @skills[:investigation] = core_stats[:int]
-    @skills[:medicine] = core_stats[:wis]
-    @skills[:nature] = core_stats[:int]
-    @skills[:perception] = core_stats[:wis]
-    @skills[:performance] = core_stats[:cha]
-    @skills[:persuasion] = core_stats[:cha]
-    @skills[:religion] = core_stats[:int]
-    @skills[:sleight_of_hand] = core_stats[:dex]
-    @skills[:stealth] = core_stats[:dex]
-    @skills[:survival] = core_stats[:wis]
+    { acrobatics: core_stats[:dex_mod], animal_handling: core_stats[:wis_mod], arcana: core_stats[:int_mod],
+      athletics: core_stats[:str_mod], deception: core_stats[:cha_mod], history: core_stats[:int_mod], insight: core_stats[:wis_mod], intimidation: core_stats[:cha_mod], investigation: core_stats[:int_mod], medicine: core_stats[:wis_mod], nature: core_stats[:int_mod], perception: core_stats[:wis_mod], performance: core_stats[:cha_mod], persuasion: core_stats[:cha_mod], religion: core_stats[:int_mod], sleight_of_hand: core_stats[:dex_mod], stealth: core_stats[:dex_mod], survival: core_stats[:wis_mod] }
   end
 
   def adjust_for_profs(profs)

@@ -1,0 +1,38 @@
+Classification,Name,Cost,Damage,Weight,Properties
+Simple Melee Weapon,Club,1 sp,1d4 bludgeoning,2 lb.,Light
+Simple Melee Weapon,Dagger,2 gp,1d4 piercing,1 lb.,Finesse light thrown (range 20/60)
+Simple Melee Weapon,Greatclub,2 sp,1d8 bludgeoning,10 lb.,Two-handed
+Simple Melee Weapon,Handaxe,5 gp,1d6 slashing,2 lb.,Light thrown (range 20/60)
+Simple Melee Weapon,Javelin,5 sp,1d6 piercing,2 lb.,Thrown (range 30/120)
+Simple Melee Weapon,Light Hammer,2 gp,1d4 bludgeoning,2 lb.,Light thrown (range 20/60)
+Simple Melee Weapon,Mace,5 gp,1d6 bludgeoning,4 lb.,None
+Simple Melee Weapon,Quarterstaff,2 sp,1d6 bludgeoning,4 lb.,Versatile (1d8)
+Simple Melee Weapon,Sickle,1 gp,1d4 slashing,2 lb.,Light
+Simple Melee Weapon,Spear,1 gp,1d6 piercing,3 lb.,Thrown (range 20/60) versatile (1d8)
+Simple Ranged Weapon,Crossbow light, 25 gp,1d8 piercing,5 lb.,Ammunition (range 80/320) loading two-handed
+Simple Ranged Weapon,Dart,5 cp,1d4 piercing,1/4 lb.,Finesse thrown (range 20/60)
+Simple Ranged Weapon,Shortbow,25 gp,1d6 piercing,2 lb.,Ammunition (range 80/320) two-handed
+Simple Ranged Weapon,Sling,1 sp,1d4 bludgeoning,<1 lb,Ammunition (range 30/120)
+Martial Melee Weapon,Battleaxe,10 gp,1d8 slashing,4 lb.,Versatile (1d10)
+Martial Melee Weapon,Flail,10 gp,1d8 bludgeoning,2 lb.,None
+Martial Melee Weapon,Glaive,20 gp,1d10 slashing,6 lb.,Heavy reach two-handed
+Martial Melee Weapon,Greataxe,30 gp,1d12 slashing,7 lb.,Heavy two-handed
+Martial Melee Weapon,Greatsword,50 gp,2d6 slashing,6 lb.,Heavy two-handed
+Martial Melee Weapon,Halberd,20 gp,1d10 slashing,6 lb.,Heavy reach two-handed
+Martial Melee Weapon,Lance,10 gp,1d12 piercing,6 lb.,Reach special
+Martial Melee Weapon,Longsword,15 gp,1d8 slashing,3 lb.,Versatile (1d10)
+Martial Melee Weapon,Maul,10 gp,2d6 bludgeoning,10 lb.,Heavy two-handed
+Martial Melee Weapon,Morningstar,15 gp,1d8 piercing,4 lb.,None
+Martial Melee Weapon,Pike,5 gp,1d10 piercing,18 lb.,Heavy reach two-handed
+Martial Melee Weapon,Rapier,25 gp,1d8 piercing,2 lb.,Finesse
+Martial Melee Weapon,Scimitar,25 gp,1d6 slashing,3 lb.,Finesse light
+Martial Melee Weapon,Shortsword,10 gp,1d6 piercing,2 lb.,Finesse light
+Martial Melee Weapon,Trident,5 gp,1d6 piercing,4 lb.,Thrown (range 20/60) versatile (1d8)
+Martial Melee Weapon,War Pick,5 gp,1d8 piercing,2 lb.,None
+Martial Melee Weapon,Warhammer,15 gp,1d8 bludgeoning,2 lb.,Versatile (1d10)
+Martial Melee Weapon,Whip,2 gp,1d4 slashing,3 lb.,Finesse reach
+Martial Ranged Weapon,Blowgun,10 gp,1 piercing,1 lb.,Ammunition (range 25/100) loading
+Martial Ranged Weapon,Crossbow hand,75 gp,1d6 piercing,3 lb.,Ammunition (range 30/120) light loading
+Martial Ranged Weapon,Crossbow heavy,50 gp,1d10 piercing,18 lb.,Ammunition (range 100/400) heavy loading two-handed
+Martial Ranged Weapon,Longbow,50 gp,1d8 piercing,2 lb.,Ammunition (range 150/600) heavy two-handed
+Martial Ranged Weapon,Net,1 gp,No Damage,3 lb.,Special thrown (range 5/15)

@@ -10,12 +10,20 @@ describe CoreStats do
 
     expect(core_stats).to be_a(CoreStats)
     expect(core_stats.stats).to be_a(Hash)
-    expect(core_stats.stats[:str]).to be_a(Integer)
-    expect(core_stats.stats[:dex]).to be_a(Integer)
-    expect(core_stats.stats[:con]).to be_a(Integer)
-    expect(core_stats.stats[:int]).to be_a(Integer)
-    expect(core_stats.stats[:wis]).to be_a(Integer)
-    expect(core_stats.stats[:cha]).to be_a(Integer)
+    expect(core_stats.stats[:modifiers]).to be_a(Hash)
+    expect(core_stats.stats[:modifiers][:str_mod]).to be_a(Integer)
+    expect(core_stats.stats[:modifiers][:dex_mod]).to be_a(Integer)
+    expect(core_stats.stats[:modifiers][:con_mod]).to be_a(Integer)
+    expect(core_stats.stats[:modifiers][:int_mod]).to be_a(Integer)
+    expect(core_stats.stats[:modifiers][:wis_mod]).to be_a(Integer)
+    expect(core_stats.stats[:modifiers][:cha_mod]).to be_a(Integer)
+    expect(core_stats.stats[:scores]).to be_a(Hash)
+    expect(core_stats.stats[:scores][:str]).to be_a(Integer)
+    expect(core_stats.stats[:scores][:dex]).to be_a(Integer)
+    expect(core_stats.stats[:scores][:con]).to be_a(Integer)
+    expect(core_stats.stats[:scores][:int]).to be_a(Integer)
+    expect(core_stats.stats[:scores][:wis]).to be_a(Integer)
+    expect(core_stats.stats[:scores][:cha]).to be_a(Integer)
   end
 
 end
