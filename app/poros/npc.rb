@@ -98,19 +98,27 @@ class NPC
     if armor[0] == ''
       10 + dex
     elsif armor.length > 1
-      # require "pry"; binding.pry
       armor.each do |piece|
-        if piece.armor_class == '16' && armor.index(piece) != 1
-          dex = 16
-        elsif piece.armor_class == '16' && armor.index(piece) == 1
-          dex = 18
-        else
-          dex += piece.armor_class.scan(/\d+/)[0].to_i
-        end
+        determine_ac(armor, piece, dex)
       end
-      dex
     else
-      dex + armor[0].armor_class.scan(/\d+/)[0].to_i
+      determine_ac(armor, armor[0], dex)
+    end
+  end
+
+  def determine_ac(armor, piece, dex)
+    if piece.armor_class[-7..-1] == '(max 2)'
+      if dex > 2
+        2 + piece.armor_class.scan(/\d+/)[0].to_i
+      else
+        dex + piece.armor_class.scan(/\d+/)[0].to_i
+      end
+    elsif piece.armor_class == '16' && armor.index(piece) != 1
+      dex = 16
+    elsif piece.armor_class == '16' && armor.index(piece) == 1
+      dex = 18
+    else
+      dex += piece.armor_class.scan(/\d+/)[0].to_i
     end
   end
 end
