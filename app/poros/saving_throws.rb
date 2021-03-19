@@ -2,22 +2,24 @@ class SavingThrows
   attr_reader :throws
 
   def initialize(core_stats, class_profs)
+    @throws = { str: core_stats[:str_mod], dex: core_stats[:dex_mod],
+                con: core_stats[:con_mod], int: core_stats[:int_mod], wis: core_stats[:wis_mod], cha: core_stats[:cha_mod] }
     class_profs.each do |prof|
       case prof
       when 'Strength'
-        core_stats[:str] += 2
+        @throws[:str] += 2
       when 'Dexterity'
-        core_stats[:dex] += 2
+        @throws[:dex] += 2
       when 'Constitution'
-        core_stats[:con] += 2
+        @throws[:con] += 2
       when 'Intelligence'
-        core_stats[:int] += 2
+        @throws[:int] += 2
       when 'Wisdom'
-        core_stats[:wis] += 2
+        @throws[:wis] += 2
       when 'Charisma'
-        core_stats[:cha] += 2
+        @throws[:cha] += 2
       end
     end
-    @throws = core_stats
+
   end
 end
