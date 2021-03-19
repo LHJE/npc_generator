@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Skills do
   before :each do
-    @data = [{:str=>2, :dex=>2, :con=>-1, :int=>3, :wis=>0, :cha=>1}, ["acrobatics", "performance"], "choose two from history, insight, medicine, persuasion, and religion"]
+    @data = [CoreStats.new([{:attributes=>["Dexterity"], :value=>2}, {:attributes=>["Charisma"], :value=>1}], "standard array"), ["acrobatics", "performance"], "choose two from history, insight, medicine, persuasion, and religion"]
   end
 
   it "exists" do
