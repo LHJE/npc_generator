@@ -93,4 +93,24 @@ class NPC
     end
     ancestry[:traits].split("\n").reject(&:empty?)
   end
+
+  def find_armor_class(dex, armor)
+    if armor[0] == ''
+      10 + dex
+    elsif armor.length > 1
+      # require "pry"; binding.pry
+      armor.each do |piece|
+        if piece.armor_class == '16' && armor.index(piece) != 1
+          dex = 16
+        elsif piece.armor_class == '16' && armor.index(piece) == 1
+          dex = 18
+        else
+          dex += piece.armor_class.scan(/\d+/)[0].to_i
+        end
+      end
+      dex
+    else
+      dex + armor[0].armor_class.scan(/\d+/)[0].to_i
+    end
+  end
 end
