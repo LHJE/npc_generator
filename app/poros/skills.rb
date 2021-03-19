@@ -54,8 +54,8 @@ class Skills
   end
 
   def set_base_skill_scores(core_stats)
-    { acrobatics: core_stats[:dex], animal_handling: core_stats[:wis], arcana: core_stats[:int],
-      athletics: core_stats[:str], deception: core_stats[:cha], history: core_stats[:int], insight: core_stats[:wis], intimidation: core_stats[:cha], investigation: core_stats[:int], medicine: core_stats[:wis], nature: core_stats[:int], perception: core_stats[:wis], performance: core_stats[:cha], persuasion: core_stats[:cha], religion: core_stats[:int], sleight_of_hand: core_stats[:dex], stealth: core_stats[:dex], survival: core_stats[:wis] }
+    { acrobatics: core_stats[:dex_mod], animal_handling: core_stats[:wis_mod], arcana: core_stats[:int_mod],
+      athletics: core_stats[:str_mod], deception: core_stats[:cha_mod], history: core_stats[:int_mod], insight: core_stats[:wis_mod], intimidation: core_stats[:cha_mod], investigation: core_stats[:int_mod], medicine: core_stats[:wis_mod], nature: core_stats[:int_mod], perception: core_stats[:wis_mod], performance: core_stats[:cha_mod], persuasion: core_stats[:cha_mod], religion: core_stats[:int_mod], sleight_of_hand: core_stats[:dex_mod], stealth: core_stats[:dex_mod], survival: core_stats[:wis_mod] }
   end
 
   def adjust_for_profs(profs)
