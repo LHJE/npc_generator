@@ -20,6 +20,5 @@ class SavingThrows
         @throws[:cha] += 2
       end
     end
-
   end
 end
