@@ -2,7 +2,8 @@ class CoreStats
   attr_reader :stats
 
   def initialize(ancestry_buffs, score_type)
-    @stats = { modifiers: {str_mod: 0, dex_mod: 0, con_mod: 0, int_mod: 0, wis_mod: 0, cha_mod: 0 }, scores: {str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 }}
+    @stats = { modifiers: { str_mod: 0, dex_mod: 0, con_mod: 0, int_mod: 0, wis_mod: 0, cha_mod: 0 },
+               scores: { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 } }
     distribute_scores(score_type)
     distribute_buffs(ancestry_buffs)
     modifier
