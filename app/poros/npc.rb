@@ -35,13 +35,13 @@ class NPC
     @size          = find_size(ancestry[:size][12..-1].scan(/\d+/))
     @speed         = ancestry[:speed][:walk]
     @traits        = find_traits(ancestry, @sub_ancestry)
-    @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'Darkvision' : 'No Darkvision'
+    @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'No Darkvision' : 'Darkvision'
     # The below are not in alphabetical order because they need the objects above
-    # @armor_class   =
     @equipment = Equipment.new(@class, @background.equipment, @proficiencies)
-    # @initiative =
     # @spells        = (@traits)
     @stats = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
+    @armor_class = find_armor_class(@stats.core_stats.stats[:dex_mod], @equipment.armor)
+    @initiative = @stats.core_stats.stats[:dex_mod]
   end
 
   def find_alignment
