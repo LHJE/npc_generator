@@ -14,7 +14,7 @@
   <p>Gender: <%= @npc.gender %></p>
   <p>Ancestry: <%= @npc.ancestry %></p>
   <p>Sub-Ancestry:</p>
-   <% if @npc.sub_ancestry[:name].nil? %>
+   <% if @npc.sub_ancestry.class == String %>
      <%= @npc.sub_ancestry %>
    <% else %>
      <%= @npc.sub_ancestry[:name] %>
@@ -47,19 +47,21 @@
         <li>Cost: <%= weapon[:cost] %></li>
         <li>Weight: <%= weapon[:weight] %></li>
         <li>Classification: <%= weapon[:classification] %></li>
+        -----------
       <% end %>
     <p>Armor:</p>
-      <% if @npc.equipment.armor == "" %>
+      <% if @npc.equipment.armor[0] == "" %>
         <p>No Armor</p>
       <% else %>
         <% @npc.equipment.armor.each do |piece|%>
           <li>Name: <%= piece[:name] %></li>
-          <li>Damage: <%= piece[:armor_class] %></li>
+          <li>Armor Class: <%= piece[:armor_class] %></li>
           <li>Cost: <%= piece[:cost] %></li>
           <li>Strength Needed: <%= piece[:strength] %></li>
           <li>Stealth Disadvantage: <%= piece[:stealth] %></li>
           <li>Weight: <%= piece[:weight] %></li>
           <li>Classification: <%= piece[:classification] %></li>
+          -----------
         <% end %>
       <% end %>
     <p>Extras:</p>
@@ -84,7 +86,7 @@
     <p>Equipment:</p>
       <li>Armor: <%= @npc.proficiencies.armor %></li>
       <li>Weapons: <%= @npc.proficiencies.weapons %></li>
-      <li>Tools: <%= @npc.proficiencies.tools %><%= "," @npc.background.tool_proficiency_one unless @npc.background.tool_proficiency_one == "-" %> <%= "," @npc.background.tool_proficiency_two unless @npc.background.tool_proficiency_two == "-" %></li>
+      <li>Tools: <%= @npc.proficiencies.tools %>, <%= @npc.background.tool_proficiency_one %>, <%= @npc.background.tool_proficiency_two %></li>
     <p>Tools: </p>
 
   <h3>Stats:</h3>
