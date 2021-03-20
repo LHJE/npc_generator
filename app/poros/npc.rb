@@ -99,8 +99,13 @@ class NPC
       10 + dex
     elsif armor.length > 1
       armor.each do |piece|
-        determine_ac(armor, piece, dex)
+        if armor.index(piece) == 0
+          @ac = determine_ac(armor, piece, dex)
+        else
+          @ac += determine_ac(armor, piece, dex)
+        end
       end
+      @ac
     else
       determine_ac(armor, armor[0], dex)
     end
@@ -117,6 +122,8 @@ class NPC
       16
     elsif piece.armor_class == '16' && armor.index(piece) == 1
       18
+    elsif piece.name == "Shield"
+      2
     else
       dex + piece.armor_class.scan(/\d+/)[0].to_i
     end
