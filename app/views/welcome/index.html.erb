@@ -10,6 +10,10 @@
 <% else %>
   <h2>Here is a brand new NPC just for you:</h2>
 
+  <%= form_tag "/npc/save/", method: :post do %>
+    <%= submit_tag "Save", class: :button %>
+  <% end %>
+
   <h3>Name: <%= @npc.name %></h3>
   <p>Gender: <%= @npc.gender %></p>
   <p>Ancestry: <%= @npc.ancestry %></p>
