@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
       flash[:notice] = "Logged in as #{user.name}"
-      redirect_to "/user/dashboard"
+      redirect_to '/user/dashboard'
     else
       flash[:notice] = "Sorry, we don't recognize those credentials."
       render :new
@@ -28,6 +28,6 @@ class SessionsController < ApplicationController
 
   def login_redirect(user)
     session[:user_id] = user.id
-    redirect_to "/user/dashboard"
+    redirect_to '/user/dashboard'
   end
 end
