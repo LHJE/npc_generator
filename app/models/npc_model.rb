@@ -1,0 +1,21 @@
+class NpcModel < ApplicationRecord
+  validates :alignment,
+            :ancestry,
+            :armor_class,
+            :background,
+            :class,
+            :equipment,
+            :gender,
+            :hit_dice,
+            :initiative,
+            :languages,
+            :name,
+            :proficiencies,
+            :size,
+            :speed,
+            :spells,
+            :stats,
+            :sub_ancestry,
+            :traits,
+            :vision, presence: true
+end 
