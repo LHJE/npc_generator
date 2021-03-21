@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#login'
   get '/logout', to: 'sessions#logout'
 
+  post '/npc/save/', to: 'npc_model#new'
+
   resources :users, only: [:create]
 
   namespace :user do
