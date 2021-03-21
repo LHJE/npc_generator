@@ -8,4 +8,8 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#logout'
 
   resources :users, only: [:create]
+
+  namespace :user do
+    get '/dashboard', to: 'dashboard#show'
+  end
 end
