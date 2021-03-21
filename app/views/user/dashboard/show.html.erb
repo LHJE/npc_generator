@@ -1,0 +1,12 @@
+<h1>Welcome <%= current_user.name %>!</h1>
+
+<h2>NPC's:</h2>
+<section class='npcs'>
+  <% if current_user.npcs == [] %>
+    <p>You currently have no NPC's.</p>
+  <% else %>
+    <% current_user.npcs.each do |npc| %>
+      <li><%= npc.name %></li>
+    <% end %>
+  <% end %>
+</section>
