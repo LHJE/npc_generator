@@ -43,7 +43,7 @@ class Equipment
     equip = { weapons: [Weapon.where(classification: 'Martial Melee Weapon').or(Weapon.where(name: 'Greataxe')).sample, Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin'), Weapon.where(name: 'Javelin')].flatten,
               armor: [''],
               pack: Pack.where(name: 'Explorer’s Pack')[0],
-              extras: '' }
+              extras: 'None' }
     if [true, false].sample
       equip[:weapons] << Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon')).sample
     else
@@ -93,7 +93,7 @@ class Equipment
 
   def find_fighter_equip
     equip = { armor: [], weapons: [], pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
-              extras: '' }
+              extras: 'None' }
     if [true, false].sample
       equip[:armor] << Armor.where(name: 'Chain mail')[0]
     else
@@ -122,7 +122,7 @@ class Equipment
     { weapons: [Weapon.where(name: 'Dart')[0], Weapon.where(classification: 'Simple Melee Weapon').or(Weapon.where(classification: 'Simple Ranged Weapon').or(Weapon.where(name: 'Shortsword'))).sample].flatten,
       armor: [''],
       pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
-      extras: '' }
+      extras: 'None' }
   end
 
   def find_paladin_equip
@@ -150,7 +150,7 @@ class Equipment
     equip = { weapons: [Weapon.where(name: 'Longbow')[0]],
               armor: [Armor.where(name: 'Leather').or(Armor.where(name: 'Scale mail')).sample],
               pack: Pack.where(name: 'Explorer’s Pack').or(Pack.where(name: 'Dungeoneer’s Pack')).sample,
-              extras: '' }
+              extras: 'None' }
     if [true, false].sample
       2.times do
         equip[:weapons] << Weapon.where(name: 'Shortsword')[0]
