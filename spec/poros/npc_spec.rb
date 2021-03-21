@@ -141,7 +141,7 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
     expect(npc.background.skill_proficiency_two).to be_a(String)
     expect(npc.background.tool_proficiency_one).to be_a(String)
     expect(npc.background.tool_proficiency_two).to be_a(String)
-    expect(npc.class).to eq("Monk")
+    expect(npc.character_class).to eq("Monk")
     expect(npc.equipment).to be_a(Equipment)
     expect(npc.equipment.armor).to be_a(Array)
     expect(npc.equipment.armor[0]).to be_a(Armor) unless npc.equipment.armor[0] == ""
