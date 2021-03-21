@@ -10,7 +10,7 @@
 <% else %>
   <h2>Here is a brand new NPC just for you:</h2>
 
-  <%= form_tag "/npc/save/", method: :post do %>
+  <%= form_tag "/npc/save/#{@npc_model.id}", method: :post do %>
     <%= submit_tag "Save", class: :button %>
   <% end %>
 
