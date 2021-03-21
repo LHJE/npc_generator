@@ -72,13 +72,13 @@ class NPC
 
   def find_size(size)
     if size[0] == '6'
-      [rand(72..84), 'medium']
+      "#{rand(72..84)} in, medium"
     elsif size == [] || size[0] == '5'
-      [rand(60..72), 'medium']
+      "#{rand(60..72)} in, medium"
     elsif size[0] == '4'
-      [rand(48..60), 'medium']
+      "#{rand(48..60)} in, medium"
     elsif size[0] == '3'
-      [rand(36..48), 'small']
+      "#{rand(36..48)} in, small"
     end
   end
 
