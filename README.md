@@ -20,7 +20,7 @@ rails db:{create,migrate,seed}
 
 This has created a file called `application.yml` in your `config` folder.
 
-In that file, paste this:
+At the bottom of that file, paste this:
 
 ```
 DND_URL: "https://api.open5e.com"
