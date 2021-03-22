@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
       NpcModelWeapon.where(npc_model_id: id).destroy_all
     end
     NpcModel.where(is_saved: 0).destroy_all
-    
+
     unless params[:post].nil?
       base_info = NPCFacade.create_npc(params[:post][:score_type].downcase)
       if current_user.nil?
