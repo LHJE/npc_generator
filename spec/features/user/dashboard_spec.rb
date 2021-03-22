@@ -193,6 +193,9 @@ RSpec.describe 'Dashboard Page' do
       NpcModel.all[1].update(is_saved: 1)
       UserNpcModel.create!(npc_model_id: NpcModel.all[2].id, user_id: @user_2.id)
       NpcModel.all[2].update(is_saved: 1)
+      @name_1 = NpcModel.all[0].name
+      @name_2 = NpcModel.all[1].name
+      @name_3 = NpcModel.all[2].name
     end
 
     it "I can see that I have NPCs if I have NPCs" do
@@ -205,14 +208,14 @@ RSpec.describe 'Dashboard Page' do
 
       expect(page).to have_content("Logged in as Jackie Chan\nWelcome Jackie Chan!")
       expect(page).to have_content("NPC's:")
-      expect(page).to have_content(NpcModel.all[1].name)
-      expect(page).to have_content(NpcModel.all[2].name)
-      expect(page).to_not have_content(NpcModel.all[0].name)
+      expect(page).to have_content(@name_2)
+      expect(page).to have_content(@name_3)
+      expect(page).to_not have_content(@name_1)
     end
 
     it "I can see that I don't have NPCs if I don't have NPCs" do
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_3)
-      
+
       visit 'user/dashboard'
 
       expect(page).to have_content("You currently have no NPC's saved.")
