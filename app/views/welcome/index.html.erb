@@ -9,9 +9,12 @@
   <% end %>
 <% else %>
   <h2>Here is a brand new NPC just for you:</h2>
-
-  <%= form_tag "/npc/save/#{@npc_model.id}", method: :post do %>
-    <%= submit_tag "Save", class: :button %>
+  <% if !current_user.nil? %>
+    <%= form_tag "/npcs/save/#{@npc_model.id}", method: :post do %>
+      <%= submit_tag "Save", class: :button %>
+    <% end %>
+  <% else %>
+    <p>Please Log in if you'd like to save an NPC</p>
   <% end %>
 
   <h3>Name: <%= @npc.name %></h3>
@@ -24,7 +27,7 @@
      <%= @npc.sub_ancestry[:name] %>
    <% end %>
   <p>Background: <%= @npc.background.name %></p>
-  <p>Class: <%= @npc.class %></p>
+  <p>Class: <%= @npc.character_class %></p>
   <p>Alignment: <%= @npc.alignment %></p>
   <p>Speed: <%= @npc.speed %></p>
   <p>Initiative: <%= @npc.initiative %></p>
