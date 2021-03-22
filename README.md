@@ -9,9 +9,10 @@ NPC Generator is a collaboration between a UX/UI Designer, a Backend Engineer, a
 
 ## Installation
 
-Clone the repo, and then run the following commands to get the generator up and running on your local machine:
+Run the following commands to get the generator up and running on your local machine:
 
 ```
+git clone https://github.com/LHJE/npc_generator.git
 bundle install
 bundle update
 rails db:{create,migrate,seed}
