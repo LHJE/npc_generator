@@ -7,5 +7,12 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#login'
   get '/logout', to: 'sessions#logout'
 
+  post '/npcs/save/:id', to: 'npc_models#new'
+  get '/npcs/:id', to: 'npc_models#show'
+
   resources :users, only: [:create]
+
+  namespace :user do
+    get '/dashboard', to: 'dashboard#show'
+  end
 end

@@ -5,7 +5,7 @@ class NPC
               :ancestry,
               :sub_ancestry,
               :background,
-              :class,
+              :character_class,
               :gender,
               :hit_dice,
               :languages,
@@ -26,7 +26,7 @@ class NPC
     @ancestry      = ancestry[:name]
     @sub_ancestry  = ancestry[:subraces] != [] ? ancestry[:subraces].sample : 'No Sub Ancestry'
     @background    = create_npc_background
-    @class         = class_data[:name]
+    @character_class = class_data[:name]
     @gender = File.read('app/assets/data/genders.txt').split("\n").sample
     @hit_dice      = class_data[:hit_dice]
     @languages     = ['common', find_languages(ancestry[:languages][54..-1])].flatten
@@ -37,7 +37,7 @@ class NPC
     @traits        = find_traits(ancestry, @sub_ancestry)
     @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'No Darkvision' : 'Darkvision'
     # The below are not in alphabetical order because they need the objects above
-    @equipment = Equipment.new(@class, @background.equipment, @proficiencies)
+    @equipment = Equipment.new(@character_class, @background.equipment, @proficiencies)
     # @spells        = (@traits)
     @stats = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
     @armor_class = find_armor_class(@stats.core_stats.stats[:modifiers][:dex_mod], @equipment.armor)
@@ -72,13 +72,13 @@ class NPC
 
   def find_size(size)
     if size[0] == '6'
-      [rand(72..84), 'medium']
+      "#{rand(72..84)} in, medium"
     elsif size == [] || size[0] == '5'
-      [rand(60..72), 'medium']
+      "#{rand(60..72)} in, medium"
     elsif size[0] == '4'
-      [rand(48..60), 'medium']
+      "#{rand(48..60)} in, medium"
     elsif size[0] == '3'
-      [rand(36..48), 'small']
+      "#{rand(36..48)} in, small"
     end
   end
 

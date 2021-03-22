@@ -1,0 +1,12 @@
+<h1>Welcome <%= current_user.name %>!</h1>
+
+<h2>NPC's:</h2>
+<section class='npcs'>
+  <% if @npcs.nil? || @npcs == [] %>
+    <p>You currently have no NPC's saved.</p>
+  <% else %>
+    <% @npcs.each do |npc| %>
+      <li><%= link_to npc.name, "/npcs/#{npc[:id]}" %></li>
+    <% end %>
+  <% end %>
+</section>
