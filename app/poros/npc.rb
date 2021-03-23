@@ -3,6 +3,7 @@ require 'csv'
 class NPC
   attr_reader :alignment,
               :ancestry,
+              :archetype,
               :sub_ancestry,
               :background,
               :character_class,
@@ -25,6 +26,7 @@ class NPC
   def initialize(ancestry, class_data, score_type, level)
     @alignment     = find_alignment
     @ancestry      = ancestry[:name]
+    @archetype     = level < 3 ? "No Archetype" : class_data[:archetype].sample
     @sub_ancestry  = ancestry[:subraces] != [] ? ancestry[:subraces].sample : 'No Sub Ancestry'
     @background    = create_npc_background
     @character_class = class_data[:name]
@@ -36,7 +38,7 @@ class NPC
     @proficiencies = Proficiencies.new(class_data)
     @size          = find_size(ancestry[:size][12..-1].scan(/\d+/))
     @speed         = ancestry[:speed][:walk]
-    @spells        = Spells.new(@character_class, @level, class_data[:table].split("\n")[2..-1])
+    @spells        = Spells.new(@character_class, @level, class_data[:table].split("\n")[2..-1], @archetype[:name])
     @traits        = find_traits(ancestry, @sub_ancestry)
     @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'No Darkvision' : 'Darkvision'
     # The below are not in alphabetical order because they need the objects above
