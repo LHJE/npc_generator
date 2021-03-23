@@ -25,7 +25,7 @@ class WelcomeController < ApplicationController
                                gender: base_info.gender,
                                hit_dice: base_info.hit_dice,
                                initiative: base_info.initiative,
-                               languages: base_info.languages.join(", "),
+                               languages: base_info.languages,
                                level: base_info.level,
                                name: base_info.name,
                                proficiencies_armor: base_info.proficiencies.armor,
