@@ -1,0 +1,53 @@
+class AddColumnsToNpcModel < ActiveRecord::Migration[5.2]
+  def change
+    add_column :npc_models, :level, :string
+    add_column :npc_models, :personality_personality, :string
+    add_column :npc_models, :personality_ideal, :string
+    add_column :npc_models, :personality_bond, :string
+    add_column :npc_models, :personality_flaw, :string
+    add_column :npc_models, :skill_proficiency_one, :string
+    add_column :npc_models, :skill_proficiency_two, :string
+    add_column :npc_models, :tool_proficiency_one, :string
+    add_column :npc_models, :tool_proficiency_two, :string
+    add_column :npc_models, :gold, :string
+    add_column :npc_models, :core_modifiers_str_mod, :string
+    add_column :npc_models, :core_modifiers_dex_mod, :string
+    add_column :npc_models, :core_modifiers_con_mod, :string
+    add_column :npc_models, :core_modifiers_int_mod, :string
+    add_column :npc_models, :core_modifiers_wis_mod, :string
+    add_column :npc_models, :core_modifiers_cha_mod, :string
+    add_column :npc_models, :core_scores_str, :string
+    add_column :npc_models, :core_scores_dex, :string
+    add_column :npc_models, :core_scores_con, :string
+    add_column :npc_models, :core_scores_int, :string
+    add_column :npc_models, :core_scores_wis, :string
+    add_column :npc_models, :core_scores_cha, :string
+    add_column :npc_models, :hit_points, :string
+    add_column :npc_models, :passive_perception, :string
+    add_column :npc_models, :saving_throws_str, :string
+    add_column :npc_models, :saving_throws_dex, :string
+    add_column :npc_models, :saving_throws_con, :string
+    add_column :npc_models, :saving_throws_int, :string
+    add_column :npc_models, :saving_throws_wis, :string
+    add_column :npc_models, :saving_throws_cha, :string
+    add_column :npc_models, :skills_proficiencies, :string
+    add_column :npc_models, :skills_acrobatics, :string
+    add_column :npc_models, :skills_animal_handling, :string
+    add_column :npc_models, :skills_arcana, :string
+    add_column :npc_models, :skills_athletics, :string
+    add_column :npc_models, :skills_deception, :string
+    add_column :npc_models, :skills_history, :string
+    add_column :npc_models, :skills_insight, :string
+    add_column :npc_models, :skills_intimidation, :string
+    add_column :npc_models, :skills_investigation, :string
+    add_column :npc_models, :skills_medicine, :string
+    add_column :npc_models, :skills_nature, :string
+    add_column :npc_models, :skills_perception, :string
+    add_column :npc_models, :skills_performance, :string
+    add_column :npc_models, :skills_persuasion, :string
+    add_column :npc_models, :skills_religion, :string
+    add_column :npc_models, :skills_sleight_of_hand, :string
+    add_column :npc_models, :skills_stealth, :string
+    add_column :npc_models, :skills_survival, :string
+  end
+end
