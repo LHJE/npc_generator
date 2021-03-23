@@ -8,7 +8,7 @@ class WelcomeController < ApplicationController
     NpcModel.where(is_saved: 0).destroy_all
 
     unless params[:post].nil?
-      base_info = NPCFacade.create_npc(params[:post][:score_type].downcase)
+      base_info = NPCFacade.create_npc(params[:post][:score_type].downcase, params[:post][:level])
       if current_user.nil?
         @npc = base_info
       else
