@@ -34,14 +34,14 @@ class NPC
     @proficiencies = Proficiencies.new(class_data)
     @size          = find_size(ancestry[:size][12..-1].scan(/\d+/))
     @speed         = ancestry[:speed][:walk]
+    @spells        = find_spells
     @traits        = find_traits(ancestry, @sub_ancestry)
     @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'No Darkvision' : 'Darkvision'
     # The below are not in alphabetical order because they need the objects above
-    @equipment = Equipment.new(@character_class, @background.equipment, @proficiencies)
-    # @spells        = (@traits)
+    @equipment     = Equipment.new(@character_class, @background.equipment, @proficiencies)
     @stats = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
-    @armor_class = find_armor_class(@stats.core_stats.stats[:modifiers][:dex_mod], @equipment.armor)
-    @initiative = @stats.core_stats.stats[:modifiers][:dex_mod]
+    @armor_class   = find_armor_class(@stats.core_stats.stats[:modifiers][:dex_mod], @equipment.armor)
+    @initiative    = @stats.core_stats.stats[:modifiers][:dex_mod]
   end
 
   def find_alignment
@@ -128,4 +128,77 @@ class NPC
       dex + piece.armor_class.scan(/\d+/)[0].to_i
     end
   end
+
+  def find_spells
+    case @character_class
+    when 'Barbarian'
+      "Not a spellcaster"
+    when 'Monk'
+      "Not a spellcaster"
+    when 'Fighter'
+      "Not a spellcaster"
+    when 'Rogue'
+      # find_rogue_spells ? @sub_class == "Arcane Trickster" : "Not a spellcaster"
+      # For the future ^^^
+      "Not a spellcaster"
+    when 'Bard'
+      find_bard_spells
+    when 'Cleric'
+      find_cleric_spells
+    when 'Druid'
+      find_druid_spells
+    when 'Paladin'
+      find_paladin_spells
+    when 'Ranger'
+      find_ranger_spells
+    when 'Sorcerer'
+      find_sorcerer_spells
+    when 'Warlock'
+      find_warlock_spells
+    when 'Wizard'
+      find_wizard_spells
+    end
+
+  end
+
+  def find_bard_spells
+    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
+    require "pry"; binding.pry
+  end
+
+  def find_cleric_spells
+    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
+    require "pry"; binding.pry
+  end
+
+  def find_druid_spells
+    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
+    require "pry"; binding.pry
+  end
+
+  def find_paladin_spells
+    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
+    require "pry"; binding.pry
+  end
+
+  def find_ranger_spells
+    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
+    require "pry"; binding.pry
+  end
+
+  def find_sorcerer_spells
+    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
+    require "pry"; binding.pry
+  end
+
+  def find_warlock_spells
+    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
+    require "pry"; binding.pry
+  end
+
+  def find_wizard_spells
+    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
+    require "pry"; binding.pry
+  end
+
 end
