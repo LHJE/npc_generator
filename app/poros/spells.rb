@@ -3,7 +3,7 @@ class Spells
               :current_spells,
               :spell_slots
 
-  def initialize(character_class, level, class_table)
+  def initialize(character_class, level, class_table, archetype)
     @spell_slots = {}
     @current_spells = []
     if %w[Druid Paladin Ranger Wizard].include?(character_class)
@@ -16,9 +16,8 @@ class Spells
       sorcerer_spells(character_class, level, class_table)
     elsif character_class == 'Warlock'
       warlock_spells(character_class, level, class_table)
-    # the below is for the future
-    # elsif character_class == 'Rogue' && archetype == 'Arcane Trickster'
-    #     rogue_spells(character_class, level, class_table)
+    elsif character_class == 'Rogue' && archetype == 'Arcane Trickster'
+      rogue_spells(character_class, level, class_table)
     else
       @all_spells = 'Not a spellcaster'
       @current_spells = 'Not a spellcaster'
@@ -34,7 +33,7 @@ class Spells
   def bard_spells(character_class, level, class_table)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
     if %w[1 2 5 9 10 13 15 17].include?(level)
-      find_spells(level, class_table, 'bard')
+      find_spells(level, class_table, 'extra_number')
     else
       find_spells(level, class_table, 'simple')
     end
@@ -43,12 +42,17 @@ class Spells
   def cleric_spells(character_class, level, class_table)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
     if %w[2 6 8 11 14 17 18].include?(level)
-      find_spells(level, class_table, 'cleric')
+      find_spells(level, class_table, 'extra_number')
     elsif level == '5'
       find_spells(level, class_table, 'cleric_five')
     else
       find_spells(level, class_table, 'simple')
     end
+  end
+
+  def rogue_spells(character_class, level, class_table)
+    @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
+    find_spells(level, class_table, 'rogue')
   end
 
   def sorcerer_spells(character_class, level, class_table)
@@ -82,20 +86,20 @@ class Spells
         @spell_slots[spell_level] = number.to_i
         spell_level += 1
       end
-    when 'bard'
+    when 'extra_number'
       row.scan(/\d+/)[3..-1].flatten.each do |number|
         @spell_slots[spell_level] = number.to_i
         spell_level += 1
       end
-    when 'cleric'
-      require 'pry'; binding.pry
-      [].flatten.each do |number|
+    when 'cleric_five'
+      row.scan(/\d+/)[4..-1].flatten.each do |number|
         @spell_slots[spell_level] = number.to_i
         spell_level += 1
       end
-    when 'cleric_five'
-      require 'pry'; binding.pry
-      [].flatten.each do |number|
+    when 'rogue'
+      @spell_slots[spell_level] = row.scan(/\d+/)[1].to_i
+      spell_level += 1
+      row.scan(/\d+/)[3..-1].flatten.each do |number|
         @spell_slots[spell_level] = number.to_i
         spell_level += 1
       end
