@@ -67,12 +67,14 @@ class Spells
   def find_cleric_spells(level, class_table)
     class_table.each do |row|
       if row.scan(/\d+/)[0] == level
-        spell_level = 0
-        row.scan(/\d+/)[2..-1].each do |number|
-          @spell_slots << "#{spell_level} => #{number}"
-          spell_level += 1
+        if level == "2" || level == "6" || level == "8" || level == "11" || level == "14" || level == "17" || level == "18"
+          require "pry"; binding.pry
+        elsif level == "5"
+          require "pry"; binding.pry
+        else
+          find_spell_slots(row.scan(/\d+/)[2..-1])
         end
-        require "pry"; binding.pry
+        # require "pry"; binding.pry
       end
     end
   end
@@ -80,12 +82,8 @@ class Spells
   def find_druid_spells(level, class_table)
     class_table.each do |row|
       if row.scan(/\d+/)[0] == level
-        spell_level = 0
-        row.scan(/\d+/)[2..-1].each do |number|
-          @spell_slots << "#{spell_level} => #{number}"
-          spell_level += 1
-        end
-        require "pry"; binding.pry
+        find_spell_slots(row.scan(/\d+/)[2..-1])
+        # require "pry"; binding.pry
       end
     end
   end
@@ -93,12 +91,8 @@ class Spells
   def find_paladin_spells(level, class_table)
     class_table.each do |row|
       if row.scan(/\d+/)[0] == level
-        spell_level = 0
-        row.scan(/\d+/)[2..-1].each do |number|
-          @spell_slots << "#{spell_level} => #{number}"
-          spell_level += 1
-        end
-        require "pry"; binding.pry
+        find_spell_slots(row.scan(/\d+/)[2..-1])
+        # require "pry"; binding.pry
       end
     end
   end
@@ -106,12 +100,8 @@ class Spells
   def find_ranger_spells(level, class_table)
     class_table.each do |row|
       if row.scan(/\d+/)[0] == level
-        spell_level = 0
-        row.scan(/\d+/)[2..-1].each do |number|
-          @spell_slots << "#{spell_level} => #{number}"
-          spell_level += 1
-        end
-        require "pry"; binding.pry
+        find_spell_slots(row.scan(/\d+/)[2..-1])
+        # require "pry"; binding.pry
       end
     end
   end
@@ -145,14 +135,20 @@ class Spells
   def find_wizard_spells(level, class_table)
     class_table.each do |row|
       if row.scan(/\d+/)[0] == level
-        spell_level = 0
-        row.scan(/\d+/)[2..-1].each do |number|
-          @spell_slots << "#{spell_level} => #{number}"
-          spell_level += 1
-        end
-        require "pry"; binding.pry
+        find_spell_slots(row.scan(/\d+/)[2..-1])
+        # require "pry"; binding.pry
       end
     end
   end
+
+
+  def find_spell_slots(row_numbers)
+    spell_level = 0
+    row_numbers.each do |number|
+      @spell_slots << "#{spell_level} => #{number}"
+      spell_level += 1
+    end
+  end
+
 
 end
