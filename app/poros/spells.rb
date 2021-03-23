@@ -6,7 +6,7 @@ class Spells
   def initialize(character_class, level, class_table)
     @spell_slots = {}
     @current_spells = []
-    if character_class == 'Druid' || character_class == 'Paladin' || character_class == 'Ranger' || character_class == 'Wizard'
+    if %w[Druid Paladin Ranger Wizard].include?(character_class)
       simple_spells(character_class, level, class_table)
     elsif character_class == 'Bard'
       bard_spells(character_class, level, class_table)
@@ -20,20 +20,20 @@ class Spells
     # elsif character_class == 'Rogue' && archetype == 'Arcane Trickster'
     #     rogue_spells(character_class, level, class_table)
     else
-      @all_spells = "Not a spellcaster"
-      @current_spells = "Not a spellcaster"
-      @spell_slots = "Not a spellcaster"
+      @all_spells = 'Not a spellcaster'
+      @current_spells = 'Not a spellcaster'
+      @spell_slots = 'Not a spellcaster'
     end
   end
 
   def simple_spells(character_class, level, class_table)
-    @all_spells = Spell.where('classes LIKE ?', '%' + character_class + '%')
+    @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
     find_spells(level, class_table, 'simple')
   end
 
   def bard_spells(character_class, level, class_table)
-    @all_spells = Spell.where('classes LIKE ?', '%' + character_class + '%')
-    if level == "1" || level == "2" || level == "5" || level == "9" || level == "10" || level == "13" || level == "15" || level == "17"
+    @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
+    if %w[1 2 5 9 10 13 15 17].include?(level)
       find_spells(level, class_table, 'bard')
     else
       find_spells(level, class_table, 'simple')
@@ -41,10 +41,10 @@ class Spells
   end
 
   def cleric_spells(character_class, level, class_table)
-    @all_spells = Spell.where('classes LIKE ?', '%' + character_class + '%')
-    if level == "2" || level == "6" || level == "8" || level == "11" || level == "14" || level == "17" || level == "18"
+    @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
+    if %w[2 6 8 11 14 17 18].include?(level)
       find_spells(level, class_table, 'cleric')
-    elsif level == "5"
+    elsif level == '5'
       find_spells(level, class_table, 'cleric_five')
     else
       find_spells(level, class_table, 'simple')
@@ -52,13 +52,13 @@ class Spells
   end
 
   def sorcerer_spells(character_class, level, class_table)
-    @all_spells = Spell.where('classes LIKE ?', '%' + character_class + '%')
+    @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
     find_spells(level, class_table, 'sorcerer')
   end
 
   def warlock_spells(character_class, level, class_table)
-    @all_spells = Spell.where('classes LIKE ?', '%' + character_class + '%')
-    if level == "11" || level == "13" || level == "15" || level == "17"
+    @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
+    if %w[11 13 15 17].include?(level)
       find_spells(level, class_table, 'warlock_adjusted')
     else
       find_spells(level, class_table, 'warlock_normal')
@@ -88,13 +88,13 @@ class Spells
         spell_level += 1
       end
     when 'cleric'
-      require "pry"; binding.pry
+      require 'pry'; binding.pry
       [].flatten.each do |number|
         @spell_slots[spell_level] = number.to_i
         spell_level += 1
       end
     when 'cleric_five'
-      require "pry"; binding.pry
+      require 'pry'; binding.pry
       [].flatten.each do |number|
         @spell_slots[spell_level] = number.to_i
         spell_level += 1
@@ -121,6 +121,4 @@ class Spells
     end
     @current_spells
   end
-
-
 end
