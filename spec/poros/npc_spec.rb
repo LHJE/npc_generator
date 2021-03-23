@@ -121,7 +121,7 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
   end
 
   it "exists" do
-    npc = NPC.new(@data[0], @data[1], 'standard array')
+    npc = NPC.new(@data[0], @data[1], 'standard array', 1)
 
     expect(npc).to be_a(NPC)
     expect(npc.alignment).to be_a(String)
@@ -155,6 +155,7 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
     expect(npc.initiative).to be_a(Integer)
     expect(npc.languages).to be_a(Array)
     expect(npc.languages[0]).to be_a(String)
+    expect(npc.level).to be_a(Integer)
     expect(npc.name).to be_a(String)
     expect(npc.proficiencies).to be_a(Proficiencies)
     expect(npc.proficiencies.armor).to be_a(String)
@@ -217,7 +218,7 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
   end
 
   it "has correct proficiencies when Half-Elf Bard" do
-    bard = NPC.new(@data[0], @bard, 'roll for scores')
+    bard = NPC.new(@data[0], @bard, 'roll for scores', 1)
 
     expect(bard.stats.skills.proficiencies.length).to eq(7)
   end
