@@ -30,7 +30,7 @@ class NPC
     @character_class = class_data[:name]
     @gender = File.read('app/assets/data/genders.txt').split("\n").sample
     @hit_dice      = class_data[:hit_dice]
-    @languages     = (['common', find_languages(ancestry[:languages][54..-1])].flatten).join(", ")
+    @languages     = (['common', find_languages(ancestry[:languages][54..-1])].flatten).join(', ')
     @level         = level
     @name          = find_name
     @proficiencies = Proficiencies.new(class_data)
@@ -131,7 +131,4 @@ class NPC
       dex + piece.armor_class.scan(/\d+/)[0].to_i
     end
   end
-
-
-
 end
