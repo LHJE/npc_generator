@@ -1,5 +1,6 @@
 <div class='npc'>
-  <h3>Name: <%= @npc.name %></h3>
+  <h1><%= @npc.name %></h1>
+
   <p>Gender: <%= @npc.gender %></p>
   <p>Ancestry: <%= @npc.ancestry %></p>
   <p>Sub-Ancestry:</p>
@@ -10,6 +11,7 @@
    <% end %>
   <p>Background: <%= @npc.background.name %></p>
   <p>Class: <%= @npc.character_class %></p>
+  <p>Level: <%= @npc.level %></p>
   <p>Alignment: <%= @npc.alignment %></p>
   <p>Speed: <%= @npc.speed %></p>
   <p>Initiative: <%= @npc.initiative %></p>
