@@ -133,7 +133,7 @@ RSpec.describe 'Login & Logout' do
      :document__slug=>"wotc-srd",
      :document__title=>"Systems Reference Document",
      :document__license_url=>"http://open5e.com/legal"}]
-        @npcs = [NPC.new(@data[0], @data[1], 'standard array'), NPC.new(@data[0], @data[1], 'roll for scores'), NPC.new(@data[0], @data[1], 'wildly unbalanced')]
+        @npcs = [NPC.new(@data[0], @data[1], 'standard array', 1), NPC.new(@data[0], @data[1], 'roll for scores', 1), NPC.new(@data[0], @data[1], 'wildly unbalanced', 1)]
 
         fill_in 'Email', with: @user.email
         fill_in 'Password', with: @user.password
