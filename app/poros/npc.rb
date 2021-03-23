@@ -9,6 +9,7 @@ class NPC
               :gender,
               :hit_dice,
               :languages,
+              :level,
               :name,
               :proficiencies,
               :size,
@@ -21,7 +22,7 @@ class NPC
               :initiative,
               :stats
 
-  def initialize(ancestry, class_data, score_type)
+  def initialize(ancestry, class_data, score_type, level)
     @alignment     = find_alignment
     @ancestry      = ancestry[:name]
     @sub_ancestry  = ancestry[:subraces] != [] ? ancestry[:subraces].sample : 'No Sub Ancestry'
@@ -30,17 +31,18 @@ class NPC
     @gender = File.read('app/assets/data/genders.txt').split("\n").sample
     @hit_dice      = class_data[:hit_dice]
     @languages     = ['common', find_languages(ancestry[:languages][54..-1])].flatten
+    @level         = level.to_i
     @name          = find_name
     @proficiencies = Proficiencies.new(class_data)
     @size          = find_size(ancestry[:size][12..-1].scan(/\d+/))
     @speed         = ancestry[:speed][:walk]
     @spells        = find_spells
-    require "pry"; binding.pry
+    # require "pry"; binding.pry
     @traits        = find_traits(ancestry, @sub_ancestry)
     @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'No Darkvision' : 'Darkvision'
     # The below are not in alphabetical order because they need the objects above
     @equipment     = Equipment.new(@character_class, @background.equipment, @proficiencies)
-    @stats = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
+    @stats         = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
     @armor_class   = find_armor_class(@stats.core_stats.stats[:modifiers][:dex_mod], @equipment.armor)
     @initiative    = @stats.core_stats.stats[:modifiers][:dex_mod]
   end
