@@ -123,4 +123,33 @@
       <li>Sleight of Hand: <%= @npc.stats.skills.skills[:sleight_of_hand] %></li>
       <li>Stealth: <%= @npc.stats.skills.skills[:stealth] %></li>
       <li>Survival: <%= @npc.stats.skills.skills[:survival] %></li>
+
+  <h3>Spells:</h3>
+    <p>Spell_slots: <%= @npc.spells.spell_slots %></p>
+    <p>Current Spells:</p>
+      <% if @npc.spells.current_spells.class == String %>
+        <%= @npc.spells.current_spells %>
+      <% else %>
+        <% @npc.spells.current_spells.flatten.each do |spell| %>
+          <li>Name: <%= spell[:name] %></li>
+          <li>Description: <%= spell[:description] %></li>
+          <li>Range: <%= spell[:range] %></li>
+          <li>Components: <%= spell[:components] %></li>
+          <li>Duration: <%= spell[:duration] %></li>
+          <li>Casting Time: <%= spell[:casting_time] %></li>
+          <li>Level: <%= spell[:level] %></li>
+          <li>School: <%= spell[:school] %></li>
+          <li>Classes: <%= spell[:classes] %></li>
+          <li>Attack Type: <%= spell[:attack_type] %></li>
+          <li>Concentration: <%= spell[:concentration] %></li>
+          <li>Damage Type: <%= spell[:damage_type] %></li>
+          <li>Damage at Character Level: <%= spell[:damage_at_character_level] %></li>
+          <li>Damage At Slot Level: <%= spell[:damage_at_slot_level] %></li>
+          <li>Higher_level: <%= spell[:higher_level] %></li>
+          <li>Material: <%= spell[:material] %></li>
+          <li>Ritual: <%= spell[:ritual] %></li>
+          <li>Subclasses: <%= spell[:subclasses] %></li>
+          -----------
+        <% end %>
+      <% end %>
 </div>
