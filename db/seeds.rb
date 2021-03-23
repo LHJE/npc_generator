@@ -25,3 +25,9 @@ end
 CSV.foreach('app/assets/data/packs.csv', headers: true, header_converters: :symbol) do |data|
   Pack.create(name: data[:name], things: data[:things])
 end
+
+spells = NPCService.get_spells
+spells.each do |spell|
+  spell_info = NPCService.get_spell_info(spell[:url][4..-1])
+  Spell.create!(name: spell_info[:name], description: spell_info[:desc], higher_level: spell_info[:higher_level].to_s, range: spell_info[:range], components: spell_info[:components].to_s, material: spell_info[:material], ritual: spell_info[:ritual], duration: spell_info[:duration], concentration: spell_info[:concentration], casting_time: spell_info[:casting_time], level: spell_info[:level], attack_type: spell_info[:attack_type], damage: spell_info[:damage].to_s, school: spell_info[:school], classes: (spell_info[:classes].map { |class_info| class_info[:name] }))
+end
