@@ -17,13 +17,13 @@
   <p>Languages: <%= @npc.languages %></p>
 
   <h3>Personality:</h3>
-    <p>Personality: <%= @npc.background_personality_personality %></p>
-    <p>Ideal: <%= @npc.background_personality_ideal %></p>
-    <p>Bond: <%= @npc.background_personality_bond %></p>
-    <p>Flaw: <%= @npc.background_personality_flaw %></p>
+    <p>Personality: <%= @npc.personality_personality %></p>
+    <p>Ideal: <%= @npc.personality_ideal %></p>
+    <p>Bond: <%= @npc.personality_bond %></p>
+    <p>Flaw: <%= @npc.personality_flaw %></p>
 
   <h3>Equipment:</h3>
-    <p>Gold: <%= @npc.equipment_gold %></p>
+    <p>Gold: <%= @npc.gold %></p>
     <p>Pack: <%= @pack[0].name %></p>
     <p>Weapons:</p>
       <% @weapons.each do |weapon|%>
@@ -67,7 +67,7 @@
 
   <h3>Proficiencies:</h3>
     <p>Skills:</p>
-      <% @npc.stats_skills_proficiencies.split(',').each do |prof| %>
+      <% @npc.skills_proficiencies.split(',').each do |prof| %>
           <li> <%= prof %></li>
       <% end %>
     <p>Equipment:</p>
@@ -76,47 +76,47 @@
       <li>Tools: <%= @npc.proficiencies_tools %>, <%= @npc.background_tool_proficiency_one %>, <%= @npc.background_tool_proficiency_two %></li>
 
   <h3>Stats:</h3>
-    <p>Hit Points: <%= @npc.stats_hit_points %></p>
-    <p>Passive Perception: <%= @npc.stats_passive_perception %></p>
+    <p>Hit Points: <%= @npc.hit_points %></p>
+    <p>Passive Perception: <%= @npc.passive_perception %></p>
     <p>Core Stats:</p>
       <p>Scores:</p>
-        <li>Strength: <%= @npc.stats_core_stats_stats_scores_str %></li>
-        <li>Dexterity: <%= @npc.stats_core_stats_stats_scores_dex %></li>
-        <li>Constitution: <%= @npc.stats_core_stats_stats_scores_con %></li>
-        <li>Intelligence: <%= @npc.stats_core_stats_stats_scores_int %></li>
-        <li>Wisdom: <%= @npc.stats_core_stats_stats_scores_wis %></li>
-        <li>Charisma: <%= @npc.stats_core_stats_stats_scores_cha %></li>
+        <li>Strength: <%= @npc.core_scores_str %></li>
+        <li>Dexterity: <%= @npc.core_scores_dex %></li>
+        <li>Constitution: <%= @npc.core_scores_con %></li>
+        <li>Intelligence: <%= @npc.core_scores_int %></li>
+        <li>Wisdom: <%= @npc.core_scores_wis %></li>
+        <li>Charisma: <%= @npc.core_scores_cha %></li>
       <p>Modifiers:</p>
-        <li>Strength: <%= @npc.stats_core_stats_stats_modifiers_str_mod %></li>
-        <li>Dexterity: <%= @npc.stats_core_stats_stats_modifiers_dex_mod %></li>
-        <li>Constitution: <%= @npc.stats_core_stats_stats_modifiers_con_mod %></li>
-        <li>Intelligence: <%= @npc.stats_core_stats_stats_modifiers_int_mod %></li>
-        <li>Wisdom: <%= @npc.stats_core_stats_stats_modifiers_wis_mod %></li>
-        <li>Charisma: <%= @npc.stats_core_stats_stats_modifiers_cha_mod %></li>
+        <li>Strength: <%= @npc.core_modifiers_str_mod %></li>
+        <li>Dexterity: <%= @npc.core_modifiers_dex_mod %></li>
+        <li>Constitution: <%= @npc.core_modifiers_con_mod %></li>
+        <li>Intelligence: <%= @npc.core_modifiers_int_mod %></li>
+        <li>Wisdom: <%= @npc.core_modifiers_wis_mod %></li>
+        <li>Charisma: <%= @npc.core_modifiers_cha_mod %></li>
     <p>Saving Throws:</p>
-      <li>Strength: <%= @npc.stats_saving_throws_throws_str %></li>
-      <li>Dexterity: <%= @npc.stats_saving_throws_throws_dex %></li>
-      <li>Constitution: <%= @npc.stats_saving_throws_throws_con %></li>
-      <li>Intelligence: <%= @npc.stats_saving_throws_throws_int %></li>
-      <li>Wisdom: <%= @npc.stats_saving_throws_throws_wis %></li>
-      <li>Charisma: <%= @npc.stats_saving_throws_throws_cha %></li>
+      <li>Strength: <%= @npc.saving_throws_str %></li>
+      <li>Dexterity: <%= @npc.saving_throws_dex %></li>
+      <li>Constitution: <%= @npc.saving_throws_con %></li>
+      <li>Intelligence: <%= @npc.saving_throws_int %></li>
+      <li>Wisdom: <%= @npc.saving_throws_wis %></li>
+      <li>Charisma: <%= @npc.saving_throws_cha %></li>
     <p>Skills:</p>
-      <li>Acrobatics: <%= @npc.stats_skills_acrobatics %></li>
-      <li>Animal Handling: <%= @npc.stats_skills_animal_handling %></li>
-      <li>Arcana: <%= @npc.stats_skills_arcana %></li>
-      <li>Athletics: <%= @npc.stats_skills_athletics %></li>
-      <li>Deception: <%= @npc.stats_skills_deception %></li>
-      <li>History: <%= @npc.stats_skills_history %></li>
-      <li>Insight: <%= @npc.stats_skills_insight %></li>
-      <li>Intimidation: <%= @npc.stats_skills_intimidation %></li>
-      <li>Investigation: <%= @npc.stats_skills_investigation %></li>
-      <li>Medicine: <%= @npc.stats_skills_medicine %></li>
-      <li>Nature: <%= @npc.stats_skills_nature %></li>
-      <li>Perception: <%= @npc.stats_skills_perception %></li>
-      <li>Performance: <%= @npc.stats_skills_performance %></li>
-      <li>Persuasion: <%= @npc.stats_skills_persuasion %></li>
-      <li>Religion: <%= @npc.stats_skills_religion %></li>
-      <li>Sleight of Hand: <%= @npc.stats_skills_sleight_of_hand %></li>
-      <li>Stealth: <%= @npc.stats_skills_stealth %></li>
-      <li>Survival: <%= @npc.stats_skills_survival %></li>
+      <li>Acrobatics: <%= @npc.skills_acrobatics %></li>
+      <li>Animal Handling: <%= @npc.skills_animal_handling %></li>
+      <li>Arcana: <%= @npc.skills_arcana %></li>
+      <li>Athletics: <%= @npc.skills_athletics %></li>
+      <li>Deception: <%= @npc.skills_deception %></li>
+      <li>History: <%= @npc.skills_history %></li>
+      <li>Insight: <%= @npc.skills_insight %></li>
+      <li>Intimidation: <%= @npc.skills_intimidation %></li>
+      <li>Investigation: <%= @npc.skills_investigation %></li>
+      <li>Medicine: <%= @npc.skills_medicine %></li>
+      <li>Nature: <%= @npc.skills_nature %></li>
+      <li>Perception: <%= @npc.skills_perception %></li>
+      <li>Performance: <%= @npc.skills_performance %></li>
+      <li>Persuasion: <%= @npc.skills_persuasion %></li>
+      <li>Religion: <%= @npc.skills_religion %></li>
+      <li>Sleight of Hand: <%= @npc.skills_sleight_of_hand %></li>
+      <li>Stealth: <%= @npc.skills_stealth %></li>
+      <li>Survival: <%= @npc.skills_survival %></li>
 </div>
