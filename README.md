@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/Rails-5.2.4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a) ![](https://img.shields.io/badge/Ruby-2.5.3-orange) ![](https://img.shields.io/badge/Code-HTML-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a) ![](https://travis-ci.com/My-Solar-Garden/front_end_rails.svg?branch=main)
 
-NPC Generator is a collaboration between a UX/UI Designer, a Backend Engineer, and, eventually, a Frontend Engineer who were inspired by all the great other NPC Generators out there, but felt they had a few ideas of their own that they wanted to explore.  It utilizes the [Open5e API](https://open5e.com/), for which we are eternally grateful.
+NPC Generator is a collaboration between a UX/UI Designer, a Backend Engineer, and, eventually, a Frontend Engineer who were inspired by all the great other NPC Generators out there, but felt they had a few ideas of their own that they wanted to explore.  It utilizes the [Open5e API](https://open5e.com/) and [D&D 5e API](https://www.dnd5eapi.co/api), for which we are eternally grateful.
 
 ### Live app
 [https://npc-generator-lhje.herokuapp.com/](https://npc-generator-lhje.herokuapp.com/)
@@ -23,7 +23,10 @@ In that file, paste this:
 
 ```
 DND_URL: "https://api.open5e.com"
+SECOND_DND_URL: "https://www.dnd5eapi.co/api"
 ```  
+
+Luckily both of the API's used here are open, so there are no API Keys.
 
 ## Usage
 
