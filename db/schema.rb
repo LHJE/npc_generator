@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_21_220637) do
+ActiveRecord::Schema.define(version: 2021_03_23_003654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -132,6 +132,26 @@ ActiveRecord::Schema.define(version: 2021_03_21_220637) do
   create_table "packs", force: :cascade do |t|
     t.string "name"
     t.string "things"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "spells", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.string "higher_level"
+    t.string "range"
+    t.string "components"
+    t.string "material"
+    t.boolean "ritual"
+    t.string "duration"
+    t.boolean "concentration"
+    t.string "casting_time"
+    t.integer "level"
+    t.string "attack_type"
+    t.string "damage"
+    t.string "school"
+    t.string "classes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
