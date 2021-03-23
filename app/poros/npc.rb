@@ -133,7 +133,66 @@ class NPC
   end
 
   def find_spells
-    Spell.where('classes LIKE ?', '%' + @character_class + '%')
+    case @character_class
+    when 'Barbarian'
+      "Not a spellcaster"
+    when 'Monk'
+      "Not a spellcaster"
+    when 'Fighter'
+      "Not a spellcaster"
+    when 'Rogue'
+      # find_rogue_spells ? @sub_class == "Arcane Trickster" : "Not a spellcaster"
+      # For the future ^^^
+      "Not a spellcaster"
+    when 'Bard'
+      find_bard_spells(Spell.where('classes LIKE ?', '%' + @character_class + '%'))
+    when 'Cleric'
+      find_cleric_spells(Spell.where('classes LIKE ?', '%' + @character_class + '%'))
+    when 'Druid'
+      find_druid_spells(Spell.where('classes LIKE ?', '%' + @character_class + '%'))
+    when 'Paladin'
+      find_paladin_spells(Spell.where('classes LIKE ?', '%' + @character_class + '%'))
+    when 'Ranger'
+      find_ranger_spells(Spell.where('classes LIKE ?', '%' + @character_class + '%'))
+    when 'Sorcerer'
+      find_sorcerer_spells(Spell.where('classes LIKE ?', '%' + @character_class + '%'))
+    when 'Warlock'
+      find_warlock_spells(Spell.where('classes LIKE ?', '%' + @character_class + '%'))
+    when 'Wizard'
+      find_wizard_spells(Spell.where('classes LIKE ?', '%' + @character_class + '%'))
+    end
+  end
+
+  def find_bard_spells(spells)
+    require "pry"; binding.pry
+  end
+
+  def find_cleric_spells(spells)
+    require "pry"; binding.pry
+  end
+
+  def find_druid_spells(spells)
+    require "pry"; binding.pry
+  end
+
+  def find_paladin_spells(spells)
+    require "pry"; binding.pry
+  end
+
+  def find_ranger_spells(spells)
+    require "pry"; binding.pry
+  end
+
+  def find_sorcerer_spells(spells)
+    require "pry"; binding.pry
+  end
+
+  def find_warlock_spells(spells)
+    require "pry"; binding.pry
+  end
+
+  def find_wizard_spells(spells)
+    require "pry"; binding.pry
   end
 
 end
