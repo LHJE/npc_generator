@@ -1,0 +1,50 @@
+class RemoveColumnsFromNpcModel < ActiveRecord::Migration[5.2]
+  def change
+    remove_column :npc_models, :background_personality_personality, :string
+    remove_column :npc_models, :background_personality_ideal, :string
+    remove_column :npc_models, :background_personality_bond, :string
+    remove_column :npc_models, :background_personality_flaw, :string
+    remove_column :npc_models, :equipment_gold, :string
+    remove_column :npc_models, :background_skill_proficiency_one, :string
+    remove_column :npc_models, :background_skill_proficiency_two, :string
+    remove_column :npc_models, :stats_core_stats_stats_modifiers_str_mod, :String
+    remove_column :npc_models, :stats_core_stats_stats_modifiers_dex_mod, :String
+    remove_column :npc_models, :stats_core_stats_stats_modifiers_con_mod, :String
+    remove_column :npc_models, :stats_core_stats_stats_modifiers_int_mod, :String
+    remove_column :npc_models, :stats_core_stats_stats_modifiers_wis_mod, :String
+    remove_column :npc_models, :stats_core_stats_stats_modifiers_cha_mod, :String
+    remove_column :npc_models, :stats_core_stats_stats_scores_str, :String
+    remove_column :npc_models, :stats_core_stats_stats_scores_dex, :String
+    remove_column :npc_models, :stats_core_stats_stats_scores_con, :String
+    remove_column :npc_models, :stats_core_stats_stats_scores_int, :String
+    remove_column :npc_models, :stats_core_stats_stats_scores_wis, :String
+    remove_column :npc_models, :stats_core_stats_stats_scores_cha, :String
+    remove_column :npc_models, :stats_hit_points, :String
+    remove_column :npc_models, :stats_passive_perception, :String
+    remove_column :npc_models, :stats_saving_throws_throws_str, :String
+    remove_column :npc_models, :stats_saving_throws_throws_dex, :String
+    remove_column :npc_models, :stats_saving_throws_throws_con, :String
+    remove_column :npc_models, :stats_saving_throws_throws_int, :String
+    remove_column :npc_models, :stats_saving_throws_throws_wis, :String
+    remove_column :npc_models, :stats_saving_throws_throws_cha, :String
+    remove_column :npc_models, :stats_skills_proficiencies, :String
+    remove_column :npc_models, :stats_skills_acrobatics, :String
+    remove_column :npc_models, :stats_skills_animal_handling, :String
+    remove_column :npc_models, :stats_skills_arcana, :String
+    remove_column :npc_models, :stats_skills_athletics, :String
+    remove_column :npc_models, :stats_skills_deception, :String
+    remove_column :npc_models, :stats_skills_history, :String
+    remove_column :npc_models, :stats_skills_insight, :String
+    remove_column :npc_models, :stats_skills_intimidation, :String
+    remove_column :npc_models, :stats_skills_investigation, :String
+    remove_column :npc_models, :stats_skills_medicine, :String
+    remove_column :npc_models, :stats_skills_nature, :String
+    remove_column :npc_models, :stats_skills_perception, :String
+    remove_column :npc_models, :stats_skills_performance, :String
+    remove_column :npc_models, :stats_skills_persuasion, :String
+    remove_column :npc_models, :stats_skills_religion, :String
+    remove_column :npc_models, :stats_skills_sleight_of_hand, :String
+    remove_column :npc_models, :stats_skills_stealth, :String
+    remove_column :npc_models, :stats_skills_survival, :String
+  end
+end
