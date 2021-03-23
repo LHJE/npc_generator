@@ -35,6 +35,7 @@ class NPC
     @size          = find_size(ancestry[:size][12..-1].scan(/\d+/))
     @speed         = ancestry[:speed][:walk]
     @spells        = find_spells
+    require "pry"; binding.pry
     @traits        = find_traits(ancestry, @sub_ancestry)
     @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'No Darkvision' : 'Darkvision'
     # The below are not in alphabetical order because they need the objects above
@@ -162,43 +163,35 @@ class NPC
   end
 
   def find_bard_spells
-    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
-    require "pry"; binding.pry
+    Spell.where('classes LIKE ?', '%' + @character_class + '%')
   end
 
   def find_cleric_spells
-    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
-    require "pry"; binding.pry
+    Spell.where('classes LIKE ?', '%' + @character_class + '%')
   end
 
   def find_druid_spells
-    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
-    require "pry"; binding.pry
+    Spell.where('classes LIKE ?', '%' + @character_class + '%')
   end
 
   def find_paladin_spells
-    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
-    require "pry"; binding.pry
+    Spell.where('classes LIKE ?', '%' + @character_class + '%')
   end
 
   def find_ranger_spells
-    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
-    require "pry"; binding.pry
+    Spell.where('classes LIKE ?', '%' + @character_class + '%')
   end
 
   def find_sorcerer_spells
-    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
-    require "pry"; binding.pry
+    Spell.where('classes LIKE ?', '%' + @character_class + '%')
   end
 
   def find_warlock_spells
-    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
-    require "pry"; binding.pry
+    Spell.where('classes LIKE ?', '%' + @character_class + '%')
   end
 
   def find_wizard_spells
-    spells = Spell.where('classes LIKE ?', '%' + @character_class + '%')
-    require "pry"; binding.pry
+    Spell.where('classes LIKE ?', '%' + @character_class + '%')
   end
 
 end
