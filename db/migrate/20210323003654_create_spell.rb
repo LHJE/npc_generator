@@ -13,9 +13,12 @@ class CreateSpell < ActiveRecord::Migration[5.2]
       t.string :casting_time
       t.integer :level
       t.string :attack_type
-      t.string :damage
+      t.string :damage_type
+      t.string :damage_at_character_level
+      t.string :damage_at_slot_level
       t.string :school
       t.string :classes
+      t.string :subclasses
 
       t.timestamps
     end
