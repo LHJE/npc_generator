@@ -10,8 +10,11 @@ class Spell < ApplicationRecord
             :classes, presence: true
   validates :attack_type,
             :concentration,
-            :damage,
+            :damage_type,
+            :damage_at_character_level,
+            :damage_at_slot_level,
             :higher_level,
             :material,
-            :ritual, presence: false
+            :ritual,
+            :subclasses, presence: false
 end
