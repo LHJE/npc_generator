@@ -13,8 +13,6 @@ RSpec.describe 'Dashboard Page' do
   end
 
   describe 'As an authenticated  user' do
-
-
     before :each do
       @data = [{:name=>"Half-Elf",
    :slug=>"half-elf",
@@ -111,6 +109,8 @@ RSpec.describe 'Dashboard Page' do
       @npcs.each do |base_info|
         @npc = NpcModel.create(alignment: base_info.alignment,
                         ancestry: base_info.ancestry,
+                        archetype_name: base_info.archetype.instance_of?(String) ? base_info.archetype : base_info.archetype[:name],
+                        archetype_desc: base_info.archetype.instance_of?(String) ? base_info.archetype : base_info.archetype[:desc],
                         armor_class: base_info.armor_class,
                         background_equipment: base_info.background.equipment.to_s,
                         background_extra_languages: base_info.background.extra_languages,
@@ -176,6 +176,7 @@ RSpec.describe 'Dashboard Page' do
                         skills_sleight_of_hand: base_info.stats.skills.skills[:sleight_of_hand],
                         skills_stealth: base_info.stats.skills.skills[:stealth],
                         skills_survival: base_info.stats.skills.skills[:survival],
+                        spell_slots: base_info.spells.spell_slots.instance_of?(String) ? base_info.spells.spell_slots : base_info.spells.spell_slots.to_s,
                         sub_ancestry: base_info.sub_ancestry.class == String ? base_info.sub_ancestry : base_info.sub_ancestry[:name],
                         traits: base_info.traits.to_s,
                         vision: base_info.vision,
