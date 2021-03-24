@@ -428,7 +428,7 @@ describe Spells do
     expect(spells.spell_slots).to eq({0=>4, 1=>4, 2=>3, 3=>3, 4=>1})
   end
 
-  it "exists for rogue level 20" do
+  it "exists for rogue level 1-20" do
     spells_1 = Spells.new(@rogue[:name], 1, @rogue[:table].split("\n")[2..-1], {name: 'No archetype'})
     spells_2 = Spells.new(@rogue[:name], 2, @rogue[:table].split("\n")[2..-1], {name: 'No archetype'})
     spells_4 = Spells.new(@rogue[:name], 4, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
@@ -450,6 +450,19 @@ describe Spells do
     expect(spells_13).to be_a(Spells)
     expect(spells_14).to be_a(Spells)
     expect(spells_16).to be_a(Spells)
+  end
+
+  it "exists for sorcerer level 5" do
+    spells = Spells.new(@sorcerer[:name], 5, @sorcerer[:table].split("\n")[2..-1], 'No Archetype')
+
+    expect(spells).to be_a(Spells)
+    expect(spells.current_spells.count).to eq(4)
+    expect(spells.current_spells[0].count).to eq(5)
+    expect(spells.current_spells[1].count).to eq(4)
+    expect(spells.current_spells[2].count).to eq(3)
+    expect(spells.current_spells[3].count).to eq(2)
+    expect(spells.current_spells[4]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({0=>5, 1=>4, 2=>3, 3=>2})
   end
 
 end
