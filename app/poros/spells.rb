@@ -16,8 +16,13 @@ class Spells
       sorcerer_spells(character_class, level, class_table)
     elsif character_class == 'Warlock'
       warlock_spells(character_class, level, class_table)
-    elsif character_class == 'Rogue' && archetype == 'Arcane Trickster'
-      rogue_spells(character_class, level, class_table)
+    elsif character_class == 'Paladin'
+      paladin_spells(character_class, level, class_table)
+    elsif character_class == 'Ranger'
+      ranger_spells(character_class, level, class_table)
+    elsif character_class == 'Rogue' && archetype.class != String && archetype[:name] == 'Arcane Trickster' || character_class == 'Fighter' && archetype.class != String && archetype[:name] == 'Eldritch Knight'
+      # This will have to be updated when the arcane trickster and eldritch kngith archetypes have actually been added to the API.  But for testing purposes I've added this in in this way.
+      archetype_spells('Wizard', level, archetype[:name])
     else
       @all_spells = 'Not a spellcaster'
       @current_spells = 'Not a spellcaster'
