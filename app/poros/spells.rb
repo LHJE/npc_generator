@@ -6,7 +6,7 @@ class Spells
   def initialize(character_class, level, class_table, archetype)
     @spell_slots = {}
     @current_spells = []
-    if ['Druid', 'Wizard'].include?(character_class)
+    if %w[Druid Wizard].include?(character_class)
       simple_spells(character_class, level, class_table)
     elsif character_class == 'Bard'
       bard_spells(character_class, level, class_table)
@@ -47,7 +47,7 @@ class Spells
 
   def bard_spells(character_class, level, class_table)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
-    if [1,2,5,9,10,13,15,17].include?(level)
+    if [1, 2, 5, 9, 10, 13, 15, 17].include?(level)
       find_spells(level, class_table, 'extra_number')
     else
       find_spells(level, class_table, 'simple')
@@ -56,7 +56,7 @@ class Spells
 
   def cleric_spells(character_class, level, class_table)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
-    if [2,6,8,11,14,17,18].include?(level)
+    if [2, 6, 8, 11, 14, 17, 18].include?(level)
       find_spells(level, class_table, 'extra_number')
     elsif level == 5
       find_spells(level, class_table, 'cleric_five')
@@ -81,7 +81,7 @@ class Spells
 
   def warlock_spells(character_class, level, class_table)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
-    if [11,13,15,17].include?(level)
+    if [11, 13, 15, 17].include?(level)
       find_spells(level, class_table, 'warlock_adjusted')
     else
       find_spells(level, class_table, 'warlock_normal')
@@ -159,29 +159,27 @@ class Spells
 
   def determine_archetype_spells(level, archetype)
     if level == 3
-      @spell_slots = {0=>3, 1=>2}
-    elsif [4,5,6].include?(level)
-      @spell_slots = {0=>3, 1=>3}
+      @spell_slots = { 0 => 3, 1 => 2 }
+    elsif [4, 5, 6].include?(level)
+      @spell_slots = { 0 => 3, 1 => 3 }
     elsif level == 7
-      @spell_slots = {0=>3, 1=>4, 2=>2}
-    elsif [8,9].include?(level)
-      @spell_slots = {0=>3, 1=>4, 2=>2}
+      @spell_slots = { 0 => 3, 1 => 4, 2 => 2 }
+    elsif [8, 9].include?(level)
+      @spell_slots = { 0 => 3, 1 => 4, 2 => 2 }
     elsif level == 10
-      @spell_slots = {0=>4, 1=>4, 2=>3}
-    elsif [11,12].include?(level)
-      @spell_slots = {0=>4, 1=>4, 2=>3}
+      @spell_slots = { 0 => 4, 1 => 4, 2 => 3 }
+    elsif [11, 12].include?(level)
+      @spell_slots = { 0 => 4, 1 => 4, 2 => 3 }
     elsif level == 13
-      @spell_slots = {0=>4, 1=>4, 2=>3, 3=>2}
-    elsif [14,15].include?(level)
-      @spell_slots = {0=>4, 1=>4, 2=>3, 3=>2}
-    elsif [16,17,18].include?(level)
-      @spell_slots = {0=>4, 1=>4, 2=>3, 3=>3}
-    elsif [19,20].include?(level)
-      @spell_slots = {0=>4, 1=>4, 2=>3, 3=>3, 4=>1}
+      @spell_slots = { 0 => 4, 1 => 4, 2 => 3, 3 => 2 }
+    elsif [14, 15].include?(level)
+      @spell_slots = { 0 => 4, 1 => 4, 2 => 3, 3 => 2 }
+    elsif [16, 17, 18].include?(level)
+      @spell_slots = { 0 => 4, 1 => 4, 2 => 3, 3 => 3 }
+    elsif [19, 20].include?(level)
+      @spell_slots = { 0 => 4, 1 => 4, 2 => 3, 3 => 3, 4 => 1 }
     end
-    if archetype == 'Eldritch Knight'
-      @spell_slots[0] -= 1
-    end
+    @spell_slots[0] -= 1 if archetype == 'Eldritch Knight'
     find_current_spells
   end
 end
