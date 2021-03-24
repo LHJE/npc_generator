@@ -403,7 +403,18 @@ describe Spells do
     expect(spells.spell_slots).to eq({0=>5, 1=>4, 2=>3, 3=>3, 4=>3, 5=>3, 6=>1, 7=>1, 8=>1, 9=>1})
   end
 
-  it "exists for rogue level 3" do
+  it "exists for paladin level 5" do
+    spells = Spells.new(@paladin[:name], 5, @paladin[:table].split("\n")[2..-1], {name: 'No Archetype'})
+
+    expect(spells).to be_a(Spells)
+    expect(spells.current_spells.count).to eq(2)
+    expect(spells.current_spells[0].count).to eq(4)
+    expect(spells.current_spells[1].count).to eq(2)
+    expect(spells.current_spells[2]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({0=>4, 1=>2})
+  end
+
+  it "exists for rogue level 5" do
     spells = Spells.new(@rogue[:name], 5, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
 
     expect(spells).to be_a(Spells)
