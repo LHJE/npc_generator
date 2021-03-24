@@ -442,6 +442,7 @@ describe Spells do
   it "exists for rogue level 1-20" do
     spells_1 = Spells.new(@rogue[:name], 1, @rogue[:table].split("\n")[2..-1], {name: 'No archetype'})
     spells_2 = Spells.new(@rogue[:name], 2, @rogue[:table].split("\n")[2..-1], {name: 'No archetype'})
+    spells_4 = Spells.new(@rogue[:name], 3, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
     spells_4 = Spells.new(@rogue[:name], 4, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
     spells_7 = Spells.new(@rogue[:name], 7, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
     spells_8 = Spells.new(@rogue[:name], 8, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
