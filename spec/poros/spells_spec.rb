@@ -403,6 +403,15 @@ describe Spells do
     expect(spells.spell_slots).to eq({0=>5, 1=>4, 2=>3, 3=>3, 4=>3, 5=>3, 6=>1, 7=>1, 8=>1, 9=>1})
   end
 
+  it "exists for paladin level 1" do
+    spells = Spells.new(@paladin[:name], 1, @paladin[:table].split("\n")[2..-1], {name: 'No Archetype'})
+
+    expect(spells).to be_a(Spells)
+    expect(spells.current_spells.count).to eq(0)
+    expect(spells.current_spells[0]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({})
+  end
+
   it "exists for paladin level 5" do
     spells = Spells.new(@paladin[:name], 5, @paladin[:table].split("\n")[2..-1], {name: 'No Archetype'})
 
