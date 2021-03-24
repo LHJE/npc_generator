@@ -115,26 +115,39 @@ class Spells
         @spell_slots[spell_level] = number.to_i
         spell_level += 1
       end
-    when 'rogue'
-      @spell_slots[spell_level] = row.scan(/\d+/)[1].to_i
-      spell_level += 1
-      row.scan(/\d+/)[3..-1].flatten.each do |number|
+    when 'paladin'
+      row.scan(/\d+/)[2..-1].flatten.each do |number|
+        spell_level += 1
+        @spell_slots[spell_level] = number.to_i
+      end
+    when 'ranger'
+      if row.scan(/\d+/)[3..-1].nil?
+        @spell_slots = {}
+      else
+        row.scan(/\d+/)[3..-1].flatten.each do |number|
+          spell_level += 1
+          @spell_slots[spell_level] = number.to_i
+        end
+      end
+    when 'sorcerer_one'
+      # Point of fact, this doesn't EXACTLY match the rules, but it's close, and can be refactored in the future
+      [row.scan(/\d+/)[2], row.scan(/\d+/)[4..-1]].flatten.each do |number|
         @spell_slots[spell_level] = number.to_i
         spell_level += 1
       end
-    when 'sorcerer'
+    when 'sorcerer_higher'
       # Point of fact, this doesn't EXACTLY match the rules, but it's close, and can be refactored in the future
-      [row.scan(/\d+/)[2], row.scan(/\d+/)[4..-1]].flatten.each do |number|
+      [row.scan(/\d+/)[3], row.scan(/\d+/)[5..-1]].flatten.each do |number|
         @spell_slots[spell_level] = number.to_i
         spell_level += 1
       end
     when 'warlock_normal'
       # Also not exactly how it works, but this works for now and can be refactored
       @spell_slots[spell_level] = row.scan(/\d+/)[2].to_i
-      @spell_slots[row.scan(/\d+/)[-1].to_i] = row.scan(/\d+/)[3].to_i
+      @spell_slots[row.scan(/\d+/)[-2].to_i] = row.scan(/\d+/)[4].to_i
     when 'warlock_adjusted'
       @spell_slots[spell_level] = row.scan(/\d+/)[3].to_i
-      @spell_slots[row.scan(/\d+/)[-1].to_i] = row.scan(/\d+/)[4].to_i
+      @spell_slots[row.scan(/\d+/)[-2].to_i] = row.scan(/\d+/)[5].to_i
     end
   end
 
