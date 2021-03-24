@@ -35,9 +35,19 @@ class Spells
     find_spells(level, class_table, 'simple')
   end
 
+  def paladin_spells(character_class, level, class_table)
+    @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
+    find_spells(level, class_table, 'paladin')
+  end
+
+  def ranger_spells(character_class, level, class_table)
+    @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
+    find_spells(level, class_table, 'ranger')
+  end
+
   def bard_spells(character_class, level, class_table)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
-    if %w[1 2 5 9 10 13 15 17].include?(level)
+    if [1,2,5,9,10,13,15,17].include?(level)
       find_spells(level, class_table, 'extra_number')
     else
       find_spells(level, class_table, 'simple')
