@@ -10,14 +10,10 @@
     <%= form_tag "/npcs/save/#{@npc.id}", method: :post do %>
       <%= submit_tag "Save", class: :button %>
     <% end %>
-    
-    <%= render "shared/npc_show" %>
   <% else %>
     <p>Please Log in if you'd like to save an NPC</p>
-
-    <%= render "shared/npc_show_visitor" %>
   <% end %>
-
+  <%= render "shared/npc_show" %>
   <h2>Roll Up another NPC:</h2>
     <%= render "shared/roll_npc" %>
 <% end %>
