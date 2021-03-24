@@ -487,4 +487,26 @@ describe Spells do
     expect(spells.spell_slots).to eq({0=>5, 1=>4, 2=>3, 3=>2})
   end
 
+  it "exists for warlock level 11" do
+    spells = Spells.new(@warlock[:name], 11, @warlock[:table].split("\n")[2..-1], 'No Archetype')
+
+    expect(spells).to be_a(Spells)
+    expect(spells.current_spells.count).to eq(2)
+    expect(spells.current_spells[0].count).to eq(4)
+    expect(spells.current_spells[1].count).to eq(3)
+    expect(spells.current_spells[2]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({0=>4, 5=>3})
+  end
+
+  it "exists for warlock level 15" do
+    spells = Spells.new(@warlock[:name], 5, @warlock[:table].split("\n")[2..-1], 'No Archetype')
+
+    expect(spells).to be_a(Spells)
+    expect(spells.current_spells.count).to eq(2)
+    expect(spells.current_spells[0].count).to eq(3)
+    expect(spells.current_spells[1].count).to eq(2)
+    expect(spells.current_spells[2]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({0=>3, 3=>2})
+  end
+
 end
