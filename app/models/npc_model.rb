@@ -1,6 +1,8 @@
 class NpcModel < ApplicationRecord
   validates :alignment,
             :ancestry,
+            :archetype_name,
+            :archetype_desc,
             :armor_class,
             :background_equipment,
             :background_extra_languages,
@@ -66,6 +68,7 @@ class NpcModel < ApplicationRecord
             :skills_sleight_of_hand,
             :skills_stealth,
             :skills_survival,
+            :spell_slots,
             :sub_ancestry,
             :traits,
             :vision,
