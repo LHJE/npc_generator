@@ -452,6 +452,17 @@ describe Spells do
     expect(spells_16).to be_a(Spells)
   end
 
+  it "exists for sorcerer level 1" do
+    spells = Spells.new(@sorcerer[:name], 1, @sorcerer[:table].split("\n")[2..-1], 'No Archetype')
+
+    expect(spells).to be_a(Spells)
+    expect(spells.current_spells.count).to eq(2)
+    expect(spells.current_spells[0].count).to eq(4)
+    expect(spells.current_spells[1].count).to eq(2)
+    expect(spells.current_spells[2]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({0=>4, 1=>2})
+  end
+
   it "exists for sorcerer level 5" do
     spells = Spells.new(@sorcerer[:name], 5, @sorcerer[:table].split("\n")[2..-1], 'No Archetype')
 
