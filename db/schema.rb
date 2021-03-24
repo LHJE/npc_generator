@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_163132) do
+ActiveRecord::Schema.define(version: 2021_03_23_213224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,15 @@ ActiveRecord::Schema.define(version: 2021_03_23_163132) do
     t.datetime "updated_at", null: false
     t.index ["npc_model_id"], name: "index_npc_model_packs_on_npc_model_id"
     t.index ["pack_id"], name: "index_npc_model_packs_on_pack_id"
+  end
+
+  create_table "npc_model_spells", force: :cascade do |t|
+    t.bigint "npc_model_id"
+    t.bigint "spell_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["npc_model_id"], name: "index_npc_model_spells_on_npc_model_id"
+    t.index ["spell_id"], name: "index_npc_model_spells_on_spell_id"
   end
 
   create_table "npc_model_weapons", force: :cascade do |t|
@@ -130,6 +139,9 @@ ActiveRecord::Schema.define(version: 2021_03_23_163132) do
     t.string "skills_sleight_of_hand"
     t.string "skills_stealth"
     t.string "skills_survival"
+    t.string "archetype_name"
+    t.string "archetype_desc"
+    t.string "spell_slots"
   end
 
   create_table "packs", force: :cascade do |t|
@@ -194,6 +206,8 @@ ActiveRecord::Schema.define(version: 2021_03_23_163132) do
   add_foreign_key "npc_model_armors", "npc_models"
   add_foreign_key "npc_model_packs", "npc_models"
   add_foreign_key "npc_model_packs", "packs"
+  add_foreign_key "npc_model_spells", "npc_models"
+  add_foreign_key "npc_model_spells", "spells"
   add_foreign_key "npc_model_weapons", "npc_models"
   add_foreign_key "npc_model_weapons", "weapons"
   add_foreign_key "user_npc_models", "npc_models"
