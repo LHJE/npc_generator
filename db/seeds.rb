@@ -6,13 +6,26 @@ require 'csv'
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+NpcModelArmor.destroy_all
+NpcModelPack.destroy_all
+NpcModelWeapon.destroy_all
+NpcModelSpell.destroy_all
+UserNpcModel.destroy_all
+NpcModel.destroy_all
 Weapon.destroy_all
 Armor.destroy_all
 Pack.destroy_all
+Spell.destroy_all
 ActiveRecord::Base.connection.reset_pk_sequence!('weapons')
 ActiveRecord::Base.connection.reset_pk_sequence!('armors')
 ActiveRecord::Base.connection.reset_pk_sequence!('packs')
+ActiveRecord::Base.connection.reset_pk_sequence!('spells')
+ActiveRecord::Base.connection.reset_pk_sequence!('npcmodels')
+ActiveRecord::Base.connection.reset_pk_sequence!('npcmodelarmors')
+ActiveRecord::Base.connection.reset_pk_sequence!('npcmodelweapons')
+ActiveRecord::Base.connection.reset_pk_sequence!('npcmodelspells')
+ActiveRecord::Base.connection.reset_pk_sequence!('npcmodelpacks')
+ActiveRecord::Base.connection.reset_pk_sequence!('usernpcmodels')
 
 CSV.foreach('app/assets/data/weapons.csv', headers: true, header_converters: :symbol) do |data|
   Weapon.create(classification: data[:classification], name: data[:name], cost: data[:cost], damage: data[:damage], weight: data[:weight], properties: data[:properties])
