@@ -404,8 +404,7 @@ describe Spells do
   end
 
   it "exists for rogue level 3" do
-    archetype = {name: 'Arcane Trickster'}
-    spells = Spells.new(@rogue[:name], 5, @rogue[:table].split("\n")[2..-1], archetype)
+    spells = Spells.new(@rogue[:name], 5, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
 
     expect(spells).to be_a(Spells)
     expect(spells.current_spells.count).to eq(2)
@@ -416,8 +415,7 @@ describe Spells do
   end
 
   it "exists for rogue level 20" do
-    archetype = {name: 'Arcane Trickster'}
-    spells = Spells.new(@rogue[:name], 20, @rogue[:table].split("\n")[2..-1], archetype)
+    spells = Spells.new(@rogue[:name], 20, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
 
     expect(spells).to be_a(Spells)
     expect(spells.current_spells.count).to eq(5)
@@ -428,6 +426,30 @@ describe Spells do
     expect(spells.current_spells[4].count).to eq(1)
     expect(spells.current_spells[5]).to be_a(NilClass)
     expect(spells.spell_slots).to eq({0=>4, 1=>4, 2=>3, 3=>3, 4=>1})
+  end
+
+  it "exists for rogue level 20" do
+    spells_1 = Spells.new(@rogue[:name], 1, @rogue[:table].split("\n")[2..-1], {name: 'No archetype'})
+    spells_2 = Spells.new(@rogue[:name], 2, @rogue[:table].split("\n")[2..-1], {name: 'No archetype'})
+    spells_4 = Spells.new(@rogue[:name], 4, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
+    spells_7 = Spells.new(@rogue[:name], 7, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
+    spells_8 = Spells.new(@rogue[:name], 8, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
+    spells_10 = Spells.new(@rogue[:name], 10, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
+    spells_11 = Spells.new(@rogue[:name], 11, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
+    spells_13 = Spells.new(@rogue[:name], 13, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
+    spells_14 = Spells.new(@rogue[:name], 14, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
+    spells_16 = Spells.new(@rogue[:name], 16, @rogue[:table].split("\n")[2..-1], {name: 'Arcane Trickster'})
+
+    expect(spells_1).to be_a(Spells)
+    expect(spells_2).to be_a(Spells)
+    expect(spells_4).to be_a(Spells)
+    expect(spells_7).to be_a(Spells)
+    expect(spells_8).to be_a(Spells)
+    expect(spells_10).to be_a(Spells)
+    expect(spells_11).to be_a(Spells)
+    expect(spells_13).to be_a(Spells)
+    expect(spells_14).to be_a(Spells)
+    expect(spells_16).to be_a(Spells)
   end
 
 end
