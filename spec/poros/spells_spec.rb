@@ -394,4 +394,19 @@ describe Spells do
     expect(spells.spell_slots).to eq({0=>2, 1=>5, 2=>3})
   end
 
+  it "exists for bard level 3" do
+    spells = Spells.new(@bard[:name], 3, @bard[:table].split("\n")[2..-1], 'No Archetype')
+
+    expect(spells).to be_a(Spells)
+    expect(spells.current_spells.count).to eq(4)
+    expect(spells.current_spells[0].count).to eq(2)
+    expect(spells.current_spells[1].count).to eq(6)
+    expect(spells.current_spells[2].count).to eq(4)
+    expect(spells.current_spells[3].count).to eq(2)
+    expect(spells.current_spells[4]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({0=>2, 1=>6, 2=>4, 3=>2})
+  end
+
+
+
 end
