@@ -19,12 +19,6 @@ class SessionsController < ApplicationController
   end
 
   def logout
-    NpcModel.where(is_saved: 0).ids.map do |id|
-      NpcModelArmor.where(npc_model_id: id).destroy_all
-      NpcModelPack.where(npc_model_id: id).destroy_all
-      NpcModelWeapon.where(npc_model_id: id).destroy_all
-    end
-    NpcModel.where(is_saved: 0).destroy_all
     session.delete(:user_id)
     flash[:notice] = 'You have been logged out!'
     redirect_to root_path

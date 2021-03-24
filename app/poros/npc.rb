@@ -3,12 +3,14 @@ require 'csv'
 class NPC
   attr_reader :alignment,
               :ancestry,
+              :archetype,
               :sub_ancestry,
               :background,
               :character_class,
               :gender,
               :hit_dice,
               :languages,
+              :level,
               :name,
               :proficiencies,
               :size,
@@ -21,27 +23,30 @@ class NPC
               :initiative,
               :stats
 
-  def initialize(ancestry, class_data, score_type)
+  def initialize(ancestry, class_data, score_type, level)
     @alignment     = find_alignment
     @ancestry      = ancestry[:name]
+    @archetype     = level < 3 ? 'No Archetype' : class_data[:archetypes].sample
     @sub_ancestry  = ancestry[:subraces] != [] ? ancestry[:subraces].sample : 'No Sub Ancestry'
     @background    = create_npc_background
     @character_class = class_data[:name]
     @gender = File.read('app/assets/data/genders.txt').split("\n").sample
     @hit_dice      = class_data[:hit_dice]
-    @languages     = ['common', find_languages(ancestry[:languages][54..-1])].flatten
+    @languages     = (['common', find_languages(ancestry[:languages][54..-1])].flatten).join(', ')
+    @level         = level
     @name          = find_name
     @proficiencies = Proficiencies.new(class_data)
     @size          = find_size(ancestry[:size][12..-1].scan(/\d+/))
     @speed         = ancestry[:speed][:walk]
+    @spells        = Spells.new(@character_class, @level, class_data[:table].split("\n")[2..-1], @archetype)
     @traits        = find_traits(ancestry, @sub_ancestry)
     @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'No Darkvision' : 'Darkvision'
     # The below are not in alphabetical order because they need the objects above
-    @equipment = Equipment.new(@character_class, @background.equipment, @proficiencies)
-    # @spells        = (@traits)
-    @stats = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
-    @armor_class = find_armor_class(@stats.core_stats.stats[:modifiers][:dex_mod], @equipment.armor)
-    @initiative = @stats.core_stats.stats[:modifiers][:dex_mod]
+    @equipment     = Equipment.new(@character_class, @background.equipment, @proficiencies)
+    @stats         = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
+    @armor_class   = find_armor_class(@stats.core_stats.stats[:modifiers][:dex_mod], @equipment.armor)
+    @initiative    = @stats.core_stats.stats[:modifiers][:dex_mod]
+    # require "pry"; binding.pry
   end
 
   def find_alignment

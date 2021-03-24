@@ -16,10 +16,10 @@ class Equipment
       equip = find_cleric_equip(proficiencies)
     when 'Druid'
       equip = find_druid_equip
-    when 'Monk'
-      equip = find_monk_equip
     when 'Fighter'
       equip = find_fighter_equip
+    when 'Monk'
+      equip = find_monk_equip
     when 'Paladin'
       equip = find_paladin_equip
     when 'Ranger'

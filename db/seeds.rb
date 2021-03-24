@@ -25,3 +25,26 @@ end
 CSV.foreach('app/assets/data/packs.csv', headers: true, header_converters: :symbol) do |data|
   Pack.create(name: data[:name], things: data[:things])
 end
+
+spells = NPCService.get_spells
+spells.each do |spell|
+  spell_info = NPCService.get_spell_info(spell[:url][4..-1])
+  Spell.create!(name: spell_info[:name],
+                description: spell_info[:desc].join(", ").sub(".,", "."),
+                higher_level: spell_info[:higher_level].nil? ? spell_info[:higher_level].to_s : spell_info[:higher_level][0].to_s,
+                range: spell_info[:range],
+                components: spell_info[:components].join(", "),
+                material: spell_info[:material],
+                ritual: spell_info[:ritual],
+                duration: spell_info[:duration],
+                concentration: spell_info[:concentration],
+                casting_time: spell_info[:casting_time],
+                level: spell_info[:level],
+                attack_type: spell_info[:attack_type],
+                damage_type: spell_info[:damage].nil? || spell_info[:damage][:damage_type].nil? ? "" : spell_info[:damage][:damage_type][:name],
+                damage_at_character_level: spell_info[:damage].nil? || spell_info[:damage][:damage_at_character_level].nil? ? "" : (spell_info[:damage][:damage_at_character_level].map { |level, slot| "#{level} => #{slot}"}).join(", "),
+                damage_at_slot_level: spell_info[:damage].nil? || spell_info[:damage][:damage_at_slot_level].nil? ? "" : (spell_info[:damage][:damage_at_slot_level].map { |level, slot| "#{level} => #{slot}"}).join(", "),
+                school: spell_info[:school][:name].to_s,
+                classes: (spell_info[:classes].map { |class_info| class_info[:name] }).join(", "),
+                subclasses: (spell_info[:subclasses].map { |class_info| class_info[:name] }).join(", "))
+end

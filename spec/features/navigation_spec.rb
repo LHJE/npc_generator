@@ -35,9 +35,9 @@ RSpec.describe 'Site Navigation' do
 
       it "can see footer" do
         visit root_path
-        
-        expect(page).to have_content("Thank you to Open5e for providing the D&D data that is used in this application.")
-        expect(page).to have_content("Further citation information regarding the data used in this project can be found here.")
+
+        expect(page).to have_content("Thank you to Open5e and D&D 5e API for providing the D&D data that is used in this application.")
+        expect(page).to have_content("Further citation information regarding the data used in this project can be found here for Open5e and here for D&D 5e API.")
       end
     end
   end
