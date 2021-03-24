@@ -407,6 +407,16 @@ describe Spells do
     expect(spells.spell_slots).to eq({0=>2, 1=>6, 2=>4, 3=>2})
   end
 
+  it "exists for cleric level 3" do
+    spells = Spells.new(@cleric[:name], 3, @cleric[:table].split("\n")[2..-1], 'No Archetype')
 
+    expect(spells).to be_a(Spells)
+    expect(spells.current_spells.count).to eq(3)
+    expect(spells.current_spells[0].count).to eq(3)
+    expect(spells.current_spells[1].count).to eq(4)
+    expect(spells.current_spells[2].count).to eq(2)
+    expect(spells.current_spells[3]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({0=>3, 1=>4, 2=>2})
+  end
 
 end
