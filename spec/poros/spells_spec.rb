@@ -423,6 +423,15 @@ describe Spells do
     expect(spells.spell_slots).to eq({1=>4, 2=>2})
   end
 
+  it "exists for ranger level 1" do
+    spells = Spells.new(@ranger[:name], 1, @ranger[:table].split("\n")[2..-1], {name: 'No Archetype'})
+    
+    expect(spells).to be_a(Spells)
+    expect(spells.current_spells.count).to eq(0)
+    expect(spells.current_spells[0]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({})
+  end
+
   it "exists for ranger level 5" do
     spells = Spells.new(@ranger[:name], 5, @ranger[:table].split("\n")[2..-1], {name: 'No Archetype'})
 
