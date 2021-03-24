@@ -90,7 +90,7 @@ class Spells
 
   def find_spells(level, class_table, tag)
     class_table.each do |row|
-      if row.scan(/\d+/)[0] == level
+      if row.scan(/\d+/)[0].to_i == level
         find_spell_slots(row, tag)
         find_current_spells
       end
