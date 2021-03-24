@@ -155,6 +155,33 @@ class Spells
     @spell_slots.each do |slot, spells|
       @current_spells << @all_spells.where(level: slot).sample(spells)
     end
-    @current_spells
+  end
+
+  def determine_archetype_spells(level, archetype)
+    if level == 3
+      @spell_slots = {0=>3, 1=>2}
+    elsif [4,5,6].include?(level)
+      @spell_slots = {0=>3, 1=>3}
+    elsif level == 7
+      @spell_slots = {0=>3, 1=>4, 2=>2}
+    elsif [8,9].include?(level)
+      @spell_slots = {0=>3, 1=>4, 2=>2}
+    elsif level == 10
+      @spell_slots = {0=>4, 1=>4, 2=>3}
+    elsif [11,12].include?(level)
+      @spell_slots = {0=>4, 1=>4, 2=>3}
+    elsif level == 13
+      @spell_slots = {0=>4, 1=>4, 2=>3, 3=>2}
+    elsif [14,15].include?(level)
+      @spell_slots = {0=>4, 1=>4, 2=>3, 3=>2}
+    elsif [16,17,18].include?(level)
+      @spell_slots = {0=>4, 1=>4, 2=>3, 3=>3}
+    elsif [19,20].include?(level)
+      @spell_slots = {0=>4, 1=>4, 2=>3, 3=>3, 4=>1}
+    end
+    if archetype == 'Eldritch Knight'
+      @spell_slots[0] -= 1
+    end
+    find_current_spells
   end
 end
