@@ -6,7 +6,7 @@ class Spells
   def initialize(character_class, level, class_table, archetype)
     @spell_slots = {}
     @current_spells = []
-    if %w[Druid Paladin Ranger Wizard].include?(character_class)
+    if ['Druid', 'Wizard'].include?(character_class)
       simple_spells(character_class, level, class_table)
     elsif character_class == 'Bard'
       bard_spells(character_class, level, class_table)
