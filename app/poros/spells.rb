@@ -56,28 +56,32 @@ class Spells
 
   def cleric_spells(character_class, level, class_table)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
-    if %w[2 6 8 11 14 17 18].include?(level)
+    if [2,6,8,11,14,17,18].include?(level)
       find_spells(level, class_table, 'extra_number')
-    elsif level == '5'
+    elsif level == 5
       find_spells(level, class_table, 'cleric_five')
     else
       find_spells(level, class_table, 'simple')
     end
   end
 
-  def rogue_spells(character_class, level, class_table)
+  def archetype_spells(character_class, level, archetype)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
-    find_spells(level, class_table, 'rogue')
+    determine_archetype_spells(level, archetype)
   end
 
   def sorcerer_spells(character_class, level, class_table)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
-    find_spells(level, class_table, 'sorcerer')
+    if level == 1
+      find_spells(level, class_table, 'sorcerer_one')
+    else
+      find_spells(level, class_table, 'sorcerer_higher')
+    end
   end
 
   def warlock_spells(character_class, level, class_table)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
-    if %w[11 13 15 17].include?(level)
+    if [11,13,15,17].include?(level)
       find_spells(level, class_table, 'warlock_adjusted')
     else
       find_spells(level, class_table, 'warlock_normal')
