@@ -31,7 +31,7 @@ class NPC
     @background    = create_npc_background
     @character_class = class_data[:name]
     @gender = File.read('app/assets/data/genders.txt').split("\n").sample
-    @hit_dice      = class_data[:hit_dice]
+    @hit_dice      = "#{level}#{class_data[:hit_dice][1..-1]}"
     @languages     = (['common', find_languages(ancestry[:languages][54..-1])].flatten).join(', ')
     @level         = level
     @name          = find_name
