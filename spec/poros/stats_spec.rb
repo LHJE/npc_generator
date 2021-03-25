@@ -93,7 +93,7 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
   end
 
   it "exists" do
-    stats = Stats.new(@data[0], "No Sub Ancestry", @data[1], @data[2], 'wildly unbalanced', "**_Skill Versatility._** You gain proficiency in two skills of your choice.")
+    stats = Stats.new(@data[0], "No Sub Ancestry", @data[1], @data[2], 'wildly unbalanced', "**_Skill Versatility._** You gain proficiency in two skills of your choice.", 20)
 
     expect(stats).to be_a(Stats)
     expect(stats.core_stats).to be_a(CoreStats)
