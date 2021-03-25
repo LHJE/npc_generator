@@ -43,7 +43,7 @@ class NPC
     @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'No Darkvision' : 'Darkvision'
     # The below are not in alphabetical order because they need the objects above
     @equipment     = Equipment.new(@character_class, @background.equipment, @proficiencies)
-    @stats         = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
+    @stats         = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits, @level)
     @armor_class   = find_armor_class(@stats.core_stats.stats[:modifiers][:dex_mod], @equipment.armor)
     @initiative    = @stats.core_stats.stats[:modifiers][:dex_mod]
     # require "pry"; binding.pry
