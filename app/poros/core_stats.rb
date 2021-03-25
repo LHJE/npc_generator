@@ -63,7 +63,7 @@ class CoreStats
 
   def distribute_leveled_stats(leveled_stats)
     leveled_stats.each do |attr, score|
-      @stats[:scores]["#{attr}".to_sym] += score
+      @stats[:scores][attr.to_s.to_sym] += score
     end
   end
 
@@ -116,7 +116,7 @@ class CoreStats
       @stats[:modifiers]["#{attr}_mod".to_sym] = 8
     elsif [28, 29].include?(score)
       @stats[:modifiers]["#{attr}_mod".to_sym] = 9
-    elsif score == 30
+    elsif score >= 30
       @stats[:modifiers]["#{attr}_mod".to_sym] = 10
     end
   end
