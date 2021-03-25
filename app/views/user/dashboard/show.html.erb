@@ -1,5 +1,11 @@
 <h1>Welcome <%= current_user.name %>!</h1>
 
+<p>Delete my account:</p>
+
+<%= form_tag "/users/destroy", method: :delete do %>
+  <%= submit_tag "Delete", class: :button %>
+<% end %>
+
 <h2>NPC's:</h2>
 <section class='npcs'>
   <% if @npcs.nil? || @npcs == [] %>
