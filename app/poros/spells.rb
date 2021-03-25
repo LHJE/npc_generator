@@ -48,9 +48,9 @@ class Spells
   def bard_spells(character_class, level, class_table)
     @all_spells = Spell.where('classes LIKE ?', "%#{character_class}%")
     if [1, 2, 5, 9, 10, 13, 15, 17].include?(level)
-      find_spells(level, class_table, 'extra_number')
+      find_spells(level, class_table, 'bard_adjusted')
     else
-      find_spells(level, class_table, 'simple')
+      find_spells(level, class_table, 'bard')
     end
   end
 
@@ -104,6 +104,18 @@ class Spells
       row.scan(/\d+/)[2..-1].each do |number|
         @spell_slots[spell_level] = number.to_i
         spell_level += 1
+      end
+    when 'bard'
+      @spell_slots[spell_level] = row.scan(/\d+/)[2].to_i
+      row.scan(/\d+/)[4..-1].each do |number|
+        spell_level += 1
+        @spell_slots[spell_level] = number.to_i
+      end
+    when 'bard_adjusted'
+      @spell_slots[spell_level] = row.scan(/\d+/)[3].to_i
+      row.scan(/\d+/)[5..-1].each do |number|
+        spell_level += 1
+        @spell_slots[spell_level] = number.to_i
       end
     when 'extra_number'
       row.scan(/\d+/)[3..-1].flatten.each do |number|
