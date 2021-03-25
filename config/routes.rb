@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   post '/npcs/save/:id', to: 'npc_models#new'
   get '/npcs/:id', to: 'npc_models#show'
 
-  resources :users, only: [:create]
+  resources :users, only: [:create, :destroy]
 
   namespace :user do
     get '/dashboard', to: 'dashboard#show'
