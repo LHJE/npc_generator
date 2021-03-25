@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe SavingThrows do
   before :each do
-    @data = [CoreStats.new([{:attributes=>["Dexterity"], :value=>2}, {:attributes=>["Charisma"], :value=>1}], "standard array"), ["Intelligence", "Wisdom"]]
+    @data = [CoreStats.new([{:attributes=>["Dexterity"], :value=>2}, {:attributes=>["Charisma"], :value=>1}], "standard array", nil), ["Intelligence", "Wisdom"]]
   end
 
   it "exists" do
