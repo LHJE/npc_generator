@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_23_213224) do
+ActiveRecord::Schema.define(version: 2021_03_25_020540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,6 +142,9 @@ ActiveRecord::Schema.define(version: 2021_03_23_213224) do
     t.string "archetype_name"
     t.string "archetype_desc"
     t.string "spell_slots"
+    t.integer "dex_attack"
+    t.integer "str_attack"
+    t.string "proficiency_bonus"
   end
 
   create_table "packs", force: :cascade do |t|

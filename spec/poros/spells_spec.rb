@@ -282,6 +282,30 @@ describe Spells do
      :document__license_url=>"http://open5e.com/legal"}
   end
 
+  it "spells exist at all" do
+  spells = NPCService.get_spells
+  spell_info = NPCService.get_spell_info(spells[0][:url][4..-1])
+  Spell.create(name: spell_info[:name],
+                description: spell_info[:desc].join(", ").sub(".,", "."),
+                higher_level: spell_info[:higher_level].nil? ? spell_info[:higher_level].to_s : spell_info[:higher_level][0].to_s,
+                range: spell_info[:range],
+                components: spell_info[:components].join(", "),
+                material: spell_info[:material],
+                ritual: spell_info[:ritual],
+                duration: spell_info[:duration],
+                concentration: spell_info[:concentration],
+                casting_time: spell_info[:casting_time],
+                level: spell_info[:level],
+                attack_type: spell_info[:attack_type],
+                damage_type: spell_info[:damage].nil? || spell_info[:damage][:damage_type].nil? ? "" : spell_info[:damage][:damage_type][:name],
+                damage_at_character_level: spell_info[:damage].nil? || spell_info[:damage][:damage_at_character_level].nil? ? "" : (spell_info[:damage][:damage_at_character_level].map { |level, slot| "#{level} => #{slot}"}).join(", "),
+                damage_at_slot_level: spell_info[:damage].nil? || spell_info[:damage][:damage_at_slot_level].nil? ? "" : (spell_info[:damage][:damage_at_slot_level].map { |level, slot| "#{level} => #{slot}"}).join(", "),
+                school: spell_info[:school][:name].to_s,
+                classes: (spell_info[:classes].map { |class_info| class_info[:name] }).join(", "),
+                subclasses: (spell_info[:subclasses].map { |class_info| class_info[:name] }).join(", "))
+    expect(Spell.all.count).to eq(320)
+  end
+
   it "exists for barbarian" do
     spells = Spells.new(@barbarian[:name], 1, @barbarian[:table].split("\n")[2..-1], 'No Archetype')
 
@@ -371,6 +395,18 @@ describe Spells do
     expect(spells.spell_slots).to eq({0=>3, 1=>4, 2=>2})
   end
 
+  it "exists for wizard level 3" do
+    spells = Spells.new(@wizard[:name], 3, @wizard[:table].split("\n")[2..-1], 'No Archetype')
+
+    expect(spells).to be_a(Spells)
+    expect(spells.current_spells.count).to eq(3)
+    expect(spells.current_spells[0].count).to eq(3)
+    expect(spells.current_spells[1].count).to eq(4)
+    expect(spells.current_spells[2].count).to eq(2)
+    expect(spells.current_spells[3]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({0=>3, 1=>4, 2=>2})
+  end
+
   it "exists for cleric level 5" do
     spells = Spells.new(@cleric[:name], 5, @cleric[:table].split("\n")[2..-1], 'No Archetype')
 
@@ -425,7 +461,7 @@ describe Spells do
 
   it "exists for ranger level 1" do
     spells = Spells.new(@ranger[:name], 1, @ranger[:table].split("\n")[2..-1], {name: 'No Archetype'})
-    
+
     expect(spells).to be_a(Spells)
     expect(spells.current_spells.count).to eq(0)
     expect(spells.current_spells[0]).to be_a(NilClass)

@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe Skills do
   before :each do
-    @data = [CoreStats.new([{:attributes=>["Dexterity"], :value=>2}, {:attributes=>["Charisma"], :value=>1}], "standard array"), ["acrobatics", "performance"], "choose two from history, insight, medicine, persuasion, and religion"]
+    @data = [CoreStats.new([{:attributes=>["Dexterity"], :value=>2}, {:attributes=>["Charisma"], :value=>1}], "standard array", nil), ["acrobatics", "performance"], "choose two from history, insight, medicine, persuasion, and religion"]
   end
 
   it "exists" do
-    skills = Skills.new(@data[0].stats[:modifiers], @data[1], @data[2], nil)
+    skills = Skills.new(@data[0].stats[:modifiers], @data[1], @data[2], nil, 2)
 
     expect(skills).to be_a(Skills)
     expect(skills.proficiencies).to be_a(Array)
@@ -36,7 +36,7 @@ describe Skills do
   end
 
   it "has class_prof of 'choose any three'" do
-    skills = Skills.new(@data[0].stats[:modifiers], @data[1], 'choose any three', nil)
+    skills = Skills.new(@data[0].stats[:modifiers], @data[1], 'choose any three', nil, 2)
 
     expect(skills).to be_a(Skills)
     expect(skills.proficiencies).to be_a(Array)
@@ -67,7 +67,7 @@ describe Skills do
   end
 
   it "has class_prof starting with 'choose four skills from '" do
-    skills = Skills.new(@data[0].stats[:modifiers], @data[1], 'choose four skills from arcana, athletics, history, insight, medicine, persuasion, and religion', nil)
+    skills = Skills.new(@data[0].stats[:modifiers], @data[1], 'choose four skills from arcana, athletics, history, insight, medicine, persuasion, and religion', nil, 2)
 
     expect(skills).to be_a(Skills)
     expect(skills.proficiencies).to be_a(Array)
@@ -99,7 +99,7 @@ describe Skills do
   end
 
   it "has class_prof starting with 'choose four from '" do
-    skills = Skills.new(@data[0].stats[:modifiers], @data[1], 'choose four from arcana, athletics, history, insight, medicine, persuasion, and religion', nil)
+    skills = Skills.new(@data[0].stats[:modifiers], @data[1], 'choose four from arcana, athletics, history, insight, medicine, persuasion, and religion', nil, 2)
 
     expect(skills).to be_a(Skills)
     expect(skills.proficiencies).to be_a(Array)
@@ -131,7 +131,7 @@ describe Skills do
   end
 
   it "has class_prof starting with 'choose three from '" do
-    skills = Skills.new(@data[0].stats[:modifiers], ["nature", "perception"], 'choose three from arcana, athletics, history, insight, medicine, persuasion, and religion', nil)
+    skills = Skills.new(@data[0].stats[:modifiers], ["nature", "perception"], 'choose three from arcana, athletics, history, insight, medicine, persuasion, and religion', nil, 2)
 
     expect(skills).to be_a(Skills)
     expect(skills.proficiencies).to be_a(Array)
@@ -162,7 +162,7 @@ describe Skills do
   end
 
   it "has class_prof starting with 'choose two skills from '" do
-    skills = Skills.new(@data[0].stats[:modifiers], ["animal_handling", "nature"], 'choose two skills from arcana, athletics, history, insight, medicine, persuasion, and religion', nil)
+    skills = Skills.new(@data[0].stats[:modifiers], ["animal_handling", "nature"], 'choose two skills from arcana, athletics, history, insight, medicine, persuasion, and religion', nil, 2)
 
     expect(skills).to be_a(Skills)
     expect(skills.proficiencies).to be_a(Array)

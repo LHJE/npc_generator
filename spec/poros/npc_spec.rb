@@ -2,6 +2,24 @@ require 'rails_helper'
 
 describe NPC do
   before :each do
+    @dragonborn = {:name=>"Dragonborn",
+     :slug=>"dragonborn",
+     :desc=>"## Dragonborn Traits\nYour draconic heritage manifests in a variety of traits you share with other dragonborn.",
+     :asi_desc=>"**_Ability Score Increase._** Your Strength score increases by 2, and your Charisma score increases by 1.",
+     :asi=>[{:attributes=>["Strength"], :value=>2}, {:attributes=>["Charisma"], :value=>1}],
+     :age=>"**_Age._** Young dragonborn grow quickly. They walk hours after hatching, attain the size and development of a 10-year-old human child by the age of 3, and reach adulthood by 15. They live to be around 80.",
+     :alignment=>"**_Alignment._** Dragonborn tend to extremes, making a conscious choice for one side or the other in the cosmic war between good and evil. Most dragonborn are good, but those who side with evil can be terrible villains.",
+     :size=>"**_Size._** Dragonborn are taller and heavier than humans, standing well over 6 feet tall and averaging almost 250 pounds. Your size is Medium.",
+     :speed=>{:walk=>30},
+     :speed_desc=>"**_Speed._** Your base walking speed is 30 feet.",
+     :languages=>"**_Languages._** You can speak, read, and write Common and Draconic. Draconic is thought to be one of the oldest languages and is often used in the study of magic. The language sounds harsh to most other creatures and includes numerous hard consonants and sibilants.",
+     :vision=>"",
+     :traits=>
+      "**Draconic Ancestry** \n\n| Dragon       | Damage Type       | Breath Weapon                |\n|--------------|-------------------|------------------------------|\n| Black        | Acid              | 5 by 30 ft. line (Dex. save) |\n| Blue         | Lightning         | 5 by 30 ft. line (Dex. save) |\n| Brass        | Fire              | 5 by 30 ft. line (Dex. save) |\n| Bronze       | Lightning         | 5 by 30 ft. line (Dex. save) |\n| Copper       | Acid              | 5 by 30 ft. line (Dex. save) |\n| Gold         | Fire              | 15 ft. cone (Dex. save)      |\n| Green        | Poison            | 15 ft. cone (Con. save)      |\n| Red          | Fire              | 15 ft. cone (Dex. save)      |\n| Silver       | Cold              | 15 ft. cone (Con. save)      |\n| White        | Cold              | 15 ft. cone (Con. save)      |\n\n\n**_Draconic Ancestry._** You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table.\n\n**_Breath Weapon._** You can use your action to exhale destructive energy. Your draconic ancestry determines the size, shape, and damage type of the exhalation.\nWhen you use your breath weapon, each creature in the area of the exhalation must make a saving throw, the type of which is determined by your draconic ancestry. The DC for this saving throw equals 8 + your Constitution modifier + your proficiency bonus. A creature takes 2d6 damage on a failed save, and half as much damage on a successful one. The damage increases to 3d6 at 6th level, 4d6 at 11th level, and 5d6 at 16th level.\nAfter you use your breath weapon, you can't use it again until you complete a short or long rest.\n\n**_Damage Resistance._** You have resistance to the damage type associated with your draconic ancestry.",
+     :subraces=>[],
+     :document__slug=>"wotc-srd",
+     :document__title=>"Systems Reference Document",
+     :document__license_url=>"http://open5e.com/legal"}
     @data = [{:name=>"Half-Elf",
  :slug=>"half-elf",
  :desc=>"## Half-Elf Traits\nYour half-elf character has some qualities in common with elves and some that are unique to half-elves.",
@@ -90,7 +108,7 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
  :document__slug=>"wotc-srd",
  :document__title=>"Systems Reference Document",
  :document__license_url=>"http://open5e.com/legal"}]
-  @bard = {:name=>"Bard",
+    @bard = {:name=>"Bard",
    :slug=>"bard",
    :desc=>
     "### Spellcasting \n \nYou have learned to untangle and reshape the fabric of reality in harmony with your wishes and music. \n \nYour spells are part of your vast repertoire, magic that you can tune to different situations. \n \n#### Cantrips \n \nYou know two cantrips of your choice from the bard spell list. You learn additional bard cantrips of your choice at higher levels, as shown in the Cantrips Known column of the Bard table. \n \n#### Spell Slots \n \nThe Bard table shows how many spell slots you have to cast your spells of 1st level and higher. To cast one of these spells, you must expend a slot of the spell's level or higher. You regain all expended spell slots when you finish a long rest. \n \nFor example, if you know the 1st-level spell *cure wounds* and have a 1st-level and a 2nd-level spell slot available, you can cast *cure wounds* using either slot. \n \n#### Spells Known of 1st Level and Higher \n \nYou know four 1st-level spells of your choice from the bard spell list. \n \nThe Spells Known column of the Bard table shows when you learn more bard spells of your choice. Each of these spells must be of a level for which you have spell slots, as shown on the table. For instance, when you reach 3rd level in this class, you can learn one new spell of 1st or 2nd level. \n \nAdditionally, when you gain a level in this class, you can choose one of the bard spells you know and replace it with another spell from the bard spell list, which also must be of a level for which you have spell slots. \n \n#### Spellcasting Ability \n \nCharisma is your spellcasting ability for your bard spells. Your magic comes from the heart and soul you pour into the performance of your music or oration. You use your Charisma whenever a spell refers to your spellcasting ability. In addition, you use your Charisma modifier when setting the saving throw DC for a bard spell you cast and when making an attack roll with one. \n \n**Spell save DC** = 8 + your proficiency bonus + your Charisma modifier \n \n**Spell attack modifier** = your proficiency bonus + your Charisma modifier \n \n#### Ritual Casting \n \nYou can cast any bard spell you know as a ritual if that spell has the ritual tag. \n \n#### Spellcasting Focus \n \nYou can use a musical instrument (see chapter 5, “Equipment”) as a spellcasting focus for your bard spells. \n \n### Bardic Inspiration \n \nYou can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6. \n \nOnce within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the GM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time. \n \nYou can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest. \n \nYour Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level. \n \n### Jack of All Trades \n \nStarting at 2nd level, you can add half your proficiency bonus, rounded down, to any ability check you make that doesn't already include your proficiency bonus. \n \n### Song of Rest \n \nBeginning at 2nd level, you can use soothing music or oration to help revitalize your wounded allies during a short rest. If you or any friendly creatures who can hear your performance regain hit points at the end of the short rest by spending one or more Hit Dice, each of those creatures regains an extra 1d6 hit points. \n \nThe extra hit points increase when you reach certain levels in this class: to 1d8 at 9th level, to 1d10 at 13th level, and to 1d12 at 17th level. \n \n### Bard College \n \nAt 3rd level, you delve into the advanced techniques of a bard college of your choice: the College of Lore or the College of Valor, both detailed at the end of \n \nthe class description. Your choice grants you features at 3rd level and again at 6th and 14th level. \n \n### Expertise \n \nAt 3rd level, choose two of your skill proficiencies. Your proficiency bonus is doubled for any ability check you make that uses either of the chosen proficiencies. \n \nAt 10th level, you can choose another two skill proficiencies to gain this benefit. \n \n### Ability Score Improvement \n \nWhen you reach 4th level, and again at 8th, 12th, 16th, and 19th level, you can increase one ability score of your choice by 2, or you can increase two ability scores of your choice by 1. As normal, you can't increase an ability score above 20 using this feature. \n \n### Font of Inspiration \n \nBeginning when you reach 5th level, you regain all of your expended uses of Bardic Inspiration when you finish a short or long rest. \n \n### Countercharm \n \nAt 6th level, you gain the ability to use musical notes or words of power to disrupt mind-influencing effects. As an action, you can start a performance that lasts until the end of your next turn. During that time, you and any friendly creatures within 30 feet of you have advantage on saving throws against being frightened or charmed. A creature must be able to hear you to gain this benefit. The performance ends early if you are incapacitated or silenced or if you voluntarily end it (no action required). \n \n### Magical Secrets \n \nBy 10th level, you have plundered magical knowledge from a wide spectrum of disciplines. Choose two spells from any class, including this one. A spell you choose must be of a level you can cast, as shown on the Bard table, or a cantrip. \n \nThe chosen spells count as bard spells for you and are included in the number in the Spells Known column of the Bard table. \n \nYou learn two additional spells from any class at 14th level and again at 18th level. \n \n### Superior Inspiration \n \nAt 20th level, when you roll initiative and have no uses of Bardic Inspiration left, you regain one use.",
@@ -118,14 +136,48 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
    :document__slug=>"wotc-srd",
    :document__title=>"Systems Reference Document",
    :document__license_url=>"http://open5e.com/legal"}
+    @human = {:name=>"Human",
+     :slug=>"human",
+     :desc=>"## Human Traits\nIt's hard to make generalizations about humans, but your human character has these traits.",
+     :asi_desc=>"**_Ability Score Increase._** Your ability scores each increase by 1.",
+     :asi=>[{:attributes=>["Strength"], :value=>1}, {:attributes=>["Dexterity"], :value=>1}, {:attributes=>["Constitution"], :value=>1}, {:attributes=>["Intelligence"], :value=>1}, {:attributes=>["Wisdom"], :value=>1}, {:attributes=>["Charisma"], :value=>1}],
+     :age=>"**_Age._** Humans reach adulthood in their late teens and live less than a century.",
+     :alignment=>"**_Alignment._** Humans tend toward no particular alignment. The best and the worst are found among them.",
+     :size=>"**_Size._** Humans vary widely in height and build, from barely 5 feet to well over 6 feet tall. Regardless of your position in that range, your size is Medium.",
+     :speed=>{:walk=>30},
+     :speed_desc=>"**_Speed._** Your base walking speed is 30 feet.",
+     :languages=>"**_Languages._** You can speak, read, and write Common and one extra language of your choice. Humans typically learn the languages of other peoples they deal with, including obscure dialects. They are fond of sprinkling their speech with words borrowed from other tongues: Orc curses, Elvish musical expressions, Dwarvish military phrases, and so on.",
+     :vision=>"",
+     :traits=>"",
+     :subraces=>[],
+     :document__slug=>"wotc-srd",
+     :document__title=>"Systems Reference Document",
+     :document__license_url=>"http://open5e.com/legal"}
+    @halfling = {:name=>"Halfling",
+     :slug=>"halfling",
+     :desc=>"## Halfling Traits\nYour halfling character has a number of traits in common with all other halflings.",
+     :asi_desc=>"**_Ability Score Increase._** Your Dexterity score increases by 2.",
+     :asi=>[{:attributes=>["Dexterity"], :value=>2}],
+     :age=>"**_Age._** A halfling reaches adulthood at the age of 20 and generally lives into the middle of his or her second century.",
+     :alignment=>"**_Alignment._** Most halflings are lawful good. As a rule, they are good-hearted and kind, hate to see others in pain, and have no tolerance for oppression. They are also very orderly and traditional, leaning heavily on the support of their community and the comfort of their old ways.",
+     :size=>"**_Size._** Halflings average about 3 feet tall and weigh about 40 pounds. Your size is Small.",
+     :speed=>{:walk=>25},
+     :speed_desc=>"**_Speed._** Your base walking speed is 25 feet.",
+     :languages=>"**_Languages._** You can speak, read, and write Common and Halfling. The Halfling language isn't secret, but halflings are loath to share it with others. They write very little, so they don't have a rich body of literature. Their oral tradition, however, is very strong. Almost all halflings speak Common to converse with the people in whose lands they dwell or through which they are traveling.",
+     :vision=>"",
+     :traits=>"**_Lucky._** When you roll a 1 on the d20 for an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll.\n\n**_Brave._** You have advantage on saving throws against being frightened.\n\n**_Halfling Nimbleness._** You can move through the space of any creature that is of a size larger than yours.",
+     :subraces=>[{:name=>"Lightfoot", :slug=>"lightfoot", :desc=>"As a lightfoot halfling, you can easily hide from notice, even using other people as cover. You're inclined to be affable and get along well with others.\nLightfoots are more prone to wanderlust than other halflings, and often dwell alongside other races or take up a nomadic life.", :asi=>[{:attributes=>["Charisma"], :value=>1}], :traits=>"**_Naturally Stealthy._** You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you.", :asi_desc=>"**_Ability Score Increase._** Your Charisma score increases by 1.", :document__slug=>"wotc-srd", :document__title=>"Systems Reference Document"}],
+     :document__slug=>"wotc-srd",
+     :document__title=>"Systems Reference Document",
+     :document__license_url=>"http://open5e.com/legal"}
   end
 
   it "exists" do
-    npc = NPC.new(@data[0], @data[1], 'standard array', 1)
+    npc = NPC.new(@dragonborn, @data[1], 'standard array', 20)
 
     expect(npc).to be_a(NPC)
     expect(npc.alignment).to be_a(String)
-    expect(npc.ancestry).to eq("Half-Elf")
+    expect(npc.ancestry).to eq("Dragonborn")
     expect(npc.armor_class).to be_a(Integer)
     expect(npc.background).to be_a(Background)
     expect(npc.background.equipment).to be_a(Array)
@@ -217,7 +269,19 @@ ng as the student grows more adept. Thus, a monk need choose a tradition only up
   end
 
   it "has correct proficiencies when Half-Elf Bard" do
-    bard = NPC.new(@data[0], @bard, 'roll for scores', 1)
+    bard = NPC.new(@data[0], @bard, 'roll for scores', 4)
+
+    expect(bard.stats.skills.proficiencies.length).to eq(7)
+  end
+
+  it "has correct proficiencies when Halfling Bard" do
+    bard = NPC.new(@halfling, @bard, 'roll for scores', 4)
+
+    expect(bard.stats.skills.proficiencies.length).to eq(7)
+  end
+
+  it "has correct proficiencies when Human Bard" do
+    bard = NPC.new(@human, @bard, 'roll for scores', 4)
 
     expect(bard.stats.skills.proficiencies.length).to eq(7)
   end

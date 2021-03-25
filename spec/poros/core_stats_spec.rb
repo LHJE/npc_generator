@@ -6,7 +6,7 @@ describe CoreStats do
   end
 
   it "exists" do
-    core_stats = CoreStats.new(@data, 'min/maxed point buy')
+    core_stats = CoreStats.new(@data, 'min/maxed point buy', { str: 40 })
 
     expect(core_stats).to be_a(CoreStats)
     expect(core_stats.stats).to be_a(Hash)

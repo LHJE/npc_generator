@@ -2,13 +2,13 @@ class Skills
   attr_reader :skills,
               :proficiencies
 
-  def initialize(core_stats, background_profs, class_profs, traits)
+  def initialize(core_stats, background_profs, class_profs, traits, bonus)
     @skills = set_base_skill_scores(core_stats)
     @proficiencies = [background_profs]
     remove_background_profs(background_profs, class_profs)
     (@proficiencies << find_proficiencies(background_profs, class_profs)).flatten!
     (@proficiencies << find_trait_proficiencies).flatten! unless traits.nil?
-    adjust_for_profs(@proficiencies)
+    adjust_for_profs(@proficiencies, bonus)
   end
 
   def find_proficiencies(background_profs, class_profs)
@@ -58,45 +58,45 @@ class Skills
       athletics: core_stats[:str_mod], deception: core_stats[:cha_mod], history: core_stats[:int_mod], insight: core_stats[:wis_mod], intimidation: core_stats[:cha_mod], investigation: core_stats[:int_mod], medicine: core_stats[:wis_mod], nature: core_stats[:int_mod], perception: core_stats[:wis_mod], performance: core_stats[:cha_mod], persuasion: core_stats[:cha_mod], religion: core_stats[:int_mod], sleight_of_hand: core_stats[:dex_mod], stealth: core_stats[:dex_mod], survival: core_stats[:wis_mod] }
   end
 
-  def adjust_for_profs(profs)
+  def adjust_for_profs(profs, bonus)
     profs.each do |prof|
       case prof
       when 'acrobatics'
-        @skills[:acrobatics] += 2
+        @skills[:acrobatics] += bonus
       when 'animal handling'
-        @skills[:animal_handling] += 2
+        @skills[:animal_handling] += bonus
       when 'arcana'
-        @skills[:arcana] += 2
+        @skills[:arcana] += bonus
       when 'athletics'
-        @skills[:athletics] += 2
+        @skills[:athletics] += bonus
       when 'deception'
-        @skills[:deception] += 2
+        @skills[:deception] += bonus
       when 'history'
-        @skills[:history] += 2
+        @skills[:history] += bonus
       when 'insight'
-        @skills[:insight] += 2
+        @skills[:insight] += bonus
       when 'intimidation'
-        @skills[:intimidation] += 2
+        @skills[:intimidation] += bonus
       when 'investigation'
-        @skills[:investigation] += 2
+        @skills[:investigation] += bonus
       when 'medicine'
-        @skills[:medicine] += 2
+        @skills[:medicine] += bonus
       when 'nature'
-        @skills[:nature] += 2
+        @skills[:nature] += bonus
       when 'perception'
-        @skills[:perception] += 2
+        @skills[:perception] += bonus
       when 'performance'
-        @skills[:performance] += 2
+        @skills[:performance] += bonus
       when 'persuasion'
-        @skills[:persuasion] += 2
+        @skills[:persuasion] += bonus
       when 'religion'
-        @skills[:religion] += 2
+        @skills[:religion] += bonus
       when 'sleight of hand'
-        @skills[:sleight_of_hand] += 2
+        @skills[:sleight_of_hand] += bonus
       when 'stealth'
-        @skills[:stealth] += 2
+        @skills[:stealth] += bonus
       when 'survival'
-        @skills[:survival] += 2
+        @skills[:survival] += bonus
       end
     end
   end

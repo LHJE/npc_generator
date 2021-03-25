@@ -1,11 +1,12 @@
 class CoreStats
   attr_reader :stats
 
-  def initialize(ancestry_buffs, score_type)
+  def initialize(ancestry_buffs, score_type, leveled_stats)
     @stats = { modifiers: { str_mod: 0, dex_mod: 0, con_mod: 0, int_mod: 0, wis_mod: 0, cha_mod: 0 },
                scores: { str: 0, dex: 0, con: 0, int: 0, wis: 0, cha: 0 } }
     distribute_scores(score_type)
     distribute_buffs(ancestry_buffs)
+    distribute_leveled_stats(leveled_stats) unless leveled_stats.nil?
     modifier
   end
 
@@ -60,6 +61,12 @@ class CoreStats
     end
   end
 
+  def distribute_leveled_stats(leveled_stats)
+    leveled_stats.each do |attr, score|
+      @stats[:scores][attr.to_s.to_sym] += score
+    end
+  end
+
   def modifier
     @stats[:scores].each do |attr, score|
       if score < 10
@@ -109,7 +116,7 @@ class CoreStats
       @stats[:modifiers]["#{attr}_mod".to_sym] = 8
     elsif [28, 29].include?(score)
       @stats[:modifiers]["#{attr}_mod".to_sym] = 9
-    elsif score == 30
+    elsif score >= 30
       @stats[:modifiers]["#{attr}_mod".to_sym] = 10
     end
   end

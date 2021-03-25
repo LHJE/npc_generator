@@ -1,50 +1,9 @@
 require 'rails_helper'
-include ActionView::Helpers::NumberHelper
 
-RSpec.describe 'Login & Logout' do
-  describe 'As a user' do
-    before :each do
-      @user = User.create(name: 'Jackie Chan', email: 'a@a.com', password: 'a', password_confirmation: 'a')
-
-      visit login_path
-    end
-
-    it "If I'm a user, I can fill in my information, click the Log In button, and be logged in as an authenticated user" do
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-
-      click_button "Log In"
-
-      expect(current_path).to eq("/user/dashboard")
-    end
-
-    describe "If already logged in" do
-      it "I do not see a login form or register link" do
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
-
-        click_button "Log In"
-
-        visit login_path
-
-        expect(page).to_not have_content('Email')
-        expect(page).to_not have_content('Password')
-        expect(page).to_not have_link('Register')
-        expect(current_path).to eq("/user/dashboard")
-      end
-
-      it "I can log out" do
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
-
-        click_button "Log In"
-        click_link "Log Out"
-
-        expect(current_path).to eq(root_path)
-        expect(page).to have_content('You have been logged out!')
-      end
-
-      it "deletes NPCs that weren't saved" do
+RSpec.describe 'User Destruction' do
+  describe 'As an authenticated user' do
+    describe "When I click to delete my account" do
+      before :each do
         @data = [{:name=>"Half-Elf",
      :slug=>"half-elf",
      :desc=>"## Half-Elf Traits\nYour half-elf character has some qualities in common with elves and some that are unique to half-elves.",
@@ -134,11 +93,9 @@ RSpec.describe 'Login & Logout' do
      :document__title=>"Systems Reference Document",
      :document__license_url=>"http://open5e.com/legal"}]
         @npcs = [NPC.new(@data[0], @data[1], 'standard array', 1), NPC.new(@data[0], @data[1], 'roll for scores', 1), NPC.new(@data[0], @data[1], 'wildly unbalanced', 1)]
-
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
-
-        click_button "Log In"
+        @user_1 = User.create(name: 'Jackie Chan', email: '67@67.com', password: '67', password_confirmation: '67')
+        @user_2 = User.create(name: 'Michelle Yeoh', email: 'my@my.com', password: 'my', password_confirmation: 'my')
+        @user_3 = User.create(name: 'Cynthia Rothrock', email: '333@333.com', password: '333', password_confirmation: '333')
         @npcs.each do |base_info|
           @npc = NpcModel.create(alignment: base_info.alignment,
                           ancestry: base_info.ancestry,
@@ -149,9 +106,6 @@ RSpec.describe 'Login & Logout' do
                           background_extra_languages: base_info.background.extra_languages,
                           background_name: base_info.background.name,
                           personality_personality: base_info.background.personality[:personality],
-                          proficiency_bonus: base_info.stats.proficiency_bonus,
-                          dex_attack: base_info.stats.dex_attack,
-                          str_attack: base_info.stats.str_attack,
                           personality_ideal: base_info.background.personality[:ideal],
                           personality_bond: base_info.background.personality[:bond],
                           personality_flaw: base_info.background.personality[:flaw],
@@ -172,6 +126,9 @@ RSpec.describe 'Login & Logout' do
                           proficiencies_weapons: base_info.proficiencies.weapons,
                           proficiencies_tools: base_info.proficiencies.tools,
                           size: base_info.size,
+                          proficiency_bonus: base_info.stats.proficiency_bonus,
+                          dex_attack: base_info.stats.dex_attack,
+                          str_attack: base_info.stats.str_attack,
                           speed: base_info.speed,
                           core_modifiers_str_mod: base_info.stats.core_stats.stats[:modifiers][:str_mod],
                           core_modifiers_dex_mod: base_info.stats.core_stats.stats[:modifiers][:dex_mod],
@@ -217,38 +174,32 @@ RSpec.describe 'Login & Logout' do
                           traits: base_info.traits.to_s,
                           vision: base_info.vision,
                           is_saved: 0)
-            NpcModelPack.create(npc_model_id: @npc.id, pack_id: base_info.equipment.pack.id)
-            base_info.equipment.armor.each do |piece|
-              NpcModelArmor.create(npc_model_id: @npc.id, armor_id: piece.id) unless piece == ""
-            end
-            base_info.equipment.weapons.each do |weapon|
-              NpcModelWeapon.create(npc_model_id: @npc.id, weapon_id: weapon.id)
-            end
+          NpcModelPack.create(npc_model_id: @npc.id, pack_id: base_info.equipment.pack.id)
+          base_info.equipment.armor.each do |piece|
+            NpcModelArmor.create(npc_model_id: @npc.id, armor_id: piece.id) unless piece == ""
           end
-          UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user.id)
-          NpcModel.all[0].update(is_saved: 1)
+          base_info.equipment.weapons.each do |weapon|
+            NpcModelWeapon.create(npc_model_id: @npc.id, weapon_id: weapon.id)
+          end
+        end
+        UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user_1.id)
+        NpcModel.all[0].update(is_saved: 1)
+        UserNpcModel.create!(npc_model_id: NpcModel.all[1].id, user_id: @user_1.id)
+        NpcModel.all[1].update(is_saved: 1)
+        UserNpcModel.create!(npc_model_id: NpcModel.all[2].id, user_id: @user_2.id)
+        NpcModel.all[2].update(is_saved: 1)
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
+        visit user_dashboard_path
+      end
 
-        expect(NpcModel.where(is_saved: 0).count).to eq(2)
+      it "I can delete my account" do
 
-        click_link "Log Out"
+        expect(page).to have_button('Delete')
 
-        expect(NpcModel.where(is_saved: 0).count).to eq(0)
+        click_button 'Delete'
+
+        expect(current_path).to eq(root_path)
       end
     end
-
-    describe "If I attempt to login with invalid credentials" do
-      it "I see a flash message indicating I cannot log in" do
-
-        fill_in 'Email', with: 'incorrect_email'
-        fill_in 'Password', with: @user.password
-
-        click_button "Log In"
-
-        expect(current_path).to eq(login_path)
-        expect(page).to have_content("Sorry, we don't recognize those credentials.")
-      end
-    end
-
-
   end
 end

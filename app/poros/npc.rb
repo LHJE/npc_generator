@@ -31,7 +31,7 @@ class NPC
     @background    = create_npc_background
     @character_class = class_data[:name]
     @gender = File.read('app/assets/data/genders.txt').split("\n").sample
-    @hit_dice      = class_data[:hit_dice]
+    @hit_dice      = "#{level}#{class_data[:hit_dice][1..-1]}"
     @languages     = (['common', find_languages(ancestry[:languages][54..-1])].flatten).join(', ')
     @level         = level
     @name          = find_name
@@ -43,7 +43,7 @@ class NPC
     @vision        = ancestry[:vision].nil? || ancestry[:vision] == '' ? 'No Darkvision' : 'Darkvision'
     # The below are not in alphabetical order because they need the objects above
     @equipment     = Equipment.new(@character_class, @background.equipment, @proficiencies)
-    @stats         = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits)
+    @stats         = Stats.new(ancestry, @sub_ancestry, @background, class_data, score_type, @traits, @level)
     @armor_class   = find_armor_class(@stats.core_stats.stats[:modifiers][:dex_mod], @equipment.armor)
     @initiative    = @stats.core_stats.stats[:modifiers][:dex_mod]
     # require "pry"; binding.pry
