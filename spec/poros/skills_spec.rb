@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe Skills do
   before :each do
-    @data = [CoreStats.new([{:attributes=>["Dexterity"], :value=>2}, {:attributes=>["Charisma"], :value=>1}], "standard array"), ["acrobatics", "performance"], "choose two from history, insight, medicine, persuasion, and religion"]
+    @data = [CoreStats.new([{:attributes=>["Dexterity"], :value=>2}, {:attributes=>["Charisma"], :value=>1}], "standard array", nil), ["acrobatics", "performance"], "choose two from history, insight, medicine, persuasion, and religion"]
   end
 
   it "exists" do
-    skills = Skills.new(@data[0].stats[:modifiers], @data[1], @data[2], nil)
+    skills = Skills.new(@data[0].stats[:modifiers], @data[1], @data[2], nil, 2)
 
     expect(skills).to be_a(Skills)
     expect(skills.proficiencies).to be_a(Array)
