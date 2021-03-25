@@ -342,45 +342,43 @@ describe Spells do
     expect(spells.all_spells[0].classes).to eq("Bard, Cleric, Druid, Ranger")
     expect(spells.all_spells[0].subclasses).to eq("")
     expect(spells.current_spells).to be_a(Array)
-    expect(spells.current_spells.count).to eq(3)
+    expect(spells.current_spells.count).to eq(2)
     expect(spells.current_spells[0].count).to eq(2)
-    expect(spells.current_spells[1].count).to eq(5)
-    expect(spells.current_spells[2].count).to eq(3)
-    expect(spells.current_spells[3]).to be_a(NilClass)
-    expect(spells.current_spells[2][0]).to be_a(Spell)
-    expect(spells.current_spells[2][0].id).to be_a(Integer)
-    expect(spells.current_spells[2][0].name).to be_a(String)
-    expect(spells.current_spells[2][0].description).to be_a(String)
-    expect(spells.current_spells[2][0].higher_level).to be_a(String)
-    expect(spells.current_spells[2][0].range).to be_a(String)
-    expect(spells.current_spells[2][0].components).to be_a(String)
-    expect(spells.current_spells[2][0].material).to be_a(String) unless spells.current_spells[2][0].attack_type.nil?
-    expect(spells.current_spells[2][0].ritual).to eq(false) unless spells.current_spells[2][0].ritual == true
-    expect(spells.current_spells[2][0].duration).to be_a(String)
-    expect(spells.current_spells[2][0].concentration).to eq(false) unless spells.current_spells[2][0].concentration == true
-    expect(spells.current_spells[2][0].casting_time).to be_a(String)
-    expect(spells.current_spells[2][0].level).to be_a(Integer)
-    expect(spells.current_spells[2][0].attack_type).to be_a(String) unless spells.current_spells[2][0].attack_type.nil?
-    expect(spells.current_spells[2][0].damage_type).to be_a(String)
-    expect(spells.current_spells[2][0].damage_at_character_level).to be_a(String)
-    expect(spells.current_spells[2][0].damage_at_slot_level).to be_a(String)
-    expect(spells.current_spells[2][0].school).to be_a(String)
-    expect(spells.current_spells[2][0].classes).to be_a(String)
-    expect(spells.current_spells[2][0].subclasses).to be_a(String)
-    expect(spells.spell_slots).to eq({0=>2, 1=>5, 2=>3})
+    expect(spells.current_spells[1].count).to eq(3)
+    expect(spells.current_spells[2]).to be_a(NilClass)
+    expect(spells.current_spells[1][0]).to be_a(Spell)
+    expect(spells.current_spells[1][0].id).to be_a(Integer)
+    expect(spells.current_spells[1][0].name).to be_a(String)
+    expect(spells.current_spells[1][0].description).to be_a(String)
+    expect(spells.current_spells[1][0].higher_level).to be_a(String)
+    expect(spells.current_spells[1][0].range).to be_a(String)
+    expect(spells.current_spells[1][0].components).to be_a(String)
+    expect(spells.current_spells[1][0].material).to be_a(String) unless spells.current_spells[1][0].attack_type.nil?
+    expect(spells.current_spells[1][0].ritual).to eq(false) unless spells.current_spells[1][0].ritual == true
+    expect(spells.current_spells[1][0].duration).to be_a(String)
+    expect(spells.current_spells[1][0].concentration).to eq(false) unless spells.current_spells[1][0].concentration == true
+    expect(spells.current_spells[1][0].casting_time).to be_a(String)
+    expect(spells.current_spells[1][0].level).to be_a(Integer)
+    expect(spells.current_spells[1][0].attack_type).to be_a(String) unless spells.current_spells[1][0].attack_type.nil?
+    expect(spells.current_spells[1][0].damage_type).to be_a(String)
+    expect(spells.current_spells[1][0].damage_at_character_level).to be_a(String)
+    expect(spells.current_spells[1][0].damage_at_slot_level).to be_a(String)
+    expect(spells.current_spells[1][0].school).to be_a(String)
+    expect(spells.current_spells[1][0].classes).to be_a(String)
+    expect(spells.current_spells[1][0].subclasses).to be_a(String)
+    expect(spells.spell_slots).to eq({0=>2, 1=>3})
   end
 
   it "exists for bard level 3" do
     spells = Spells.new(@bard[:name], 3, @bard[:table].split("\n")[2..-1], 'No Archetype')
 
     expect(spells).to be_a(Spells)
-    expect(spells.current_spells.count).to eq(4)
+    expect(spells.current_spells.count).to eq(3)
     expect(spells.current_spells[0].count).to eq(2)
-    expect(spells.current_spells[1].count).to eq(6)
-    expect(spells.current_spells[2].count).to eq(4)
-    expect(spells.current_spells[3].count).to eq(2)
-    expect(spells.current_spells[4]).to be_a(NilClass)
-    expect(spells.spell_slots).to eq({0=>2, 1=>6, 2=>4, 3=>2})
+    expect(spells.current_spells[1].count).to eq(4)
+    expect(spells.current_spells[2].count).to eq(2)
+    expect(spells.current_spells[3]).to be_a(NilClass)
+    expect(spells.spell_slots).to eq({0=>2, 1=>4, 2=>2})
   end
 
   it "exists for cleric level 3" do
