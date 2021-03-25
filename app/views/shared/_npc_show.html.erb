@@ -28,7 +28,11 @@
     <p>Weapons:</p>
       <% @weapons.each do |weapon|%>
         <li>Name: <%= weapon.name %></li>
-        <li>Damage: <%= weapon.damage %></li>
+        <% if weapon.classification.include?("Ranged") || weapon.properties.include?("Finesse") && @npc.core_modifiers_str_mod.to_i <= @npc.core_modifiers_dex_mod.to_i %>
+          <li>Damage: <%= weapon.damage %> + <%= @npc.core_modifiers_dex_mod %></li>
+        <% else %>
+          <li>Damage: <%= weapon.damage %> + <%= @npc.core_modifiers_str_mod %></li>
+        <% end %>
         <li>Properties: <%= weapon.properties %></li>
         <li>Cost: <%= weapon.cost %></li>
         <li>Weight: <%= weapon.weight %></li>
