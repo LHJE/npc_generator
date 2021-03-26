@@ -15,11 +15,12 @@ class Stats
     @core_stats = CoreStats.new(ancestry[:asi], score_type, leveled_stats)
     @saving_throws = SavingThrows.new(@core_stats.stats[:modifiers], class_data[:prof_saving_throws].split(', '))
     background_profs = [background.skill_proficiency_one[0..-7].downcase,
-     background.skill_proficiency_two[0..-7].downcase]
-    if  ancestry[:name] == 'Elf'
-      background_profs << "perception"
-    elsif  ancestry[:name] == 'Half-Orc'
-      background_profs << "intimidation"
+                        background.skill_proficiency_two[0..-7].downcase]
+    case ancestry[:name]
+    when 'Elf'
+      background_profs << 'perception'
+    when 'Half-Orc'
+      background_profs << 'intimidation'
     end
     @skills = Skills.new(@core_stats.stats[:modifiers],
                          background_profs, class_data[:prof_skills].downcase, traits, @proficiency_bonus)
