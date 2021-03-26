@@ -14,9 +14,15 @@ class Stats
     ancestry[:asi] << sub_ancestry[:asi].sample if sub_ancestry != 'No Sub Ancestry'
     @core_stats = CoreStats.new(ancestry[:asi], score_type, leveled_stats)
     @saving_throws = SavingThrows.new(@core_stats.stats[:modifiers], class_data[:prof_saving_throws].split(', '))
+    background_profs = [background.skill_proficiency_one[0..-7].downcase,
+     background.skill_proficiency_two[0..-7].downcase]
+    if  ancestry[:name] == 'Elf'
+      background_profs << "perception"
+    elsif  ancestry[:name] == 'Half-Orc'
+      background_profs << "intimidation"
+    end
     @skills = Skills.new(@core_stats.stats[:modifiers],
-                         [background.skill_proficiency_one[0..-7].downcase,
-                          background.skill_proficiency_two[0..-7].downcase], class_data[:prof_skills].downcase, traits, @proficiency_bonus)
+                         background_profs, class_data[:prof_skills].downcase, traits, @proficiency_bonus)
     @passive_perception = @skills.skills[:perception] + 10
     @hit_points = @core_stats.stats[:modifiers][:con_mod] + class_data[:hp_at_1st_level].scan(/\d+/)[0].to_i
     @dex_attack    = @core_stats.stats[:modifiers][:dex_mod] + @proficiency_bonus
