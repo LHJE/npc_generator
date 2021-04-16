@@ -15,10 +15,8 @@ Run the following commands to get the generator up and running on your local mac
 git clone https://github.com/LHJE/npc_generator.git
 bundle install
 bundle update
-rails db:{create,migrate,seed}
+bundle exec figaro install
 ```
-
-Seeding may take up to 2 minutes (mainly because there are so many spells!), but you'll only have to do that once.  Make some tea or surf the web!  You've earned it.
 
 This has created a file called `application.yml` in your `config` folder.
 
@@ -29,11 +27,23 @@ DND_URL: "https://api.open5e.com"
 SECOND_DND_URL: "https://www.dnd5eapi.co/api"
 ```  
 
+Now run this in your terminal:
+```
+rails db:{create,migrate,seed}
+rails db:{migrate,seed} RAILS_ENV=test
+```
+Seeding may take up to 2 minutes (mainly because there are so many spells!), but you'll only have to do that once.  Make some tea or surf the web!  You've earned it.
+
+
 Luckily both of the API's used here are open, so there are no API Keys.
 
 ## Usage
 
 After you've run those commands, simply go run `rails s` in your terminal, and go to `localhost:3000` in your web browser, and you should be good to go!
+
+## Testing
+
+If you would like to test the repo, we're using `Rspec`.  In your terminal, while in the repo's directory, simply type `bundle exec rspec` and the tests should run!  Because of the random nature of the tests/NPC builds, there's no way to get a consisten 100% testing, but there should be no failing tests, and more than 98% of the lines should be being tested each time..
 
 ## Schema
 Below is our schema.
@@ -50,14 +60,18 @@ Please make sure to update tests as appropriate.
 
 * Luke Hunter James-Erickson
     * [GitHub](https://github.com/LHJE)
-    * [LinkedIn](https://www.linkedin.com/lhje/)
+    * [LinkedIn](https://www.linkedin.com/in/lhje/)
 
  * Cecile Elliott
     * [Website](https://www.onecreativebird.com)
     * [LinkedIn](https://www.linkedin.com/in/cecileelliott/)
 
+* Caleb cyphers
+    * [GitHub](https://github.com/CalebCyphers)
+    * [LinkedIn](https://www.linkedin.com/in/caleb-cyphers/)
+
 ## License
-Copyright 2020 Luke Hunter James-Erickson, Cecile Elliott
+Copyright 2020 Luke Hunter James-Erickson, Cecile Elliott, Caleb Cyphers
 
 Permission is hereby granted to any person obtaining a copy of this software and associated materials to make use of the software and associated materials according to the terms of the MIT License IF AND ONLY IF they have not read any portion of this file.
 

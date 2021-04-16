@@ -10,4 +10,4 @@ deploy:
   provider: heroku
   # api_key:
   app: https://npc-generator-lhje.herokuapp.com/
-  run: rails db:migrate
+  run: rails db:{migrate,seed}
