@@ -41,6 +41,10 @@ Luckily both of the API's used here are open, so there are no API Keys.
 
 After you've run those commands, simply go run `rails s` in your terminal, and go to `localhost:3000` in your web browser, and you should be good to go!
 
+## Testing
+
+If you would like to test the repo, we're using `Rspec`.  In your terminal, while in the repo's directory, simply type `bundle exec rspec` and the tests should run!  Because of the random nature of the tests/NPC builds, there's no way to get a consisten 100% testing, but there should be no failing tests, and more than 98% of the lines should be being tested each time..
+
 ## Schema
 Below is our schema.
 
