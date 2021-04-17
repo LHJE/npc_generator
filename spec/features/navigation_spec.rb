@@ -4,7 +4,9 @@ RSpec.describe 'Site Navigation' do
   describe 'As a Visitor' do
     describe 'I see a nav bar where I can link to' do
       it 'the welcome page' do
-        visit login_path
+        @user = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com")
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+        visit user_dashboard_path
 
         within 'nav' do
           click_link 'Home'
@@ -13,24 +15,12 @@ RSpec.describe 'Site Navigation' do
         expect(current_path).to eq(root_path)
       end
 
-      it 'the login page' do
+      it "I can sign in with Google account" do
         visit root_path
-
-        within 'nav' do
-          click_link 'Log In'
-        end
-
-        expect(current_path).to eq(login_path)
-      end
-
-      it 'the registraton page' do
-        visit root_path
-
-        within 'nav' do
-          click_link 'Register'
-        end
-
-        expect(current_path).to eq(registration_path)
+        expect(page).to have_button("Login with Google")
+        stub_omniauth
+        click_button "Login with Google"
+        expect(page).to have_content("Welcome John Smith!")
       end
 
       it "can see footer" do
@@ -44,7 +34,7 @@ RSpec.describe 'Site Navigation' do
 
   describe 'As a User' do
     before :each do
-      @user = User.create(name: 'Morgan', email: 'morgan@example.com', password: 'securepassword')
+      @user = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com")
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     end
 
@@ -66,13 +56,7 @@ RSpec.describe 'Site Navigation' do
       it 'the login link' do
         visit root_path
 
-        expect(page).to_not have_link('Log In')
-      end
-
-      it 'the registration link' do
-        visit root_path
-
-        expect(page).to_not have_link('Register')
+        expect(page).to_not have_link('Login with Google')
       end
     end
   end
