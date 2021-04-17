@@ -12,6 +12,8 @@ class UsersController < ApplicationController
       NpcModel.where(id: user_npc_model.npc_model_id).destroy_all
     end
     user.destroy
+    session[:user_id] = nil
+    flash[:success] = 'Your account has been destroyed!'
     redirect_to root_path
   end
 end
