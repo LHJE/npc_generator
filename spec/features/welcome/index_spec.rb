@@ -62,7 +62,7 @@ RSpec.describe 'Welcome Page' do
 
   describe 'As a user' do
     before :each do
-      @user_1 = User.create(name: 'Jackie Chan', email: '67@67.com', password: '67', password_confirmation: '67')
+      @user_1 = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com")
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
 
       visit root_path
