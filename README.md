@@ -1,6 +1,6 @@
 # [NPC Generator v0.1](https://npc-generator-lhje.herokuapp.com/)
 
-![](https://img.shields.io/badge/Rails-5.2.4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a) ![](https://img.shields.io/badge/Ruby-2.5.3-orange) ![](https://img.shields.io/badge/Code-HTML-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a) ![](https://api.travis-ci.com/LHJE/npc_generator.svg?branch=main)
+![](https://img.shields.io/badge/Rails-5.2.4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a) ![](https://img.shields.io/badge/Ruby-2.5.3-orange) ![](https://img.shields.io/badge/Code-HTML-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a) ![](https://api.travis-ci.com/NPCme/NPCme.svg?branch=main)
 
 NPC Generator is a collaboration between a UX/UI Designer, a Backend Engineer, and, eventually, a Frontend Engineer who were inspired by all the great other NPC Generators out there, but felt they had a few ideas of their own that they wanted to explore.  It utilizes the [Open5e API](https://open5e.com/) and [D&D 5e API](https://www.dnd5eapi.co/api), for which we are eternally grateful.
 
@@ -9,8 +9,7 @@ NPC Generator is a collaboration between a UX/UI Designer, a Backend Engineer, a
 
 ## Installation
 
-Run the following commands to get the generator up and running on your local machine:
-
+- Run the following commands to get the generator up and running on your local machine:
 ```
 git clone https://github.com/LHJE/npc_generator.git
 bundle install
@@ -18,24 +17,32 @@ bundle update
 bundle exec figaro install
 ```
 
-This has created a file called `application.yml` in your `config` folder.
-
-At the bottom of that file, paste this:
+- This has created a file called `application.yml` in your `config` folder.
+* At the bottom of that file, paste this:
 
 ```
 DND_URL: "https://api.open5e.com"
 SECOND_DND_URL: "https://www.dnd5eapi.co/api"
 ```  
+* Luckily both of the API's used here are open, so there are no API Keys.
 
-Now run this in your terminal:
+- Now you have to obtain Google OAuth credentials
+    * Visit https://console.developers.google.com/ and create a new project
+    * Select the project and on the left click OAuth consent screen, choose external, click create, and proceed with the required fields (if a field is not required you can skip it)
+    * Click on Credentials on the left then click '+Create Credentials' at the top. Choose OAuth client ID, choose Web application, and under Authorized redirect URIs if you plan on testing Google OAuth with localhost you will want to include:
+    * `http://localhost:3000/auth/google_oauth2/callback`
+    * Click Create and you should receive a Client ID and Client secret. These will go in your application.yml file as:
+```
+GOOGLE_CLIENT_ID: '< your ID >'
+GOOGLE_CLIENT_SECRET: '< your ID >'
+```
+
+Now run this in your terminal:  
 ```
 rails db:{create,migrate,seed}
 rails db:{migrate,seed} RAILS_ENV=test
 ```
 Seeding may take up to 2 minutes (mainly because there are so many spells!), but you'll only have to do that once.  Make some tea or surf the web!  You've earned it.
-
-
-Luckily both of the API's used here are open, so there are no API Keys.
 
 ## Usage
 
@@ -66,7 +73,7 @@ Please make sure to update tests as appropriate.
     * [Website](https://www.onecreativebird.com)
     * [LinkedIn](https://www.linkedin.com/in/cecileelliott/)
 
-* Caleb cyphers
+* Caleb Cyphers
     * [GitHub](https://github.com/CalebCyphers)
     * [LinkedIn](https://www.linkedin.com/in/caleb-cyphers/)
 

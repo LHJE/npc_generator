@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
-  helper_method :current_user
+  protect_from_forgery with: :exception
+
+  helper_method :current_user, :current_user?
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
@@ -9,7 +11,7 @@ class ApplicationController < ActionController::Base
     return if current_user
 
     flash[:notice] = 'This Page Only Accessible by Authenticated Users. Please Log In.'
-    redirect_to login_path
+    redirect_to root_path
   end
 
   def generate_flash(resource)

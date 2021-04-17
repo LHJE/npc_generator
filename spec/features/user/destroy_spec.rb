@@ -93,9 +93,8 @@ RSpec.describe 'User Destruction' do
      :document__title=>"Systems Reference Document",
      :document__license_url=>"http://open5e.com/legal"}]
         @npcs = [NPC.new(@data[0], @data[1], 'standard array', 1), NPC.new(@data[0], @data[1], 'roll for scores', 1), NPC.new(@data[0], @data[1], 'wildly unbalanced', 1)]
-        @user_1 = User.create(name: 'Jackie Chan', email: '67@67.com', password: '67', password_confirmation: '67')
-        @user_2 = User.create(name: 'Michelle Yeoh', email: 'my@my.com', password: 'my', password_confirmation: 'my')
-        @user_3 = User.create(name: 'Cynthia Rothrock', email: '333@333.com', password: '333', password_confirmation: '333')
+        @user_1 = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com")
+        @user_2 = User.create(name: 'Michelle', email: 'Michelle@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN_TWO", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN_TWO", uid: "100000000000000000002",  username: "Michelle@67.com")
         @npcs.each do |base_info|
           @npc = NpcModel.create(alignment: base_info.alignment,
                           ancestry: base_info.ancestry,

@@ -6,8 +6,9 @@ RSpec.describe 'Dashboard Page' do
     describe "When I visit the dashboard page" do
       it "I can see a message telling me to login to see this page" do
         visit 'user/dashboard'
+
         expect(page).to have_content("This Page Only Accessible by Authenticated Users. Please Log In.")
-        expect(current_path).to eq(login_path)
+        expect(current_path).to eq('/')
       end
     end
   end
@@ -103,9 +104,9 @@ RSpec.describe 'Dashboard Page' do
    :document__title=>"Systems Reference Document",
    :document__license_url=>"http://open5e.com/legal"}]
       @npcs = [NPC.new(@data[0], @data[1], 'standard array', 1), NPC.new(@data[0], @data[1], 'roll for scores', 1), NPC.new(@data[0], @data[1], 'wildly unbalanced', 1)]
-      @user_1 = User.create(name: 'Jackie Chan', email: '67@67.com', password: '67', password_confirmation: '67')
-      @user_2 = User.create(name: 'Michelle Yeoh', email: 'my@my.com', password: 'my', password_confirmation: 'my')
-      @user_3 = User.create(name: 'Cynthia Rothrock', email: '333@333.com', password: '333', password_confirmation: '333')
+      @user_1 = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com")
+      @user_2 = User.create(name: 'Michelle', email: 'Michelle@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN_TWO", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN_TWO", uid: "100000000000000000002",  username: "Michelle@67.com")
+      @user_3 = User.create(name: 'Scott', email: 'Scott@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN_THREE", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN_THREE", uid: "100000000000000000003",  username: "Scott@67.com")
       @npcs.each do |base_info|
         @npc = NpcModel.create(alignment: base_info.alignment,
                         ancestry: base_info.ancestry,
@@ -204,14 +205,12 @@ RSpec.describe 'Dashboard Page' do
     end
 
     it "I can see that I have NPCs if I have NPCs" do
-      visit login_path
+      visit root_path
+      expect(page).to have_button("Login with Google")
+      stub_omniauth
+      click_button "Login with Google"
 
-      fill_in 'Email', with: @user_1.email
-      fill_in 'Password', with: @user_1.password
-
-      click_button "Log In"
-
-      expect(page).to have_content("Logged in as Jackie Chan\nWelcome Jackie Chan!")
+      expect(page).to have_content("Logged in as John Smith\nWelcome John Smith!")
       expect(page).to have_content("NPC's:")
       expect(page).to have_content(@name_2)
       expect(page).to have_content(@name_3)

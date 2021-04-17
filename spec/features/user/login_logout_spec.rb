@@ -4,40 +4,35 @@ include ActionView::Helpers::NumberHelper
 RSpec.describe 'Login & Logout' do
   describe 'As a user' do
     before :each do
-      @user = User.create(name: 'Jackie Chan', email: 'a@a.com', password: 'a', password_confirmation: 'a')
-
-      visit login_path
+      @user = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com")
     end
 
     it "If I'm a user, I can fill in my information, click the Log In button, and be logged in as an authenticated user" do
-      fill_in 'Email', with: @user.email
-      fill_in 'Password', with: @user.password
-
-      click_button "Log In"
+      visit root_path
+      expect(page).to have_button("Login with Google")
+      stub_omniauth
+      click_button "Login with Google"
 
       expect(current_path).to eq("/user/dashboard")
     end
 
     describe "If already logged in" do
       it "I do not see a login form or register link" do
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
+        visit root_path
+        expect(page).to have_button("Login with Google")
+        stub_omniauth
+        click_button "Login with Google"
 
-        click_button "Log In"
-
-        visit login_path
-
-        expect(page).to_not have_content('Email')
-        expect(page).to_not have_content('Password')
-        expect(page).to_not have_link('Register')
+        expect(page).to_not have_content('Login with Google')
         expect(current_path).to eq("/user/dashboard")
       end
 
       it "I can log out" do
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
+        visit root_path
+        expect(page).to have_button("Login with Google")
+        stub_omniauth
+        click_button "Login with Google"
 
-        click_button "Log In"
         click_link "Log Out"
 
         expect(current_path).to eq(root_path)
@@ -135,10 +130,8 @@ RSpec.describe 'Login & Logout' do
      :document__license_url=>"http://open5e.com/legal"}]
         @npcs = [NPC.new(@data[0], @data[1], 'standard array', 1), NPC.new(@data[0], @data[1], 'roll for scores', 1), NPC.new(@data[0], @data[1], 'wildly unbalanced', 1)]
 
-        fill_in 'Email', with: @user.email
-        fill_in 'Password', with: @user.password
-
-        click_button "Log In"
+        @user_1 = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com")
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
         @npcs.each do |base_info|
           @npc = NpcModel.create(alignment: base_info.alignment,
                           ancestry: base_info.ancestry,
@@ -230,24 +223,15 @@ RSpec.describe 'Login & Logout' do
 
         expect(NpcModel.where(is_saved: 0).count).to eq(2)
 
+        visit root_path
+
         click_link "Log Out"
 
         expect(NpcModel.where(is_saved: 0).count).to eq(0)
       end
     end
 
-    describe "If I attempt to login with invalid credentials" do
-      it "I see a flash message indicating I cannot log in" do
 
-        fill_in 'Email', with: 'incorrect_email'
-        fill_in 'Password', with: @user.password
-
-        click_button "Log In"
-
-        expect(current_path).to eq(login_path)
-        expect(page).to have_content("Sorry, we don't recognize those credentials.")
-      end
-    end
 
 
   end
