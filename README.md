@@ -37,14 +37,12 @@ GOOGLE_CLIENT_ID: '< your ID >'
 GOOGLE_CLIENT_SECRET: '< your ID >'
 ```
 
-Now run this in your terminal:
+Now run this in your terminal:  
 ```
 rails db:{create,migrate,seed}
 rails db:{migrate,seed} RAILS_ENV=test
 ```
 Seeding may take up to 2 minutes (mainly because there are so many spells!), but you'll only have to do that once.  Make some tea or surf the web!  You've earned it.
-
-
 
 ## Usage
 
