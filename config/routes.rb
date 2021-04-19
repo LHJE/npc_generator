@@ -9,9 +9,16 @@ Rails.application.routes.draw do
   get '/npcs/:id', to: 'npc_models#show'
 
   resources :users, only: [:create, :destroy]
+  delete '/users/destroy/:id', to: 'users#destroy'
 
   namespace :user do
     get '/dashboard', to: 'dashboard#show'
+  end
+
+  namespace :admin do
+    get '/', to: "dashboard#show"
+    resources :npcs, only: [:index]
+    resources :users, only: [:index, :show]
   end
 
   get '/auth/:provider/callback', to: 'sessions#create'
