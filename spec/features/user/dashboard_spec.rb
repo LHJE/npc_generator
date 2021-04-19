@@ -210,11 +210,9 @@ RSpec.describe 'Dashboard Page' do
       stub_omniauth
       click_button "Login with Google"
 
-      expect(page).to have_content("Logged in as John Smith\nWelcome John Smith!")
-      expect(page).to have_content("NPC's:")
-      expect(page).to have_content(@name_2)
-      expect(page).to have_content(@name_3)
-      expect(page).to_not have_content(@name_1)
+      expect(page).to have_content("Logged in as John Smith")
+      expect(page).to have_content("NPC Generator")
+      expect(page).to have_content("Roll Up an NPC:")
     end
 
     it "I can see that I don't have NPCs if I don't have NPCs" do
