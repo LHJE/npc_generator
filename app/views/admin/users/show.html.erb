@@ -1,0 +1,8 @@
+<section id="user-<%= @user.id %>">
+	<h2><%= link_to @user.name, "/admin/users/#{@user.id}" %></h2>
+	<p>Role: <%= @user.role %></p>
+	<p>Registered: <%= @user.created_at %></p>
+	<p><%= form_tag "/users/destroy/#{@user.id}", method: :delete do %>
+		<%= submit_tag "Delete", class: :button %>
+	<% end %></p>
+</section>

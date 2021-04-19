@@ -16,7 +16,9 @@
       <%= link_to 'Home', root_path %>
       <%= render 'shared/login_with_google_button' unless current_user %>
       <% if current_user %>
-        <%= link_to 'NPC Dashboard', user_dashboard_path %>
+        <%= link_to 'User Dashboard', user_dashboard_path unless current_user.admin? %>
+        <%= link_to 'Users Dashboard', '/admin/users' unless current_user.default? %>
+        <%= link_to 'NPCs Dashboard', '/admin/npcs' unless current_user.default? %>
         <%= link_to 'Log Out', logout_path %>
       <% end %>
     </nav>

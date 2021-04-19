@@ -1,19 +1,7 @@
 require 'rails_helper'
-include ActionView::Helpers::NumberHelper
 
-RSpec.describe 'Dashboard Page' do
-  describe 'As a visitor' do
-    describe "When I visit the dashboard page" do
-      it "I can see a message telling me to login to see this page" do
-        visit 'user/dashboard'
-
-        expect(page).to have_content("This Page Only Accessible by Authenticated Users. Please Log In.")
-        expect(current_path).to eq('/')
-      end
-    end
-  end
-
-  describe 'As an authenticated  user' do
+RSpec.describe 'Admin Npc Controller' do
+  describe 'As an Admin' do
     before :each do
       @data = [{:name=>"Half-Elf",
    :slug=>"half-elf",
@@ -202,26 +190,20 @@ RSpec.describe 'Dashboard Page' do
       @name_1 = NpcModel.all[0].name
       @name_2 = NpcModel.all[1].name
       @name_3 = NpcModel.all[2].name
+      @admin = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com", role: :admin)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
 
-    it "I can see that I have NPCs if I have NPCs" do
-      visit root_path
-      expect(page).to have_button("Login with Google")
-      stub_omniauth
-      click_button "Login with Google"
+    it 'I can see all npcs' do
+      visit '/admin/npcs'
 
-      expect(page).to have_content("Logged in as John Smith")
-      expect(page).to have_content("NPC Generator")
-      expect(page).to have_content("Roll Up an NPC:")
+      expect(page).to have_content("Welcome Jackie!")
+      expect(page).to have_content("NPC's:")
+      expect(page).to have_content(@name_1)
+      expect(page).to have_content(@name_2)
+      expect(page).to have_content(@name_3)
     end
 
-    it "I can see that I don't have NPCs if I don't have NPCs" do
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_3)
-
-      visit 'user/dashboard'
-
-      expect(page).to have_content("You currently have no NPC's saved.")
-    end
 
   end
 end

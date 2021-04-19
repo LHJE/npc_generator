@@ -13,7 +13,7 @@ RSpec.describe 'Login & Logout' do
       stub_omniauth
       click_button "Login with Google"
 
-      expect(current_path).to eq("/user/dashboard")
+      expect(current_path).to eq("/")
     end
 
     describe "If already logged in" do
@@ -24,7 +24,7 @@ RSpec.describe 'Login & Logout' do
         click_button "Login with Google"
 
         expect(page).to_not have_content('Login with Google')
-        expect(current_path).to eq("/user/dashboard")
+        expect(current_path).to eq("/")
       end
 
       it "I can log out" do

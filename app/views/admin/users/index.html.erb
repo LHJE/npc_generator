@@ -1,0 +1,27 @@
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Role</th>
+      <th>Registered</th>
+      <th>Delete?</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <h1>Users:</h1>
+
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, "/admin/users/#{user.id}" %></td>
+        <td><%= user.role %></td>
+        <td><%= user.created_at %></td>
+        <td><%= form_tag "/users/destroy/#{user.id}", method: :delete do %>
+          <%= submit_tag "Delete", class: :button %>
+        <% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
