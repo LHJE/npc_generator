@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_17_174112) do
+ActiveRecord::Schema.define(version: 2021_04_17_214156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -195,6 +195,7 @@ ActiveRecord::Schema.define(version: 2021_04_17_174112) do
     t.string "google_refresh_token"
     t.string "uid"
     t.string "username"
+    t.integer "role", default: 0
   end
 
   create_table "weapons", force: :cascade do |t|
