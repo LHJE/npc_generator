@@ -183,10 +183,10 @@ RSpec.describe 'User Destruction' do
         end
         UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user_1.id)
         NpcModel.all[0].update(is_saved: 1)
-        UserNpcModel.create!(npc_model_id: NpcModel.all[1].id, user_id: @user_1.id)
-        NpcModel.all[1].update(is_saved: 1)
-        UserNpcModel.create!(npc_model_id: NpcModel.all[2].id, user_id: @user_2.id)
-        NpcModel.all[2].update(is_saved: 1)
+        UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user_1.id)
+        NpcModel.all[0].update(is_saved: 1)
+        UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user_2.id)
+        NpcModel.all[0].update(is_saved: 1)
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_1)
         visit user_dashboard_path
       end

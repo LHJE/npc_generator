@@ -195,10 +195,10 @@ RSpec.describe 'Dashboard Page' do
       end
       UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user_1.id)
       NpcModel.all[0].update(is_saved: 1)
-      UserNpcModel.create!(npc_model_id: NpcModel.all[1].id, user_id: @user_1.id)
-      NpcModel.all[1].update(is_saved: 1)
-      UserNpcModel.create!(npc_model_id: NpcModel.all[2].id, user_id: @user_2.id)
-      NpcModel.all[2].update(is_saved: 1)
+      UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user_1.id)
+      NpcModel.all[0].update(is_saved: 1)
+      UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user_2.id)
+      NpcModel.all[0].update(is_saved: 1)
       @name_1 = NpcModel.all[0].name
       @name_2 = NpcModel.all[1].name
       @name_3 = NpcModel.all[2].name
