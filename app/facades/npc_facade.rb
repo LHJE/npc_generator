@@ -1,5 +1,5 @@
 require 'faker'
-class NPCFacade
+class NpcFacade
   def self.create_npc(score_type, level)
     npc_ancestry = NPCService.create_npc_ancestry
     npc_class = NPCService.create_npc_class
