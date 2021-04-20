@@ -1,1 +1,12 @@
 <h1>About Us:</h1>
+
+<% index = 1 %>
+<% @about_info.each do |about_me| %>
+		<div class="about-<%= index %>">
+			<h3><%= about_me.name %></h3>
+			<%= image_tag("#{about_me.image}", width: 200) %>
+			<p><%= about_me.email %></p>
+			<p><%= about_me.bio %></p>
+		</div>
+	<% index += 1 %>
+<% end %>
