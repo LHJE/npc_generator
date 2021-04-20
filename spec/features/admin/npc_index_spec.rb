@@ -204,6 +204,16 @@ RSpec.describe 'Admin Npc Controller' do
       expect(page).to have_content(@name_3)
     end
 
+    it "I can delete an npc" do
+      visit '/admin/npcs'
+
+      expect(NpcModel.all.count).to eq(3)
+      
+      first(:button, "Delete").click
+
+      expect(NpcModel.all.count).to eq(2)
+    end
+
 
   end
 end
