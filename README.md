@@ -55,7 +55,7 @@ If you would like to test the repo, we're using `Rspec`.  In your terminal, whil
 ## Schema
 Below is our schema.
 
-![our schema](/npc_generator_schema.png)
+![our schema](/app/assets/images/npc_generator_schema.png)
 
 
 ## Contributing

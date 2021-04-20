@@ -83,6 +83,17 @@ RSpec.describe 'Site Navigation' do
         visit root_path
 
         within 'nav' do
+          click_link 'Admin Dashboard'
+        end
+
+        expect(current_path).to eq('/admin/dashboard')
+        expect(page).to have_content("NPC's:")
+      end
+
+      it 'the User Dashboard page' do
+        visit root_path
+
+        within 'nav' do
           click_link 'Users Dashboard'
         end
 

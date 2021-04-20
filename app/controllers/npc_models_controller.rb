@@ -4,7 +4,11 @@ class NpcModelsController < ApplicationController
   def new
     UserNpcModel.create!(npc_model_id: params[:id], user_id: current_user.id)
     NpcModel.where(id: params[:id])[0].update(is_saved: 1)
-    redirect_to '/user/dashboard'
+    if current_user.admin?
+      redirect_to '/admin/dashboard'
+    else
+      redirect_to '/user/dashboard'
+    end
   end
 
   def show
@@ -21,5 +25,10 @@ class NpcModelsController < ApplicationController
     @spells = NpcModelSpell.where(npc_model_id: @npc.id).map do |npc_model_spell|
       Spell.where(id: npc_model_spell.spell_id)
     end.flatten
+  end
+
+  def destroy
+    NpcFacade.destroy_npc(params[:id])
+    redirect_back(fallback_location: root_path)
   end
 end

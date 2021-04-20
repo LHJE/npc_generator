@@ -1,7 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe 'Admin Npc Controller' do
-  describe 'As an Admin' do
+RSpec.describe 'Dashboard Page' do
+  describe 'As a visitor' do
+    describe "When I visit the dashboard page" do
+      it "I can see a message telling me to login to see this page" do
+        visit 'admin/dashboard'
+
+        expect(page).to have_content("This Page Only Accessible by Authenticated Users. Please Log In.")
+        expect(current_path).to eq('/')
+      end
+    end
+  end
+
+  describe 'As an authenticated  user' do
     before :each do
       @data = [{:name=>"Half-Elf",
    :slug=>"half-elf",
@@ -92,9 +103,9 @@ RSpec.describe 'Admin Npc Controller' do
    :document__title=>"Systems Reference Document",
    :document__license_url=>"http://open5e.com/legal"}]
       @npcs = [NPC.new(@data[0], @data[1], 'standard array', 1), NPC.new(@data[0], @data[1], 'roll for scores', 1), NPC.new(@data[0], @data[1], 'wildly unbalanced', 1)]
-      @user_1 = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com")
+      @user_1 = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com", role: 'admin')
       @user_2 = User.create(name: 'Michelle', email: 'Michelle@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN_TWO", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN_TWO", uid: "100000000000000000002",  username: "Michelle@67.com")
-      @user_3 = User.create(name: 'Scott', email: 'Scott@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN_THREE", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN_THREE", uid: "100000000000000000003",  username: "Scott@67.com")
+      @user_3 = User.create(name: 'Scott', email: 'Scott@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN_THREE", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN_THREE", uid: "100000000000000000003",  username: "Scott@67.com", role: 'admin')
       @npcs.each do |base_info|
         @npc = NpcModel.create(alignment: base_info.alignment,
                         ancestry: base_info.ancestry,
@@ -190,30 +201,32 @@ RSpec.describe 'Admin Npc Controller' do
       @name_1 = NpcModel.all[0].name
       @name_2 = NpcModel.all[1].name
       @name_3 = NpcModel.all[2].name
-      @admin = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com", role: :admin)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
 
-    it 'I can see all npcs' do
-      visit '/admin/npcs'
+    it "I can see that I have NPCs if I have NPCs" do
+      visit root_path
+      expect(page).to have_button("Login with Google")
+      stub_omniauth
+      click_button "Login with Google"
 
-      expect(page).to have_content("Welcome Jackie!")
-      expect(page).to have_content("NPC's:")
+      expect(page).to have_content("Logged in as John Smith")
+      expect(page).to have_content("NPC Generator")
+      expect(page).to have_content("Roll Up an NPC:")
+
+      visit 'admin/dashboard'
+
       expect(page).to have_content(@name_1)
       expect(page).to have_content(@name_2)
-      expect(page).to have_content(@name_3)
+      expect(page).to_not have_content(@name_3)
     end
 
-    it "I can delete an npc" do
-      visit '/admin/npcs'
+    it "I can see that I don't have NPCs if I don't have NPCs" do
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user_3)
 
-      expect(NpcModel.all.count).to eq(3)
-      
-      first(:button, "Delete").click
+      visit 'admin/dashboard'
 
-      expect(NpcModel.all.count).to eq(2)
+      expect(page).to have_content("There are currently no NPC's saved")
     end
-
 
   end
 end

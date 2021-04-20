@@ -32,5 +32,14 @@ RSpec.describe 'User Show Page' do
       expect(page).to have_content(@admin.role)
       expect(page).to have_content(@admin.created_at)
     end
+
+    it "I can delete a myself" do
+      visit "/admin/users/#{@admin.id}"
+
+      first(:button, "Delete").click
+
+      expect(current_path).to eq("/")
+      expect(page).to have_content("The #{@admin.name} account has been destroyed!")
+    end
   end
 end

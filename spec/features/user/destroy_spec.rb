@@ -195,7 +195,7 @@ RSpec.describe 'User Destruction' do
 
         expect(page).to have_button('Delete')
 
-        click_button 'Delete'
+        first(:button, "Delete").click
 
         expect(current_path).to eq(root_path)
       end

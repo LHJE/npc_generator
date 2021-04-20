@@ -3,7 +3,7 @@ class WelcomeController < ApplicationController
 
   def index
     unless params[:post].nil?
-      base_info = NPCFacade.create_npc(params[:post][:score_type].downcase, params[:post][:level].to_i)
+      base_info = NpcFacade.create_npc(params[:post][:score_type].downcase, params[:post][:level].to_i)
       @npc = base_info[0]
       @pack = base_info[1]
       @armor = base_info[2]
