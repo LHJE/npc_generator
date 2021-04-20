@@ -16,6 +16,20 @@ RSpec.describe 'Contact Page' do
       expect(page).to have_button("Send Message")
     end
 
+    it "I can send a message" do
+      click_link 'Contact Us'
+
+      fill_in 'Name', with: 'hello'
+      fill_in 'Email', with: 'hello@gmail.com'
+      fill_in 'Message', with: 'hello, it is me'
+
+      click_button 'Send Message'
+
+      expect(current_path).to have_content(contact_index_path)
+      expect(find_field('Name').value).to eq(nil)
+      expect(find_field('Email').value).to eq(nil)
+      expect(find_field('Mssage').value).to eq(nil)
+    end
   end
 
   describe 'As a user' do
@@ -36,6 +50,20 @@ RSpec.describe 'Contact Page' do
       expect(page).to have_button("Send Message")
     end
 
+    it "I can send a message" do
+      click_link 'Contact Us'
+
+      fill_in 'Name', with: 'hello'
+      fill_in 'Email', with: 'hello@gmail.com'
+      fill_in 'Message', with: 'hello, it is me'
+
+      click_button 'Send Message'
+
+      expect(current_path).to have_content(contact_index_path)
+      expect(find_field('Name').value).to eq(nil)
+      expect(find_field('Email').value).to eq(nil)
+      expect(find_field('Mssage').value).to eq(nil)
+    end
   end
 
   describe 'As an admin' do
@@ -56,5 +84,19 @@ RSpec.describe 'Contact Page' do
       expect(page).to have_button("Send Message")
     end
 
+    it "I can send a message" do
+      click_link 'Contact Us'
+
+      fill_in 'Name', with: 'hello'
+      fill_in 'Email', with: 'hello@gmail.com'
+      fill_in 'Message', with: 'hello, it is me'
+
+      click_button 'Send Message'
+
+      expect(current_path).to have_content(contact_index_path)
+      expect(find_field('Name').value).to eq(nil)
+      expect(find_field('Email').value).to eq(nil)
+      expect(find_field('Mssage').value).to eq(nil)
+    end
   end
 end
