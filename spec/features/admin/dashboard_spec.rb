@@ -192,12 +192,12 @@ RSpec.describe 'Dashboard Page' do
           NpcModelWeapon.create(npc_model_id: @npc.id, weapon_id: weapon.id)
         end
       end
-      UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user_1.id)
-      NpcModel.all[0].update(is_saved: 1)
-      UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user_1.id)
-      NpcModel.all[0].update(is_saved: 1)
-      UserNpcModel.create!(npc_model_id: NpcModel.all[0].id, user_id: @user_2.id)
-      NpcModel.all[0].update(is_saved: 1)
+      UserNpcModel.create!(npc_model_id: NpcModel.order(:id)[0].id, user_id: @user_1.id)
+      NpcModel.order(:id)[0].update(is_saved: 1)
+      UserNpcModel.create!(npc_model_id: NpcModel.order(:id)[1].id, user_id: @user_1.id)
+      NpcModel.order(:id)[1].update(is_saved: 1)
+      UserNpcModel.create!(npc_model_id: NpcModel.order(:id)[2].id, user_id: @user_2.id)
+      NpcModel.order(:id)[2].update(is_saved: 1)
       @name_1 = NpcModel.all[0].name
       @name_2 = NpcModel.all[1].name
       @name_3 = NpcModel.all[2].name
