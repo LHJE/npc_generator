@@ -1,5 +1,4 @@
 require 'rails_helper'
-include ActionView::Helpers::NumberHelper
 
 RSpec.describe 'Dashboard Page' do
   describe 'As a visitor' do
@@ -213,6 +212,60 @@ RSpec.describe 'Dashboard Page' do
       expect(page).to have_content("Logged in as John Smith")
       expect(page).to have_content("NPC Generator")
       expect(page).to have_content("Roll Up an NPC:")
+
+      visit 'user/dashboard'
+
+      expect(page).to have_content(@name_1)
+      expect(page).to have_content(@name_2)
+      expect(page).to_not have_content(@name_3)
+    end
+
+    it "I can see click on an NPC's name and be sent to show page, if I have NPCs" do
+      visit root_path
+      expect(page).to have_button("Login with Google")
+      stub_omniauth
+      click_button "Login with Google"
+
+      visit 'user/dashboard'
+
+      click_link @name_1
+      
+      expect(page).to have_content("Name:")
+      expect(page).to have_content("Gender:")
+      expect(page).to have_content("Ancestry:")
+      expect(page).to have_content("Background:")
+      expect(page).to have_content("Class:")
+      expect(page).to have_content("Speed:")
+      expect(page).to have_content("Stats:")
+      expect(page).to have_content("Passive Perception:")
+      expect(page).to have_content("Core Stats:")
+      expect(page).to have_content("Strength:")
+      expect(page).to have_content("Dexterity:")
+      expect(page).to have_content("Constitution:")
+      expect(page).to have_content("Intelligence:")
+      expect(page).to have_content("Wisdom:")
+      expect(page).to have_content("Charisma:")
+      expect(page).to have_content("Saving Throws:")
+      expect(page).to have_content("Proficiencies:")
+      expect(page).to have_content("Skills:")
+      expect(page).to have_content("Acrobatics:")
+      expect(page).to have_content("Animal Handling:")
+      expect(page).to have_content("Arcana:")
+      expect(page).to have_content("Athletics:")
+      expect(page).to have_content("Deception:")
+      expect(page).to have_content("History:")
+      expect(page).to have_content("Insight:")
+      expect(page).to have_content("Intimidation:")
+      expect(page).to have_content("Investigation:")
+      expect(page).to have_content("Medicine:")
+      expect(page).to have_content("Nature:")
+      expect(page).to have_content("Perception:")
+      expect(page).to have_content("Performance:")
+      expect(page).to have_content("Persuasion:")
+      expect(page).to have_content("Religion:")
+      expect(page).to have_content("Sleight of Hand:")
+      expect(page).to have_content("Stealth:")
+      expect(page).to have_content("Survival:")
     end
 
     it "I can see that I don't have NPCs if I don't have NPCs" do
@@ -220,7 +273,7 @@ RSpec.describe 'Dashboard Page' do
 
       visit 'user/dashboard'
 
-      expect(page).to have_content("You currently have no NPC's saved.")
+      expect(page).to have_content("There are currently no NPC's saved.")
     end
 
   end
