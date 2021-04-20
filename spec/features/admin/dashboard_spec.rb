@@ -198,9 +198,9 @@ RSpec.describe 'Dashboard Page' do
       NpcModel.order(:id)[1].update(is_saved: 1)
       UserNpcModel.create!(npc_model_id: NpcModel.order(:id)[2].id, user_id: @user_2.id)
       NpcModel.order(:id)[2].update(is_saved: 1)
-      @name_1 = NpcModel.all[0].name
-      @name_2 = NpcModel.all[1].name
-      @name_3 = NpcModel.all[2].name
+      @name_1 = NpcModel.order(:id)[0].name
+      @name_2 = NpcModel.order(:id)[1].name
+      @name_3 = NpcModel.order(:id)[2].name
     end
 
     it "I can see that I have NPCs if I have NPCs" do

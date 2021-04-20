@@ -187,9 +187,9 @@ RSpec.describe 'Admin Npc Controller' do
       NpcModel.order(:id)[1].update(is_saved: 1)
       UserNpcModel.create!(npc_model_id: NpcModel.order(:id)[2].id, user_id: @user_2.id)
       NpcModel.order(:id)[2].update(is_saved: 1)
-      @name_1 = NpcModel.all[0].name
-      @name_2 = NpcModel.all[1].name
-      @name_3 = NpcModel.all[2].name
+      @name_1 = NpcModel.order(:id)[0].name
+      @name_2 = NpcModel.order(:id)[1].name
+      @name_3 = NpcModel.order(:id)[2].name
       @admin = User.create(name: 'Jackie', email: 'Jackie@67.com', google_token: "MOCK_OMNIAUTH_GOOGLE_TOKEN", google_refresh_token: "MOCK_OMNIAUTH_GOOGLE_REFRESH TOKEN", uid: "100000000000000000000",  username: "Jackie@67.com", role: :admin)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
     end
