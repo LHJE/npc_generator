@@ -10,6 +10,15 @@ RSpec.describe 'About Page' do
       click_link 'About'
 
       expect(page).to have_content("About Us:")
+      expect(page).to have_content("Luke Hunter James-Erickson")
+      expect(page).to have_content("theeluke@gmail.com")
+      expect(page).to have_content("Backend Engineer, D&D 5e DM")
+      expect(page).to have_content("Cecile Elliott")
+      expect(page).to have_content("cecile1981@gmail.com")
+      expect(page).to have_content("UX/UI Designer, D&D 5e DM")
+      expect(page).to have_content("Caleb Cyphers")
+      expect(page).to have_content("caleb.j.cyphers@gmail.com")
+      expect(page).to have_content("Frontend Engineer, D&D 5e DM")
     end
   end
 
@@ -25,6 +34,15 @@ RSpec.describe 'About Page' do
       click_link 'About'
 
       expect(page).to have_content("About Us:")
+      expect(page).to have_content("Luke Hunter James-Erickson")
+      expect(page).to have_content("theeluke@gmail.com")
+      expect(page).to have_content("Backend Engineer, D&D 5e DM")
+      expect(page).to have_content("Cecile Elliott")
+      expect(page).to have_content("cecile1981@gmail.com")
+      expect(page).to have_content("UX/UI Designer, D&D 5e DM")
+      expect(page).to have_content("Caleb Cyphers")
+      expect(page).to have_content("caleb.j.cyphers@gmail.com")
+      expect(page).to have_content("Frontend Engineer, D&D 5e DM")
     end
   end
 
@@ -40,6 +58,15 @@ RSpec.describe 'About Page' do
       click_link 'About'
 
       expect(page).to have_content("About Us:")
+      expect(page).to have_content("Luke Hunter James-Erickson")
+      expect(page).to have_content("theeluke@gmail.com")
+      expect(page).to have_content("Backend Engineer, D&D 5e DM")
+      expect(page).to have_content("Cecile Elliott")
+      expect(page).to have_content("cecile1981@gmail.com")
+      expect(page).to have_content("UX/UI Designer, D&D 5e DM")
+      expect(page).to have_content("Caleb Cyphers")
+      expect(page).to have_content("caleb.j.cyphers@gmail.com")
+      expect(page).to have_content("Frontend Engineer, D&D 5e DM")
     end
   end
 end
