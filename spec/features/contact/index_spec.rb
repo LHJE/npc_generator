@@ -28,7 +28,21 @@ RSpec.describe 'Contact Page' do
       expect(current_path).to have_content(contact_index_path)
       expect(find_field('Name').value).to eq(nil)
       expect(find_field('Email').value).to eq(nil)
-      expect(find_field('Mssage').value).to eq(nil)
+      expect(find_field('Message').value).to eq('')
+    end
+
+    it "I cannot send a message without name" do
+      click_link 'Contact Us'
+
+      fill_in 'Email', with: 'hello@gmail.com'
+      fill_in 'Message', with: 'hello, it is me'
+
+      click_button 'Send Message'
+
+      expect(current_path).to have_content(contact_index_path)
+      expect(find_field('Name').value).to eq('')
+      expect(find_field('Email').value).to eq('hello@gmail.com')
+      expect(find_field('Message').value).to eq('hello, it is me')
     end
   end
 
@@ -62,7 +76,21 @@ RSpec.describe 'Contact Page' do
       expect(current_path).to have_content(contact_index_path)
       expect(find_field('Name').value).to eq(nil)
       expect(find_field('Email').value).to eq(nil)
-      expect(find_field('Mssage').value).to eq(nil)
+      expect(find_field('Message').value).to eq('')
+    end
+
+    it "I cannot send a message without name" do
+      click_link 'Contact Us'
+
+      fill_in 'Email', with: 'hello@gmail.com'
+      fill_in 'Message', with: 'hello, it is me'
+
+      click_button 'Send Message'
+
+      expect(current_path).to have_content(contact_index_path)
+      expect(find_field('Name').value).to eq('')
+      expect(find_field('Email').value).to eq('hello@gmail.com')
+      expect(find_field('Message').value).to eq('hello, it is me')
     end
   end
 
@@ -96,7 +124,21 @@ RSpec.describe 'Contact Page' do
       expect(current_path).to have_content(contact_index_path)
       expect(find_field('Name').value).to eq(nil)
       expect(find_field('Email').value).to eq(nil)
-      expect(find_field('Mssage').value).to eq(nil)
+      expect(find_field('Message').value).to eq('')
+    end
+
+    it "I cannot send a message without name" do
+      click_link 'Contact Us'
+
+      fill_in 'Email', with: 'hello@gmail.com'
+      fill_in 'Message', with: 'hello, it is me'
+
+      click_button 'Send Message'
+
+      expect(current_path).to have_content(contact_index_path)
+      expect(find_field('Name').value).to eq('')
+      expect(find_field('Email').value).to eq('hello@gmail.com')
+      expect(find_field('Message').value).to eq('hello, it is me')
     end
   end
 end
