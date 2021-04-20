@@ -31,6 +31,20 @@ RSpec.describe 'Contact Page' do
       expect(find_field('Message').value).to eq('')
     end
 
+    it "I cannot send a message without email" do
+      click_link 'Contact Us'
+
+      fill_in 'Name', with: 'hello'
+      fill_in 'Message', with: 'hello, it is me'
+
+      click_button 'Send Message'
+
+      expect(current_path).to have_content(contact_index_path)
+      expect(find_field('Name').value).to eq('hello')
+      expect(find_field('Email').value).to eq('')
+      expect(find_field('Message').value).to eq('hello, it is me')
+    end
+
     it "I cannot send a message without name" do
       click_link 'Contact Us'
 
@@ -79,6 +93,20 @@ RSpec.describe 'Contact Page' do
       expect(find_field('Message').value).to eq('')
     end
 
+    it "I cannot send a message without email" do
+      click_link 'Contact Us'
+
+      fill_in 'Name', with: 'hello'
+      fill_in 'Message', with: 'hello, it is me'
+
+      click_button 'Send Message'
+
+      expect(current_path).to have_content(contact_index_path)
+      expect(find_field('Name').value).to eq('hello')
+      expect(find_field('Email').value).to eq('')
+      expect(find_field('Message').value).to eq('hello, it is me')
+    end
+
     it "I cannot send a message without name" do
       click_link 'Contact Us'
 
@@ -125,6 +153,20 @@ RSpec.describe 'Contact Page' do
       expect(find_field('Name').value).to eq(nil)
       expect(find_field('Email').value).to eq(nil)
       expect(find_field('Message').value).to eq('')
+    end
+
+    it "I cannot send a message without email" do
+      click_link 'Contact Us'
+
+      fill_in 'Name', with: 'hello'
+      fill_in 'Message', with: 'hello, it is me'
+
+      click_button 'Send Message'
+
+      expect(current_path).to have_content(contact_index_path)
+      expect(find_field('Name').value).to eq('hello')
+      expect(find_field('Email').value).to eq('')
+      expect(find_field('Message').value).to eq('hello, it is me')
     end
 
     it "I cannot send a message without name" do
