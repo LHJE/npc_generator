@@ -100,4 +100,15 @@ class NpcFacade
     end
     npc
   end
+
+  def self.destroy_npc(npc_id)
+    NpcModel.where(id: npc_id).ids.map do |id|
+      NpcModelArmor.where(npc_model_id: id).destroy_all
+      NpcModelPack.where(npc_model_id: id).destroy_all
+      NpcModelWeapon.where(npc_model_id: id).destroy_all
+      NpcModelSpell.where(npc_model_id: id).destroy_all
+      UserNpcModel.where(npc_model_id: id).destroy_all
+    end
+    NpcModel.where(id: npc_id).destroy_all
+  end
 end
