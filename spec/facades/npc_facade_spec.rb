@@ -90,4 +90,14 @@ RSpec.describe 'NPC Facade' do
     expect(npc[0].vision).to be_a(String)
     expect(npc[0].is_saved).to be_a(Integer)
   end
+
+  it "It destroys npc poro" do
+    npc = NpcFacade.create_npc('standard array', 1)
+    
+    expect(NpcModel.all.count).to eq(1)
+
+    NpcFacade.destroy_npc(npc[0].id)
+
+    expect(NpcModel.all.count).to eq(0)
+  end
 end
