@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   post '/npcs/save/:id', to: 'npc_models#new'
   get '/npcs/:id', to: 'npc_models#show'
+  delete '/npcs/destroy/:id', to: 'npc_models#destroy'
 
   resources :users, only: [:create, :destroy]
   delete '/users/destroy/:id', to: 'users#destroy'
