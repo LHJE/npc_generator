@@ -26,4 +26,9 @@ class NpcModelsController < ApplicationController
       Spell.where(id: npc_model_spell.spell_id)
     end.flatten
   end
+
+  def destroy
+    NpcFacade.destroy_npc(params[:id])
+    redirect_back(fallback_location: root_path)
+  end
 end
