@@ -2,7 +2,7 @@
 
 ![](https://img.shields.io/badge/Rails-5.2.4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a) ![](https://img.shields.io/badge/Ruby-2.5.3-orange) ![](https://img.shields.io/badge/Code-HTML-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a) ![](https://api.travis-ci.com/NPCme/NPCme.svg?branch=main)
 
-NPC Generator is a collaboration between a UX/UI Designer, a Backend Engineer, and, eventually, a Frontend Engineer who were inspired by all the great other NPC Generators out there, but felt they had a few ideas of their own that they wanted to explore.  It utilizes the [Open5e API](https://open5e.com/) and [D&D 5e API](https://www.dnd5eapi.co/api), for which we are eternally grateful.
+NPC Generator is a collaboration between a UX/UI Designer, a Backend Engineer, and a Frontend Engineer who were inspired by all the great other NPC Generators out there, but felt they had a few ideas of their own that they wanted to explore.  It utilizes the [Open5e API](https://open5e.com/) and [D&D 5e API](https://www.dnd5eapi.co/api), for which we are eternally grateful.
 
 ### Live app
 [https://npc-generator-lhje.herokuapp.com/](https://npc-generator-lhje.herokuapp.com/)
@@ -65,14 +65,17 @@ Please make sure to update tests as appropriate.
 
 ## Contributors
 
+Backend:
 * Luke Hunter James-Erickson
     * [GitHub](https://github.com/LHJE)
     * [LinkedIn](https://www.linkedin.com/in/lhje/)
 
- * Cecile Elliott
+UX/UI:
+* Cecile Elliott
     * [Website](https://www.onecreativebird.com)
     * [LinkedIn](https://www.linkedin.com/in/cecileelliott/)
 
+Frontend:
 * Caleb Cyphers
     * [GitHub](https://github.com/CalebCyphers)
     * [LinkedIn](https://www.linkedin.com/in/caleb-cyphers/)
