@@ -8,10 +8,10 @@
   <h2>Here is a brand new NPC just for you:</h2>
   <% if !current_user.nil? %>
     <%= form_tag "/npcs/save/#{@npc.id}", method: :post do %>
-      <%= submit_tag "Save", class: :button %>
+      <%= submit_tag "Save", class: :button, class: "button-text-area"  %>
     <% end %>
   <% else %>
-    <%= button_to 'Login and Save', '/auth/google_oauth2' %>
+    <%= button_to 'Login and Save', '/auth/google_oauth2', class: "button-text-area"  %>
   <% end %>
   <%= render "shared/npc_show" %>
   <h2>Roll Up another NPC:</h2>
