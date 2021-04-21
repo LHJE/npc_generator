@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
-  get 'contact/index'
-  resources :contact, only: [:index, :new, :create]
-  post '/contact/index', to: 'contact#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: 'welcome#index'
 
   get '/about', to: 'about#index'
 
-  post '/login', to: 'sessions#create'
-  get '/logout', to: 'sessions#destroy'
+  get 'contact/index'
+  resources :contact, only: [:index, :new, :create]
+  post '/contact/index', to: 'contact#create'
 
   post '/npcs/save/:id', to: 'npc_models#new'
   get '/npcs/:id', to: 'npc_models#show'
@@ -29,4 +27,5 @@ Rails.application.routes.draw do
 
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: redirect('/')
+  get '/logout', to: 'sessions#destroy'
 end
