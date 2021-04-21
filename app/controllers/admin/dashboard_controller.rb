@@ -1,6 +1,7 @@
 class Admin::DashboardController < ApplicationController
   before_action :require_current_user,
-                :require_admin
+                :require_admin,
+                :check_if_saving_npc
 
   def show
     @npcs = UserNpcModel.where(user_id: current_user.id).map do |user_npc_model|
