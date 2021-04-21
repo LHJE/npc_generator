@@ -36,12 +36,16 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'faraday'
 gem 'json'
 gem 'figaro', '~> 1.2.0'
-gem 'jquery-rails'
 gem 'fast_jsonapi'
 gem 'faker'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "omniauth-rails_csrf_protection"
+gem 'bootstrap-sass', '~> 3.3', '>= 3.3.6'
+gem 'mail_form'
+gem 'jquery-rails', '~> 4.1', '>= 4.1.1'
+gem 'dotenv-rails', groups: [:development, :test]
+gem 'turbolinks'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

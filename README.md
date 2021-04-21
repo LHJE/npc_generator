@@ -33,11 +33,18 @@ SECOND_DND_URL: "https://www.dnd5eapi.co/api"
     * `http://localhost:3000/auth/google_oauth2/callback`
     * Click Create and you should receive a Client ID and Client secret. These will go in your application.yml file as:
 ```
-GOOGLE_CLIENT_ID: '< your ID >'
-GOOGLE_CLIENT_SECRET: '< your ID >'
+GOOGLE_CLIENT_ID: 'your ID'
+GOOGLE_CLIENT_SECRET: 'your ID'
 ```
 
-Now run this in your terminal:  
+- Because this app also has a "Contact Us" feature, you'll also need to add this to the application.yml file as well:
+```
+GMAIL_EMAIL: 'your_gmail_address'
+GMAIL_PASSWORD: 'your_password'
+```
+ * Note: This application.yml file will ONLY EXIST ON YOUR COMPUTER.  Because the `.gitignore` file is told not to upload it, this information will remain on your computer. Don't delete this `.gitignore` file, otherwise you're going to want to change your password...
+
+- Lastly run this in your terminal:  
 ```
 rails db:{create,migrate,seed}
 rails db:{migrate,seed} RAILS_ENV=test
