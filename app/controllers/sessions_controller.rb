@@ -9,7 +9,11 @@ class SessionsController < ApplicationController
     user.save
     session[:user_id] = user.id
     flash[:notice] = "Logged in as #{user.name}"
-    redirect_to '/'
+    if user.admin?
+      redirect_to '/admin/dashboard'
+    else
+      redirect_to '/user/dashboard'
+    end
   end
 
   def destroy

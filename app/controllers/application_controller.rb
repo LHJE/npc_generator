@@ -36,4 +36,11 @@ class ApplicationController < ActionController::Base
     end
     NpcModel.where(is_saved: 0).destroy_all
   end
+
+  def check_if_saving_npc
+    if NpcModel.where(is_saved: 0).count.positive?
+      UserNpcModel.create!(npc_model_id: NpcModel.where(is_saved: 0)[0].id, user_id: current_user.id)
+      NpcModel.where(is_saved: 0)[0].update(is_saved: 1)
+    end
+  end
 end

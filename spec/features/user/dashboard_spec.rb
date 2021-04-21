@@ -209,12 +209,10 @@ RSpec.describe 'Dashboard Page' do
       stub_omniauth
       click_button "Login with Google"
 
+      expect(current_path).to eq(user_dashboard_path)
       expect(page).to have_content("Logged in as John Smith")
-      expect(page).to have_content("NPC Generator")
-      expect(page).to have_content("Roll Up an NPC:")
-
-      visit 'user/dashboard'
-
+      expect(page).to have_content("Welcome John Smith")
+      expect(page).to have_content("Delete my account:")
       expect(page).to have_content(@name_1)
       expect(page).to have_content(@name_2)
       expect(page).to_not have_content(@name_3)
@@ -225,8 +223,6 @@ RSpec.describe 'Dashboard Page' do
       expect(page).to have_button("Login with Google")
       stub_omniauth
       click_button "Login with Google"
-
-      visit 'user/dashboard'
 
       click_link @name_1
 

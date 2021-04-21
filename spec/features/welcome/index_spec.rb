@@ -57,6 +57,34 @@ RSpec.describe 'Welcome Page' do
       expect(page).to have_content("Survival:")
       expect(page).to have_content("Roll Up another NPC:")
     end
+
+    it "I can save an NPC if I log in" do
+      expect(NpcModel.all.count).to eq(0)
+      page.has_select?('score_type', selected: 'Roll For Score')
+      click_button 'Generate an NPC'
+      stub_omniauth
+      click_button 'Login with Google and Save NPC'
+      expect(current_path).to eq('/user/dashboard')
+
+      expect(NpcModel.all.count).to eq(1)
+    end
+
+    it "I can save an NPC if I log in and am an admin" do
+      expect(NpcModel.all.count).to eq(0)
+      page.has_select?('score_type', selected: 'Roll For Score')
+      stub_omniauth
+      click_button "Login with Google"
+      click_link "Log Out"
+
+      User.all[0].update(role: "admin")
+      
+      click_button 'Generate an NPC'
+      click_button 'Login with Google and Save NPC'
+
+      expect(current_path).to eq('/admin/dashboard')
+
+      expect(NpcModel.all.count).to eq(1)
+    end
   end
 
   describe 'As a user' do
