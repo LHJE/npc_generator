@@ -5,7 +5,7 @@
   <% else %>
     <% @npcs.each do |npc| %>
       <li><%= link_to npc.name, "/npcs/#{npc[:id]}" %> <%= form_tag "/npcs/destroy/#{npc[:id]}", method: :delete do %>
-        <%= submit_tag "Delete", class: :button %>
+        <%= submit_tag "Delete", class: :button, class: "button-text-area"  %>
       <% end %></li>
     <% end %>
   <% end %>
