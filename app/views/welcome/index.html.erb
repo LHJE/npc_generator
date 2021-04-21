@@ -11,7 +11,7 @@
       <%= submit_tag "Save", class: :button %>
     <% end %>
   <% else %>
-    <p>Please Log in if you'd like to save an NPC</p>
+    <%= button_to 'Login and Save', '/auth/google_oauth2' %>
   <% end %>
   <%= render "shared/npc_show" %>
   <h2>Roll Up another NPC:</h2>
