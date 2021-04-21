@@ -1,7 +1,11 @@
 <%= form_tag "/", method: :get do %>
   <%= label_tag :score_type %>:<br>
-  <%= select(:post, :score_type, ['Standard Array', 'Roll For Scores', 'Min/Maxed Point Buy', 'Wildly Unbalanced']) %><br>
+  <div class="form-dropdown">
+    <%= select(:post, :score_type, ['Standard Array', 'Roll For Scores', 'Min/Maxed Point Buy', 'Wildly Unbalanced']) %><br>
+  </div>
   <%= label_tag :level %>:<br>
-  <%= select(:post, :level, (1..20).to_a) %><br>
-  <%= submit_tag "Generate an NPC", class: :button %>
+  <div class="form-dropdown">
+    <%= select(:post, :level, (1..20).to_a) %><br>
+  </div>
+  <%= submit_tag "Generate an NPC", class: :button, class: "button-text-area" %>
 <% end %>

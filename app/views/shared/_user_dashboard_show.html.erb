@@ -3,7 +3,7 @@
 <p>Delete my account:</p>
 
 <%= form_tag "/users/destroy/#{current_user.id}", method: :delete do %>
-  <%= submit_tag "Delete", class: :button %>
+  <%= submit_tag "Delete", class: :button, class: "button-text-area"  %>
 <% end %>
 
 <%= render "shared/npc_list" %>
