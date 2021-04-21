@@ -12,7 +12,7 @@ RSpec.describe 'Dashboard Page' do
     end
   end
 
-  describe 'As an authenticated  user' do
+  describe 'As an authenticated user' do
     before :each do
       @data = [{:name=>"Half-Elf",
    :slug=>"half-elf",
@@ -209,12 +209,10 @@ RSpec.describe 'Dashboard Page' do
       stub_omniauth
       click_button "Login with Google"
 
+      expect(current_path).to eq(admin_dashboard_path)
       expect(page).to have_content("Logged in as John Smith")
-      expect(page).to have_content("NPC Generator")
-      expect(page).to have_content("Roll Up an NPC:")
-
-      visit 'admin/dashboard'
-
+      expect(page).to have_content("Welcome John Smith")
+      expect(page).to have_content("Delete my account:")
       expect(page).to have_content(@name_1)
       expect(page).to have_content(@name_2)
       expect(page).to_not have_content(@name_3)
