@@ -1,11 +1,11 @@
-# [NPC Generator v0.1](https://npc-generator-lhje.herokuapp.com/)
+# [NPCme v0.1](https://npcme.herokuapp.com/)
 
 ![](https://img.shields.io/badge/Rails-5.2.4-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a) ![](https://img.shields.io/badge/Ruby-2.5.3-orange) ![](https://img.shields.io/badge/Code-HTML-informational?style=flat&logo=<LOGO_NAME>&logoColor=white&color=2bbc8a) ![](https://api.travis-ci.com/NPCme/NPCme.svg?branch=main)
 
-NPC Generator is a collaboration between a UX/UI Designer, a Backend Engineer, and a Frontend Engineer who were inspired by all the great other NPC Generators out there, but felt they had a few ideas of their own that they wanted to explore.  It utilizes the [Open5e API](https://open5e.com/) and [D&D 5e API](https://www.dnd5eapi.co/api), for which we are eternally grateful.
+NPCme is a collaboration between a UX/UI Designer, a Backend Engineer, and a Frontend Engineer who were inspired by all the great other NPC Generators out there, but felt they had a few ideas of their own that they wanted to explore.  It utilizes the [Open5e API](https://open5e.com/) and [D&D 5e API](https://www.dnd5eapi.co/api), for which we are eternally grateful.
 
 ### Live app
-[https://npc-generator-lhje.herokuapp.com/](https://npc-generator-lhje.herokuapp.com/)
+[https://npcme.herokuapp.com/](https://npcme.herokuapp.com/)
 
 ## Installation
 
