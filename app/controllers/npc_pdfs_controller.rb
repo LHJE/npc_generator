@@ -22,7 +22,7 @@ class NpcPdfsController < ApplicationController
         page_size: 'A4',
         template: "npc_pdfs/show.html.erb",
         layout: "pdf.html",
-        orientation: "Landscape",
+        orientation: "Portrait",
         lowquality: true,
         zoom: 1,
         dpi: 75
