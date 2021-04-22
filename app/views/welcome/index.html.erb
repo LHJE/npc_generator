@@ -1,4 +1,4 @@
-<h1>NPC Generator</h1>
+<h1>NPCme</h1>
 
 <% if @npc.nil? %>
   <h2>Roll Up an NPC:</h2>
@@ -13,6 +13,8 @@
   <% else %>
     <%= button_to 'Login and Save', '/auth/google_oauth2', class: "button-text-area"  %>
   <% end %>
+  <h2>View as PDF:</h2>
+  <%= button_to 'PDF', npc_pdf_path(@npc), class: "button-text-area" %>
   <%= render "shared/npc_show" %>
   <h2>Roll Up another NPC:</h2>
     <%= render "shared/roll_npc" %>
