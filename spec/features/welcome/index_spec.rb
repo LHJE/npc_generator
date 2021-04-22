@@ -7,7 +7,7 @@ RSpec.describe 'Welcome Page' do
     end
 
     it "can see field to generate NPC" do
-      expect(page).to have_content("NPC Generator")
+      expect(page).to have_content("NPCme")
       expect(page).to have_content("Roll Up an NPC:")
       expect(page).to have_content("Score type:")
       expect(page).to have_button("Generate an NPC")
@@ -17,7 +17,7 @@ RSpec.describe 'Welcome Page' do
       page.has_select?('score_type', selected: 'Roll For Score')
       click_button 'Generate an NPC'
 
-      expect(page).to have_content("NPC Generator")
+      expect(page).to have_content("NPCme")
       expect(page).to have_content("Here is a brand new NPC just for you")
       expect(page).to have_content("Name:")
       expect(page).to have_content("Gender:")
@@ -96,7 +96,7 @@ RSpec.describe 'Welcome Page' do
     end
 
     it "can see field to generate NPC" do
-      expect(page).to have_content("NPC Generator")
+      expect(page).to have_content("NPCme")
       expect(page).to have_content("Roll Up an NPC:")
       expect(page).to have_content("Score type:")
       expect(page).to have_button("Generate an NPC")
@@ -106,7 +106,7 @@ RSpec.describe 'Welcome Page' do
       page.has_select?('score_type', selected: 'Roll For Score')
       click_button 'Generate an NPC'
 
-      expect(page).to have_content("NPC Generator")
+      expect(page).to have_content("NPCme")
       expect(page).to have_content("Here is a brand new NPC just for you")
       expect(page).to have_content("Name:")
       expect(page).to have_content("Gender:")
@@ -168,7 +168,7 @@ RSpec.describe 'Welcome Page' do
     end
 
     it "can see field to generate NPC" do
-      expect(page).to have_content("NPC Generator")
+      expect(page).to have_content("NPCme")
       expect(page).to have_content("Roll Up an NPC:")
       expect(page).to have_content("Score type:")
       expect(page).to have_button("Generate an NPC")
@@ -178,7 +178,7 @@ RSpec.describe 'Welcome Page' do
       page.has_select?('score_type', selected: 'Roll For Score')
       click_button 'Generate an NPC'
 
-      expect(page).to have_content("NPC Generator")
+      expect(page).to have_content("NPCme")
       expect(page).to have_content("Here is a brand new NPC just for you")
       expect(page).to have_content("Name:")
       expect(page).to have_content("Gender:")
