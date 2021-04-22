@@ -28,4 +28,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/auth/failure', to: redirect('/')
   get '/logout', to: 'sessions#destroy'
+
+  resources :npc_pdfs, only: [:show]
+  post '/npc_pdfs/:id', to: 'npc_pdfs#show'
 end
