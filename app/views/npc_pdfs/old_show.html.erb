@@ -1,0 +1,118 @@
+
+<div class="npc_pdf-box">
+        <table cellpadding="0" cellspacing="0">
+          <tr class="top">
+            <td colspan="4">
+              <table>
+                <tr>
+                  <td class="title">
+                    <%= image_tag wicked_pdf_asset_base64('company_logo.png') %>
+                  </td>
+
+                  <td>
+                    NpcPdf #: <b><%= @npc_pdf.id %></b>
+                    <br>
+                    Created: <b><%= @npc_pdf.created_at.strftime('%d/%m/%Y') %></b>
+                    <br>
+                    Due: <b><%= (@npc_pdf.created_at + 1.month).strftime('%d/%m/%Y') %></b>
+                    <br>
+                    Status: <span class="<%= @npc_pdf.status_class %>"><%= @npc_pdf.status %></span>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr class="information">
+            <td colspan="4">
+              <table>
+                <tr>
+                  <td>
+                    <b><%= @npc_pdf.from_full_name %></b><br>
+                    <%= @npc_pdf.from_address %><br>
+                    <i class="far fa-envelope"></i> <%= @npc_pdf.from_email %><br>
+                    <i class="fas fa-phone"></i> <%= @npc_pdf.from_phone %>
+                  </td>
+
+                  <td>
+                    <b><%= @npc_pdf.to_full_name %></b><br>
+                    <%= @npc_pdf.to_address %><br>
+                    <i class="far fa-envelope"></i> <%= @npc_pdf.to_email %><br>
+                    <i class="fas fa-phone"></i> <%= @npc_pdf.to_phone %>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <tr class="heading">
+            <td>Payment Method</td>
+            <td colspan="2"></td>
+            <td class="right">Cache</td>
+          </tr>
+
+          <tr class="details">
+            <td>Delivery Method</td>
+            <td colspan="2"></td>
+            <td class="right">1000</td>
+          </tr>
+
+          <tr class="heading">
+            <td>Item</td>
+            <td class="right">Price</td>
+            <td class="right">Qty</td>
+            <td>Total</td>
+          </tr>
+
+          <% @npc_pdf.npc_pdf_items.each do |npc_pdf_item| %>
+            <tr class="item">
+                <td>
+                    <%= npc_pdf_item.name %><br>
+                    <small><%= npc_pdf_item.description %></small>
+                </td>
+
+                <td class="right">
+                    <%= number_to_currency(npc_pdf_item.price) %>
+                </td>
+
+                <td class="right">
+                    x <%= npc_pdf_item.qty %>
+                </td>
+
+                <td>
+                    <%= number_to_currency(npc_pdf_item.price * npc_pdf_item.qty) %>
+                </td>
+            </tr>
+          <% end %>
+
+          <tr>
+            <td colspan="4"></td>
+          </tr>
+
+          <tr>
+            <td colspan="2"></td>
+            <td><b>Subtotal</b></td>
+            <td><%= number_to_currency(@npc_pdf.subtotal) %></td>
+          </tr>
+
+          <tr>
+            <td colspan="2"></td>
+            <td><b>Discount (<%= @npc_pdf.discount %>%)</b></td>
+            <td>- <%= number_to_currency(@npc_pdf.discount_calculated) %></td>
+          </tr>
+
+          <tr>
+            <td colspan="2"></td>
+            <td><b>VAT (<%= @npc_pdf.vat %>%)</b></td>
+            <td>+ <%= number_to_currency(@npc_pdf.vat_calculated) %></td>
+          </tr>
+
+          <tr class="heading">
+            <td colspan="2"></td>
+            <td><b>TOTAL:</b></td>
+            <td>
+               <b><%= number_to_currency(@npc_pdf.total) %></b>
+            </td>
+          </tr>
+        </table>
+    </div>
