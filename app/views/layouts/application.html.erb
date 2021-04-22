@@ -5,14 +5,17 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag    'application', media: 'all' %>
-    <%= javascript_include_tag 'application' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
 
   </head>
 
   <body>
     <nav>
+      <%= render "layouts/shared/header" %>
       <%= link_to 'Home', root_path %>
       <%= render 'shared/login_with_google_button' unless current_user %>
       <% if current_user %>
@@ -35,6 +38,8 @@
     <% end %>
     <%= yield %>
     <footer>
+
+      <% if action_name.to_sym != :show && params[:controller] != "npc_pdfs" %>
       <div>
         <%= link_to 'About', about_path %>
         <%= link_to 'Contact Us', contact_index_path %>
@@ -47,6 +52,7 @@
           Further citation information regarding the data used in this project can be found <a href="https://open5e.com/legal">here for Open5e</a> and <a href="https://www.dnd5eapi.co/docs/">here for D&D 5e API</a>.
         </p>
       </div>
+      <% end %>
     </footer>
   </body>
 </html>
