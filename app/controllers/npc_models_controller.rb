@@ -1,9 +1,8 @@
 class NpcModelsController < ApplicationController
-  helper_method :require_current_user
+  helper_method :require_current_user,
+                :check_if_saving_npc
 
   def new
-    UserNpcModel.create!(npc_model_id: params[:id], user_id: current_user.id)
-    NpcModel.where(id: params[:id])[0].update(is_saved: 1)
     if current_user.admin?
       redirect_to '/admin/dashboard'
     else
