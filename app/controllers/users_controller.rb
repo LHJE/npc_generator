@@ -3,9 +3,6 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    UserNpcModel.where(user_id: user.id).map do |user_npc_model|
-      NpcFacade.destroy_npc(user_npc_model.npc_model_id)
-    end
     flash[:success] = "The #{user.name} account has been destroyed!"
     user.destroy
     if !current_user.admin? || params[:id].to_i == current_user.id
