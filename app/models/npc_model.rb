@@ -76,4 +76,16 @@ class NpcModel < ApplicationRecord
             :traits,
             :vision,
             :is_saved, presence: true
+
+  has_many :npc_model_armors, dependent: :destroy
+  has_many :armors, through: :npc_model_armors
+  has_many :npc_model_packs, dependent: :destroy
+  has_many :packs, through: :npc_model_packs
+  has_many :npc_model_spells, dependent: :destroy
+  has_many :spells, through: :npc_model_spells
+  has_many :npc_model_weapons, dependent: :destroy
+  has_many :weapons, through: :npc_model_weapons
+
+  has_many :user_npc_models, dependent: :destroy
+  has_many :users, through: :user_npc_models
 end
