@@ -25,9 +25,9 @@
 
   <h3>Equipment:</h3>
     <p>Gold: <%= @npc.gold %></p>
-    <p>Pack: <%= @pack[0].name %></p>
+    <p>Pack: <%= @npc.packs[0].name %></p>
     <p>Weapons:</p>
-      <% @weapons.each do |weapon|%>
+      <% @npc.weapons.each do |weapon|%>
         <li>Name: <%= weapon.name %></li>
         <% if weapon.damage == 'No Damage'%>
           <li>Damage: <%= weapon.damage %> </li>
@@ -43,10 +43,10 @@
         -----------
       <% end %>
     <p>Armor:</p>
-      <% if @armor[0].nil? || @armor[0] == "" %>
+      <% if @npc.armors[0].nil? || @npc.armors[0] == "" %>
         <p>No Armor</p>
       <% else %>
-        <% @armor.each do |piece|%>
+        <% @npc.armors.each do |piece|%>
           <li>Name: <%= piece.name %></li>
           <li>Armor Class: <%= piece.armor_class %></li>
           <li>Cost: <%= piece.cost %></li>
@@ -62,7 +62,7 @@
         <li><%= piece %></li>
       <% end %>
 
-      <% @pack.flatten[0].things.split(" - ").each do |thing| %>
+      <% @npc.packs[0].things.split(" - ").each do |thing| %>
         <li><%= thing %></li>
       <% end %>
       <li><%= @npc.equipment_extras %></li>
@@ -130,10 +130,10 @@
       <h3>Spells:</h3>
         <p>Spell_slots: <%= @npc.spell_slots %></p>
         <p>Current Spells:</p>
-          <% if @spells.class == String %>
-            <%= @spells %>
+          <% if @npc.spells.class == String %>
+            <%= @npc.spells %>
           <% else %>
-            <% @spells.flatten.each do |spell| %>
+            <% @npc.spells.each do |spell| %>
               <li>Name: <%= spell[:name] %></li>
               <li>Description: <%= spell[:description] %></li>
               <li>Range: <%= spell[:range] %></li>
