@@ -4,7 +4,11 @@ class NpcFacade
     npc_ancestry = NPCService.create_npc_ancestry
     npc_class = NPCService.create_npc_class
     base_info = NPC.new(npc_ancestry, npc_class, score_type, level)
-    npc = [NpcModel.create!(alignment: base_info.alignment,
+    pack = base_info.equipment.pack
+    armor = base_info.equipment.armor
+    weapons = base_info.equipment.weapons
+    spells = base_info.spells.current_spells
+    npc = NpcModel.create!(alignment: base_info.alignment,
                             ancestry: base_info.ancestry,
                             archetype_name: base_info.archetype.instance_of?(String) ? base_info.archetype : base_info.archetype[:name],
                             archetype_desc: base_info.archetype.instance_of?(String) ? base_info.archetype : base_info.archetype[:desc],
@@ -80,25 +84,19 @@ class NpcFacade
                             sub_ancestry: base_info.sub_ancestry.instance_of?(String) ? base_info.sub_ancestry : base_info.sub_ancestry[:name],
                             traits: base_info.traits.to_s,
                             vision: base_info.vision,
-                            is_saved: 0),
-           @pack = [base_info.equipment.pack],
-           @armor = base_info.equipment.armor,
-           @weapons = base_info.equipment.weapons,
-           @spells = base_info.spells.current_spells]
-
-    NpcModelPack.create(npc_model_id: npc[0].id, pack_id: @pack[0].id)
-    @armor.each do |piece|
-      NpcModelArmor.create(npc_model_id: npc[0].id, armor_id: piece.id) unless piece == ''
+                            is_saved: 0)
+    NpcModelPack.create(npc_model_id: npc.id, pack_id: pack.id)
+    armor.each do |piece|
+      NpcModelArmor.create(npc_model_id: npc.id, armor_id: piece.id) unless piece == ''
     end
-    @weapons.each do |weapon|
-      NpcModelWeapon.create(npc_model_id: npc[0].id, weapon_id: weapon.id)
+    weapons.each do |weapon|
+      NpcModelWeapon.create(npc_model_id: npc.id, weapon_id: weapon.id)
     end
-    if @spells.class != String
-      @spells.flatten.each do |spell|
-        NpcModelSpell.create(npc_model_id: npc[0].id, spell_id: spell.id) unless spell.nil?
+    if spells.class != String
+      spells.flatten.each do |spell|
+        NpcModelSpell.create(npc_model_id: npc.id, spell_id: spell.id) unless spell.nil?
       end
     end
     npc
   end
-
 end
