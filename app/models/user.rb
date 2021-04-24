@@ -7,6 +7,9 @@ class User < ApplicationRecord
 
   enum role: { 'default' => 0, 'admin' => 1 }
 
+  has_many :user_npc_models, dependent: :destroy
+  has_many :npc_models, through: :user_npc_models
+
   def self.from_omniauth(access_token)
     user = find_by(uid: access_token.uid)
     return user unless user.nil?
